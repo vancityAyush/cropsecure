@@ -16,7 +16,7 @@ class _AddExpenditureState extends State<AddExpenditure> {
   TextEditingController amountController = TextEditingController();
   var formatDate;
   DateTime selectedDate = DateTime.now();
-  String particularSelect = "";
+  String particularSelect = "Select";
   bool isLoad = false;
   List<String> particular = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
 
@@ -131,7 +131,7 @@ class _AddExpenditureState extends State<AddExpenditure> {
                             onChanged: (String data) async {
                               particularSelect = data;
                             },
-                            itemAsString: (String da) => da,
+                            selectedItem: particularSelect,
                           ),
                         )
                       ],
@@ -202,7 +202,7 @@ class _AddExpenditureState extends State<AddExpenditure> {
                       onPressed: () async {
                         if (formatDate == null) {
                           showSnackBar("Select date");
-                        } else if (particularSelect == "") {
+                        } else if (particularSelect == "Select") {
                           showSnackBar("Select particular select");
                         } else if (amountController.text.isEmpty) {
                           showSnackBar("Enter amount");
@@ -218,9 +218,10 @@ class _AddExpenditureState extends State<AddExpenditure> {
 
                           setState(() {
                             isLoad = false;
+                            particularSelect = "Select";
                             amountController.clear();
-
                             formatDate = null;
+                            selectedDate = DateTime.now();
                           });
                         }
                       },

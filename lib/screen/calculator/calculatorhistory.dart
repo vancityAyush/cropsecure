@@ -21,7 +21,6 @@ class CalculatorHistory extends StatelessWidget {
             );
           } else {
             var data = snapshot.data['data'];
-            print(data);
             return ListView.builder(
                 itemCount: data.length,
                 shrinkWrap: true,
