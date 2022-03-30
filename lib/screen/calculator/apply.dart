@@ -5,10 +5,12 @@ import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/authprovider.dart';
+import 'calculator.dart';
 
 class Apply extends StatefulWidget {
   String plotId;
@@ -388,10 +390,23 @@ class _ApplyState extends State<Apply> {
                                 quantity.text,
                                 formatDate,
                                 newFileObserverPhoto);
-                        print(res);
-                        setState(() {
-                          isLoad = false;
-                        });
+                        if (res.isSuccess) {
+                          setState(() {
+                            isLoad = false;
+                            selectedDate = DateTime.now();
+                            formatDate =
+                                DateFormat('yyyy-MM-dd').format(DateTime.now());
+                            method = null;
+                            productMixed = null;
+                            productName.clear();
+                            quantity.clear();
+                            filename = null;
+                            file = null;
+                          });
+                          Get.to(Calculator(widget.plotId),
+                              transition: Transition.rightToLeftWithFade,
+                              duration: const Duration(milliseconds: 600));
+                        }
                       },
                       child: Text('Save',
                           style: robotoBold.copyWith(
