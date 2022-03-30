@@ -2,11 +2,13 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:cropsecure/provider/authprovider.dart';
+import 'package:cropsecure/screen/addfarmer/plant_doctor_history.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +48,11 @@ class _State extends State<PlantDoctor> {
         actions: [
           //Material Button with History and white background
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => PlantDoctorHistory(widget.id),
+                  transition: Transition.rightToLeftWithFade,
+                  duration: const Duration(milliseconds: 600));
+            },
             child: const Text(
               "HISTORY",
               style: TextStyle(

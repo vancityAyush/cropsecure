@@ -1130,6 +1130,17 @@ class AuthRepo {
     }
   }
 
+  ////////// fetchPlantDoctorHistory ///////////
+  Future<ApiResponse> fetchPlantDoctorHistory(String plotId) async {
+    try {
+      Response response =
+          await dioClient.post(AppConstants.fetchPlantDoctor + "/" + plotId);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   /////////////////newCattleShedApi///////////////////////
 
   Future<ApiResponse> newCattleShedApi(String cattleShedOldNew,

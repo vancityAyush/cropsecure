@@ -1205,6 +1205,15 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  ////////////fetchPlantDoctor
+  Future fetchPlantDoctor(String plotId) async {
+    ApiResponse apiResponse = await authRepo.fetchPlantDoctorHistory(plotId);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      return apiResponse.response.data;
+    }
+  }
+
   /////// newCattleShedApi /////////
   Future<ResponseModel> newCattleShedApi(String cattleShedOldNew,
       String belowCattleName, String shedName, String shedGeoTag) async {

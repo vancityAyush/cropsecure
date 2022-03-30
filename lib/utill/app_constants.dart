@@ -45,6 +45,7 @@ class AppConstants {
   static const String orderNow = 'orderNow';
   static const String newCattie = 'new_cattle';
   static const String fetchCattle = 'fetch_cattle';
+  static const String fetchPlantDoctor = 'fetch_plant_doctor';
   static const String addPlantDoctor = 'plant_doctor';
   static const String newCattleShed = 'new_cattle_shed';
   static const String fetchCattleShed = 'fetch_cattle_shed';
