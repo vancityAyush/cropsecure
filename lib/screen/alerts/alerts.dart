@@ -217,14 +217,6 @@ class RaiseAlerts extends StatelessWidget {
                                       ),
                                       Row(
                                         children: const [
-                                          CircleAvatar(
-                                              radius: 14,
-                                              backgroundColor: Colors.green,
-                                              child: Icon(
-                                                Icons.edit,
-                                                color: Colors.white,
-                                                size: 15,
-                                              )),
                                           SizedBox(
                                             width: 15,
                                           ),

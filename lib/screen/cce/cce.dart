@@ -205,6 +205,225 @@ class _CceState extends State<Cce> {
     }
   }
 
+  List<Widget> DepartmentForm(BuildContext context) {
+    return [
+      Text("Department",
+          style: robotoBold.copyWith(
+              color: const Color(0xff262626), fontSize: 17)),
+      SizedBox(
+        height: 48,
+        child: DropdownSearch(
+          popupShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          mode: Mode.MENU,
+          popupElevation: 5,
+          dropdownSearchDecoration: const InputDecoration(
+            hintText: "Insurance",
+            hintStyle: TextStyle(color: ColorResources.light_purple),
+            contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+            border: OutlineInputBorder(),
+          ),
+          // showSearchBox:true,
+          items: [
+            "Farmer",
+            "Govt. Department",
+            "Insurance Company",
+            "Cropsecure Company",
+          ],
+          // onFind: (String filter) async {
+          //   return gender;
+          // },
+          onChanged: (String data) async {
+            departMentSelect = data;
+          },
+          itemAsString: (String da) => da,
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: SizedBox(
+          height: 48.0,
+          child: TextFormField(
+            controller: observerNameController,
+            maxLines: 1,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+                hintText: "Observer Name",
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                hintStyle: TextStyle(
+                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                    color: const Color(0xffb7b7b7))),
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: SizedBox(
+          height: 48.0,
+          child: TextFormField(
+            controller: observerMobileController,
+            maxLines: 1,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+                hintText: "Observer Mobile",
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                hintStyle: TextStyle(
+                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                    color: const Color(0xffb7b7b7))),
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: SizedBox(
+          height: 48.0,
+          child: TextFormField(
+            controller: observerDesignationController,
+            maxLines: 1,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+                hintText: "Observer Designation",
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                hintStyle: TextStyle(
+                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                    color: const Color(0xffb7b7b7))),
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Center(
+        child: Container(
+          height: 120,
+          width: 140,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(color: const Color(0xffb7b7b7))),
+          child: Stack(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(2),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: const Color(0xffe1ddde)),
+                    height: 40,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: Text(
+                          "Observer Photo",
+                          style: robotoMedium.copyWith(
+                              color: const Color(0xff262626), fontSize: 13),
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () => onFileObserberPhoto(),
+                    child: Container(
+                        margin: const EdgeInsets.only(right: 4, bottom: 3),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                            color: const Color(0xffb7b7b7)),
+                        child: const Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.image_outlined,
+                            size: 25,
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+              newFileObserverPhoto == null
+                  ? const Text("")
+                  : Positioned(
+                      top: 0,
+                      bottom: 0,
+                      right: 0,
+                      left: 0,
+                      child: Container(
+                        height: 60,
+                        padding: const EdgeInsets.fromLTRB(20, 45, 25, 30),
+                        child: Image.file(
+                          newFileObserverPhoto,
+                        ),
+                      ))
+            ],
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      //Button to sumbit
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        child: RaisedButton(
+          onPressed: () async {
+            if (departMentSelect == "") {
+              showSnackBar("Select department");
+            } else if (observerNameController.text.isEmpty) {
+              showSnackBar("Enter observer name");
+            } else if (observerMobileController.text.isEmpty) {
+              showSnackBar("Enter observer mobile number");
+            } else if (observerDesignationController.text.isEmpty) {
+              showSnackBar("Enter observer designation");
+            } else if (newFileObserverPhoto == null) {
+              showSnackBar("Select observer photo");
+            } else {
+              await _sumbit(context);
+              showSnackBar("Observer added successfully");
+            }
+          },
+          color: const Color(0xff262626),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+          child: Text(
+            "Submit Observer",
+            style: robotoMedium.copyWith(
+                color: Colors.white,
+                fontSize: 14 * MediaQuery.of(context).textScaleFactor),
+          ),
+        ),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -235,188 +454,23 @@ class _CceState extends State<Cce> {
                 style: robotoBold.copyWith(
                     color: ColorResources.light_purple, fontSize: 18),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text("Department",
-                  style: robotoBold.copyWith(
-                      color: const Color(0xff262626), fontSize: 17)),
-              SizedBox(
-                height: 48,
-                child: DropdownSearch(
-                  popupShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  mode: Mode.MENU,
-                  popupElevation: 5,
-                  dropdownSearchDecoration: const InputDecoration(
-                    hintText: "Insurance",
-                    hintStyle: TextStyle(color: ColorResources.light_purple),
-                    contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                    border: OutlineInputBorder(),
-                  ),
-                  // showSearchBox:true,
-                  onFind: (String filter) async {
-                    return gender;
-                  },
-                  onChanged: (String data) async {
-                    departMentSelect = data;
-                  },
-                  itemAsString: (String da) => da,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  height: 48.0,
-                  child: TextFormField(
-                    controller: observerNameController,
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                        hintText: "Observer Name",
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        hintStyle: TextStyle(
-                            fontSize:
-                                14 * MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7))),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  height: 48.0,
-                  child: TextFormField(
-                    controller: observerMobileController,
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                        hintText: "Observer Mobile",
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        hintStyle: TextStyle(
-                            fontSize:
-                                14 * MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7))),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  height: 48.0,
-                  child: TextFormField(
-                    controller: observerDesignationController,
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                        hintText: "Observer Designation",
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        hintStyle: TextStyle(
-                            fontSize:
-                                14 * MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7))),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Center(
+              Card(
+                elevation: 3,
                 child: Container(
-                  height: 120,
-                  width: 140,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: const Color(0xffb7b7b7))),
-                  child: Stack(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white),
+                  padding: EdgeInsets.all(10),
+                  child: Column(
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(2),
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(7),
-                                color: const Color(0xffe1ddde)),
-                            height: 40,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12.0),
-                                child: Text(
-                                  "Observer Photo",
-                                  style: robotoMedium.copyWith(
-                                      color: const Color(0xff262626),
-                                      fontSize: 13),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () => onFileObserberPhoto(),
-                            child: Container(
-                                margin:
-                                    const EdgeInsets.only(right: 4, bottom: 3),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(13),
-                                    color: const Color(0xffb7b7b7)),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Icon(
-                                    Icons.image_outlined,
-                                    size: 25,
-                                  ),
-                                )),
-                          ),
-                        ],
-                      ),
-                      newFileObserverPhoto == null
-                          ? const Text("")
-                          : Positioned(
-                              top: 0,
-                              bottom: 0,
-                              right: 0,
-                              left: 0,
-                              child: Container(
-                                height: 60,
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 45, 25, 30),
-                                child: Image.file(
-                                  newFileObserverPhoto,
-                                ),
-                              ))
+                      ...DepartmentForm(context),
                     ],
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               const SizedBox(
                 height: 20,
@@ -2024,47 +2078,7 @@ class _CceState extends State<Cce> {
                               isLoad = true;
                             });
                             // Get.to(() => AddBankDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                            await Provider.of<AuthProvider>(context,
-                                    listen: false)
-                                .addCceApi(
-                                    "20",
-                                    departMentSelect,
-                                    observerNameController.text,
-                                    observerDesignationController.text,
-                                    newFileObserverPhoto,
-                                    areaAcreSelect,
-                                    areaController.text,
-                                    areaAuditController.text,
-                                    userType,
-                                    newFileSouthWestPhoto,
-                                    newFileFieldImagePhoto,
-                                    lengthController.text,
-                                    breadthController.text,
-                                    chooseRandomNumber,
-                                    randomLengthController.text,
-                                    randomBreadthController.text,
-                                    shapeOfCceSelect,
-                                    dimensionOfCCeController.text,
-                                    newFileMarkedImagePhoto,
-                                    newFileCutHarvestPhoto,
-                                    "",
-                                    "",
-                                    "",
-                                    sumOfBioMassController.text,
-                                    newFileWeightPlotPhoto,
-                                    newFileThreshingPhoto,
-                                    newFileCleaningPhoto,
-                                    weightOfCropsController.text,
-                                    sumOfAllController.text,
-                                    newFileCutPlotPhoto,
-                                    newFileWeightPlotPhoto,
-                                    newFileMoisturePhoto,
-                                    newFileJointPhoto,
-                                    observerMobileController.text);
-
-                            setState(() {
-                              isLoad = false;
-                            });
+                            await _sumbit(context);
                           }
                         },
                         child: Text('Save',
@@ -2077,5 +2091,47 @@ class _CceState extends State<Cce> {
         ),
       ),
     );
+  }
+
+  void _sumbit(BuildContext context) async {
+    await Provider.of<AuthProvider>(context, listen: false).addCceApi(
+        "20",
+        departMentSelect,
+        observerNameController.text,
+        observerDesignationController.text,
+        newFileObserverPhoto,
+        areaAcreSelect,
+        areaController.text,
+        areaAuditController.text,
+        userType,
+        newFileSouthWestPhoto,
+        newFileFieldImagePhoto,
+        lengthController.text,
+        breadthController.text,
+        chooseRandomNumber,
+        randomLengthController.text,
+        randomBreadthController.text,
+        shapeOfCceSelect,
+        dimensionOfCCeController.text,
+        newFileMarkedImagePhoto,
+        newFileCutHarvestPhoto,
+        "",
+        "",
+        "",
+        sumOfBioMassController.text,
+        newFileWeightPlotPhoto,
+        newFileThreshingPhoto,
+        newFileCleaningPhoto,
+        weightOfCropsController.text,
+        sumOfAllController.text,
+        newFileCutPlotPhoto,
+        newFileWeightPlotPhoto,
+        newFileMoisturePhoto,
+        newFileJointPhoto,
+        observerMobileController.text);
+
+    setState(() {
+      isLoad = false;
+    });
   }
 }

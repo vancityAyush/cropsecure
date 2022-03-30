@@ -60,39 +60,42 @@ class ResponseFarmer {
       };
 }
 
+enum farmerType { F, C }
+
 class Data {
-  Data({
-    this.id,
-    this.userId,
-    this.name,
-    this.fathernameHusbandname,
-    this.gender,
-    this.dob,
-    this.age,
-    this.handicapped,
-    this.minority,
-    this.caste,
-    this.mobileNumber,
-    this.pincode,
-    this.state,
-    this.districtName,
-    this.taluka,
-    this.hobble,
-    this.gramaPanchayath,
-    this.villageName,
-    this.aadhaar,
-    this.pan,
-    this.rashan,
-    this.rashanNo,
-    this.panNo,
-    this.aadhaarNo,
-    this.image,
-    this.bank,
-    this.createdAt,
-    this.deletedAt,
-  });
+  Data(
+      {this.id,
+      this.userId,
+      this.name,
+      this.fathernameHusbandname,
+      this.gender,
+      this.dob,
+      this.age,
+      this.handicapped,
+      this.minority,
+      this.caste,
+      this.mobileNumber,
+      this.pincode,
+      this.state,
+      this.districtName,
+      this.taluka,
+      this.hobble,
+      this.gramaPanchayath,
+      this.villageName,
+      this.aadhaar,
+      this.pan,
+      this.rashan,
+      this.rashanNo,
+      this.panNo,
+      this.aadhaarNo,
+      this.image,
+      this.bank,
+      this.createdAt,
+      this.deletedAt,
+      this.type});
 
   String id;
+  farmerType type;
   String userId;
   String name;
   String fathernameHusbandname;
@@ -142,6 +145,7 @@ class Data {
             json["district_name"] == null ? null : json["district_name"],
         taluka: json["taluka"] == null ? null : json["taluka"],
         hobble: json["hobble"] == null ? null : json["hobble"],
+        type: json["type_of_farmer"] == 'F' ? farmerType.F : farmerType.C,
         gramaPanchayath:
             json["grama_panchayath"] == null ? null : json["grama_panchayath"],
         villageName: json["village_name"] == null ? null : json["village_name"],

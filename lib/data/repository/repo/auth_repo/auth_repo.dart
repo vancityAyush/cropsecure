@@ -717,8 +717,11 @@ class AuthRepo {
       "manually_entered_area": manuallyEnteredArea,
       "area_audit": areaAudit,
       "is_sw": tagSouthWest,
-      "south_west_corner": MultipartFile.fromFileSync(southWest.path),
-      "field_images": MultipartFile.fromFileSync(fieldImage.path),
+      "south_west_corner":
+          southWest != null ? MultipartFile.fromFileSync(southWest.path) : null,
+      "field_images": fieldImage != null
+          ? MultipartFile.fromFileSync(fieldImage.path)
+          : null,
       "length": length,
       "breadth": breadth,
       "choose_random": chooseRandom,
@@ -726,22 +729,37 @@ class AuthRepo {
       "random_number_breadth": randomNumberBreadth,
       "shape_of_cce_plot": shapeOfCcePlot,
       "dimension_of_cce_plot": dimensionOfCcePlot,
-      "marked_plot_photo": MultipartFile.fromFileSync(markedPlotPhoto.path),
-      "cut_harvest_photo": MultipartFile.fromFileSync(cutHarvestPhoto.path),
-      "cut_harvest_photo": MultipartFile.fromFileSync(cutHarvestPhoto.path),
+      "marked_plot_photo": markedPlotPhoto != null
+          ? MultipartFile.fromFileSync(markedPlotPhoto.path)
+          : null,
+      "cut_harvest_photo": cutHarvestPhoto != null
+          ? MultipartFile.fromFileSync(cutHarvestPhoto.path)
+          : null,
       "bmwotca": bmwotca,
       "bmwotcb": bmwotcb,
       "bmwotcc": bmwotcc,
       "bio_mass_weight_of_the_crop": bioMassWeightOfTheCrop,
-      "weightingPhoto": MultipartFile.fromFileSync(weightingPhoto.path),
-      "threshing_photo": MultipartFile.fromFileSync(threshingPhoto.path),
-      "cleaning_photo": MultipartFile.fromFileSync(cleaningPhoto.path),
+      "weightingPhoto": weightingPhoto != null
+          ? MultipartFile.fromFileSync(weightingPhoto.path)
+          : null,
+      "threshing_photo": threshingPhoto != null
+          ? MultipartFile.fromFileSync(threshingPhoto.path)
+          : null,
+      "cleaning_photo": cleaningPhoto != null
+          ? MultipartFile.fromFileSync(cleaningPhoto.path)
+          : null,
       "weight_of_crops": weightOfCrops,
       "yield_sum_of_all_columns": yieldSumOfAllColumns,
-      "cut_plot": MultipartFile.fromFileSync(cutPlot.path),
-      "cp_weight": MultipartFile.fromFileSync(cpWeight.path),
-      "moisture_photo": MultipartFile.fromFileSync(moisturePhoto.path),
-      "joint_photo": MultipartFile.fromFileSync(jointPhoto.path),
+      "cut_plot":
+          cutPlot != null ? MultipartFile.fromFileSync(cutPlot.path) : null,
+      "cp_weight":
+          cpWeight != null ? MultipartFile.fromFileSync(cpWeight.path) : null,
+      "moisture_photo": moisturePhoto != null
+          ? MultipartFile.fromFileSync(moisturePhoto.path)
+          : null,
+      "joint_photo": jointPhoto != null
+          ? MultipartFile.fromFileSync(jointPhoto.path)
+          : null,
     });
 
     print(formData.fields.toString());

@@ -417,7 +417,6 @@ class AuthProvider with ChangeNotifier {
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
       responseFarmer = ResponseFarmer.fromJson(apiResponse.response.data);
-
       return responseFarmer;
     }
   }
