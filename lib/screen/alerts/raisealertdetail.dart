@@ -236,19 +236,22 @@ class _RaiseAlertDetailState extends State<RaiseAlertDetail> {
                                 ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        margin:
-                            const EdgeInsets.only(top: 20, left: 10, right: 10),
-                        width: MediaQuery.of(context).size.width,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                          color: const Color(0xffebe9ea),
-                        ),
-                        child: const Icon(
-                          Icons.mic,
-                          size: 36,
+                      Visibility(
+                        visible: false,
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(
+                              top: 20, left: 10, right: 10),
+                          width: MediaQuery.of(context).size.width,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: const Color(0xffebe9ea),
+                          ),
+                          child: const Icon(
+                            Icons.mic,
+                            size: 36,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -296,7 +299,13 @@ class _RaiseAlertDetailState extends State<RaiseAlertDetail> {
                             newAdvice: adviceController.text,
                             comment: commentController.text,
                             image: _image,
-                          );
+                          )
+                              .then((value) {
+                            if (value.isSuccess) {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            }
+                          });
                         },
                         child: Text(
                           "Submit",
