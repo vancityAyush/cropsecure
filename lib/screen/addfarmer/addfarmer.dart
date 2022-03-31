@@ -2,12 +2,10 @@
 
 import 'dart:io';
 
+import 'package:cropsecure/data/model/response/responsefamer.dart';
 import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/screen/addfarmer/addfarmersuccessfull.dart';
-import 'package:cropsecure/screen/bankdetail/addbankdetail.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/styles.dart';
-import 'package:cropsecure/utill/validators.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -1327,7 +1325,8 @@ class _AddFarmerState extends State<AddFarmer> {
                                       newFile,
                                       newFileRashan,
                                       newFilePan,
-                                      newFileFarmer);
+                                      newFileFarmer,
+                                      type: farmerType.C);
 
                               setState(() {
                                 isLoad = false;

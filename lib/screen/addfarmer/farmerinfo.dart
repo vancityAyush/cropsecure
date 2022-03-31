@@ -3,14 +3,12 @@
 import 'package:cropsecure/data/model/response/responsefamer.dart';
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/screen/addfarmer/farmerdetail.dart';
-import 'package:cropsecure/screen/dashboard.dart';
 import 'package:cropsecure/utill/app_constants.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/dimensions.dart';
 import 'package:cropsecure/utill/sharedprefrence.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';

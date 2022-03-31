@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cropsecure/data/datasource/remote/dio/dio_client.dart';
 import 'package:cropsecure/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:cropsecure/data/model/response/base/api_response.dart';
+import 'package:cropsecure/data/model/response/responsefamer.dart';
 import 'package:cropsecure/utill/app_constants.dart';
 import 'package:cropsecure/utill/sharedprefrence.dart';
 import 'package:dio/dio.dart';
@@ -261,7 +262,8 @@ class AuthRepo {
       File adhaar,
       File rashan,
       File panCard,
-      File image) async {
+      File image,
+      {farmerType type}) async {
     var key =
         await SharedPrefManager.getPrefrenceString(AppConstants.newUserId);
     FormData formData = FormData.fromMap({
@@ -288,6 +290,7 @@ class AuthRepo {
       "rashan": MultipartFile.fromFileSync(rashan.path),
       "image": MultipartFile.fromFileSync(image.path),
       "pan": MultipartFile.fromFileSync(panCard.path),
+      "type_of_farmer": type.toString()
     });
 
     print(formData.fields.toString());

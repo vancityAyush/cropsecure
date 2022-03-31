@@ -73,6 +73,12 @@ class AppConstants {
   static const String subCategoryName = 'subCategoryName';
   static const String token = 'token';
   static const String plotcount = 'plotcount';
+  static const String observerFlag = 'observerFlag';
+  static const String observerDepartment = 'observer_department';
+  static const String observerName = 'observer_name';
+  static const String observerDesignation = 'observer_designation';
+  static const String observerMobile = 'observer_mobile';
+  static const String observerPhoto = 'observer_photo';
 
   /*static List<LanguageModel> languages = [
     LanguageModel(imageUrl: Images.united_kindom, languageName: 'English', countryCode: 'US', languageCode: 'en'),

@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/dimensions.dart';
+import 'package:cropsecure/utill/sharedprefrence.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
@@ -10,6 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../utill/app_constants.dart';
 
 class Cce extends StatefulWidget {
   @override
@@ -17,6 +23,12 @@ class Cce extends StatefulWidget {
 }
 
 class _CceState extends State<Cce> {
+  @override
+  initState() {
+    getData(context);
+    super.initState();
+  }
+
   List<String> gender = ["Male", "Female"];
   int tagRadio = 1, tagRadioNumber = 1;
   bool isLoad = false;
@@ -407,7 +419,7 @@ class _CceState extends State<Cce> {
             } else if (newFileObserverPhoto == null) {
               showSnackBar("Select observer photo");
             } else {
-              await _sumbit(context);
+              await _sumbitObserver(context);
               showSnackBar("Observer added successfully");
             }
           },
@@ -1255,16 +1267,17 @@ class _CceState extends State<Cce> {
               SizedBox(
                 height: 10,
               ),
-              GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisCount: 4,
-                children: List.generate(
-                  8,
-                  (index) {
-                    return Expanded(
-                      flex: 1,
-                      child: Padding(
+              Container(
+                margin: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(4),
+                child: GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 4,
+                  children: List.generate(
+                    8,
+                    (index) {
+                      return Padding(
                         padding: const EdgeInsets.all(4),
                         child: SizedBox(
                           height: 48.0,
@@ -1294,9 +1307,9 @@ class _CceState extends State<Cce> {
                                     color: const Color(0xffb7b7b7))),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
               Padding(
@@ -2014,6 +2027,7 @@ class _CceState extends State<Cce> {
                           ), //button color
                         ),
                         onPressed: () async {
+                          await _sumbit(context);
                           if (departMentSelect == "") {
                             showSnackBar("Select department");
                           } else if (observerNameController.text.isEmpty) {
@@ -2133,5 +2147,52 @@ class _CceState extends State<Cce> {
     setState(() {
       isLoad = false;
     });
+  }
+
+  static Future<bool> saveImage(List<int> imageBytes) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String base64Image = base64Encode(imageBytes);
+    return prefs.setString(AppConstants.observerPhoto, base64Image);
+  }
+
+  Future<File> getImage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    Uint8List bytes = base64Decode(prefs.getString(AppConstants.observerPhoto));
+    // return File.fromRawPath(bytes);
+    await newFileObserverPhoto.writeAsBytes(bytes);
+
+    return newFileObserverPhoto;
+  }
+
+  void _sumbitObserver(BuildContext context) async {
+    await SharedPrefManager.savePrefString(
+        AppConstants.observerDepartment, departMentSelect);
+    await SharedPrefManager.savePrefString(
+        AppConstants.observerName, observerNameController.text);
+    await SharedPrefManager.savePrefString(
+        AppConstants.observerDesignation, observerDesignationController.text);
+    await SharedPrefManager.savePrefString(
+        AppConstants.observerMobile, observerMobileController.text);
+    await saveImage(newFileObserverPhoto.readAsBytesSync());
+    await SharedPrefManager.savePreferenceBooleanFlag(
+        AppConstants.observerFlag, true);
+  }
+
+  void getData(BuildContext context) async {
+    if (await SharedPrefManager.getPreferenceBooleanFlag(
+        AppConstants.observerFlag)) {
+      departMentSelect = await SharedPrefManager.getPrefrenceString(
+          AppConstants.observerDepartment);
+      observerNameController.text =
+          await SharedPrefManager.getPrefrenceString(AppConstants.observerName);
+      observerDesignationController.text =
+          await SharedPrefManager.getPrefrenceString(
+              AppConstants.observerDesignation);
+      observerMobileController.text =
+          await SharedPrefManager.getPrefrenceString(
+              AppConstants.observerMobile);
+      newFileObserverPhoto = await getImage();
+      setState(() {});
+    }
   }
 }

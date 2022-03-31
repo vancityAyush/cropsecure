@@ -26,6 +26,17 @@ class SharedPrefManager {
     sharedPreferences.setBool("isLoggedIn", b);
   }
 
+  static savePreferenceBooleanFlag(String key, bool b) async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool(key, b);
+  }
+
+  static Future<bool> getPreferenceBooleanFlag(String key) async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    var res = await sharedPreferences.get(key);
+    return res;
+  }
+
   static getBooleanPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getBool("isLoggedIn");

@@ -354,7 +354,8 @@ class AuthProvider with ChangeNotifier {
       File adhaar,
       File rashan,
       File panCard,
-      File image) async {
+      File image,
+      {farmerType type = farmerType.F}) async {
     ApiResponse apiResponse = await authRepo.registerFarmerApi(
         name,
         fatherName,
@@ -377,7 +378,8 @@ class AuthProvider with ChangeNotifier {
         adhaar,
         rashan,
         panCard,
-        image);
+        image,
+        type: type);
 
     ResponseModel responseModel;
     if (apiResponse.response != null &&
