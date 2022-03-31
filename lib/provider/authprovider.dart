@@ -421,6 +421,15 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  ///////////////////////// fetch Irrigation Api
+  Future fetchIrrigation() async {
+    ApiResponse apiResponse = await authRepo.fetchIrrigationApi();
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      return apiResponse.response.data;
+    }
+  }
+
   ///////////////////////// fetch count Api
   ResponseFarmercount responseFarmercount;
   Future<ResponseFarmercount> fetchFarmercountApi() async {

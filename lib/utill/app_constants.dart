@@ -25,6 +25,8 @@ class AppConstants {
   static const String fetchPlotExpenditure = 'fetch_plot_expenditure';
   static const String fetchFieldVisit = 'fetch_field_visit';
   static const String fetchFarmer = 'fetch_farmer';
+
+  static const String fetchIrrigation = 'fetch_products/Irrigation';
   static const String popUpDisease = 'disease_alert_type';
   static const String fetchDiseaseAlert = 'fetch_disease_alert_type_form';
   static const String addDiseaseAlert = 'disease_alert_type_form';

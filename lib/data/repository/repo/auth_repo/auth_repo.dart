@@ -319,6 +319,19 @@ class AuthRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  /////////////////fetchIrrigation///////////////////////
+
+  Future<ApiResponse> fetchIrrigationApi() async {
+    try {
+      Response response = await dioClient.get(AppConstants.fetchIrrigation);
+
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   /////////////////fetchFarmercountApi///////////////////////
 
   Future<ApiResponse> fetchFarmercountApi() async {
