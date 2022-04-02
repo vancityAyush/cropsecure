@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
@@ -12,8 +10,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utill/app_constants.dart';
 
@@ -2027,7 +2025,6 @@ class _CceState extends State<Cce> {
                           ), //button color
                         ),
                         onPressed: () async {
-                          await _sumbit(context);
                           if (departMentSelect == "") {
                             showSnackBar("Select department");
                           } else if (observerNameController.text.isEmpty) {
@@ -2077,8 +2074,6 @@ class _CceState extends State<Cce> {
                             showSnackBar("Select cleaning photo");
                           } else if (weightOfCropsController.text.isEmpty) {
                             showSnackBar("Enter weight of crops");
-                          } else if (sumOfAllController.text.isEmpty) {
-                            showSnackBar("Enter sum of yield");
                           } else if (newFileCutPlotPhoto == null) {
                             showSnackBar("Select cut plot photo");
                           } else if (newFileWeightPlotPhoto == null) {
@@ -2129,15 +2124,15 @@ class _CceState extends State<Cce> {
         dimensionOfCCeController.text,
         newFileMarkedImagePhoto,
         newFileCutHarvestPhoto,
-        "",
-        "",
-        "",
+        "20",
+        "20",
+        "20",
         sumOfBioMassController.text,
         newFileWeightPlotPhoto,
         newFileThreshingPhoto,
         newFileCleaningPhoto,
         weightOfCropsController.text,
-        sumOfAllController.text,
+        weightOfCropsController.text,
         newFileCutPlotPhoto,
         newFileWeightPlotPhoto,
         newFileMoisturePhoto,
@@ -2149,19 +2144,18 @@ class _CceState extends State<Cce> {
     });
   }
 
-  static Future<bool> saveImage(List<int> imageBytes) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String base64Image = base64Encode(imageBytes);
-    return prefs.setString(AppConstants.observerPhoto, base64Image);
+  static Future<bool> saveImage(File file) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final path = directory.path;
+    final newfile = await file.copy("%path/image.jpg");
+    return true;
   }
 
   Future<File> getImage() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    Uint8List bytes = base64Decode(prefs.getString(AppConstants.observerPhoto));
-    // return File.fromRawPath(bytes);
-    await newFileObserverPhoto.writeAsBytes(bytes);
-
-    return newFileObserverPhoto;
+    final directory = await getApplicationDocumentsDirectory();
+    final path = directory.path;
+    File file = File("$path/image.jpg");
+    return file;
   }
 
   void _sumbitObserver(BuildContext context) async {
@@ -2173,7 +2167,8 @@ class _CceState extends State<Cce> {
         AppConstants.observerDesignation, observerDesignationController.text);
     await SharedPrefManager.savePrefString(
         AppConstants.observerMobile, observerMobileController.text);
-    await saveImage(newFileObserverPhoto.readAsBytesSync());
+    await SharedPrefManager.savePrefString(
+        AppConstants.observerPhoto, newFileObserverPhoto.path);
     await SharedPrefManager.savePreferenceBooleanFlag(
         AppConstants.observerFlag, true);
   }
@@ -2191,7 +2186,8 @@ class _CceState extends State<Cce> {
       observerMobileController.text =
           await SharedPrefManager.getPrefrenceString(
               AppConstants.observerMobile);
-      newFileObserverPhoto = await getImage();
+      newFileObserverPhoto = File(await SharedPrefManager.getPrefrenceString(
+          AppConstants.observerPhoto));
       setState(() {});
     }
   }

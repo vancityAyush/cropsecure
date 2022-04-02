@@ -450,7 +450,7 @@ class AuthRepo {
 
     try {
       Response response = await dioClient.post(
-        AppConstants.plots,
+        AppConstants.plots + "/" + data['id'],
         data: formData,
       );
       return ApiResponse.withSuccess(response);
@@ -1055,6 +1055,7 @@ class AuthRepo {
         "user_id": key,
         "product": productId,
         "is_rent": isRent,
+        "amount": "100",
         "rent_from_date": rentFromDate,
         "rent_to_date": rentToDate,
         "farmer_id": farmerId,
@@ -1065,6 +1066,7 @@ class AuthRepo {
         "user_id": key,
         "product": productId,
         "is_rent": isRent,
+        "amount": "100",
         "farmer_id": farmerId,
         "plot_id": plotId,
       });
@@ -1249,6 +1251,46 @@ class AuthRepo {
     try {
       Response response = await dioClient.post(
         AppConstants.addPlantDoctor + "/",
+        data: formData,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+///////////////////// crop insurance api//////////////
+
+  Future<ApiResponse> cropIns(
+    String plotId,
+    String insuranceName,
+    String year,
+    String season,
+    String amount,
+    String premium,
+    String loaner,
+    String policyNo,
+    String startingDate,
+    String expiryDate,
+  ) async {
+    FormData formData = FormData.fromMap({
+      "plot_id": plotId,
+      "insurance_company_name": insuranceName,
+      "year": year,
+      "season": season,
+      "insurance_amount": amount,
+      "insurance_premium": premium,
+      "loaner": loaner,
+      "policy_number": policyNo,
+      "starting_date": startingDate,
+      "expiry_date": expiryDate,
+    });
+
+    print(formData.fields.toString());
+
+    try {
+      Response response = await dioClient.post(
+        AppConstants.cropInsurance,
         data: formData,
       );
       return ApiResponse.withSuccess(response);

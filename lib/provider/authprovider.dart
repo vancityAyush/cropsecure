@@ -571,6 +571,9 @@ class AuthProvider with ChangeNotifier {
       if (apiResponse.response.data['error_code'] == 1) {
         responseModel = ResponseModel(true, 'successful');
         Fluttertoast.showToast(msg: "Location added successfully");
+        Get.to(() => ViewPlots(),
+            transition: Transition.rightToLeftWithFade,
+            duration: const Duration(milliseconds: 600));
       } else {
         String errorMessage;
         if (apiResponse.error is String) {
@@ -1270,6 +1273,54 @@ class AuthProvider with ChangeNotifier {
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
       return apiResponse.response.data;
+    }
+  }
+
+  /////// cropInsurance /////////
+  Future<ResponseModel> cropInsurance(
+      {String plotId,
+      String insuranceName,
+      String year,
+      String season,
+      String amount,
+      String premium,
+      String loaner,
+      String policyNo,
+      String startingDate,
+      String expiryDate}) async {
+    ApiResponse apiResponse = await authRepo.cropIns(
+        plotId,
+        insuranceName,
+        year,
+        season,
+        amount,
+        premium,
+        loaner,
+        policyNo,
+        startingDate,
+        expiryDate);
+
+    ResponseModel responseModel;
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      if (apiResponse.response.data['error_code'] == 1) {
+        responseModel = ResponseModel(true, 'successful');
+        Fluttertoast.showToast(msg: "Crop Insurance Added successfully");
+      } else {
+        String errorMessage;
+        if (apiResponse.error is String) {
+          errorMessage = apiResponse.error.toString();
+        } else {
+          ErrorResponse errorResponse = apiResponse.error;
+          errorMessage = errorResponse.errors[0].message;
+        }
+        print(errorMessage);
+        _registrationErrorMessage = errorMessage;
+        responseModel = ResponseModel(false, errorMessage);
+      }
+      _isLoading = false;
+      notifyListeners();
+      return responseModel;
     }
   }
 }

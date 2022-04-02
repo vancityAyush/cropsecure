@@ -429,7 +429,11 @@ class ViewPlots extends StatelessWidget {
                                       flex: 1,
                                       child: InkWell(
                                         onTap: () {
-                                          Get.to(() => CropIns(),
+                                          Get.to(
+                                              () => CropIns(
+                                                  plotId: snapshots.data['data']
+                                                          [index]['id']
+                                                      .toString()),
                                               transition: Transition
                                                   .rightToLeftWithFade,
                                               duration: const Duration(

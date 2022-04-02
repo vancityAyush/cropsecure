@@ -1,12 +1,16 @@
+import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'fieldvisit/cropstage.dart';
 
 class CropIns extends StatefulWidget {
+  String plotId;
+  CropIns({this.plotId});
   @override
   State<CropIns> createState() => _CropInsState();
 }
@@ -19,12 +23,19 @@ class _CropInsState extends State<CropIns> {
       sourceFrom = "",
       specificTech = "",
       showingDate = "",
-      mixedCrop = "";
+      mixedCrop = "",
+      startingDate = "",
+      endingDate = "";
   List<String> gender = ["Male", "Female"];
   var formatDate;
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   String gradeSelect = "", weightSelect = "", selectedTimeSelect = "";
+
+  TextEditingController yearController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+
+  TextEditingController policyController = TextEditingController();
 
   void showSnackBar(String message) {
     final snackBar =
@@ -34,7 +45,7 @@ class _CropInsState extends State<CropIns> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  _selectDate(BuildContext context) async {
+  Future<String> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate, // Refer step 1
@@ -42,16 +53,13 @@ class _CropInsState extends State<CropIns> {
       lastDate: DateTime(2035),
     );
 
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        formatDate = selectedDate.year.toString() +
-            "/" +
-            selectedDate.month.toString() +
-            "/" +
-            selectedDate.day.toString();
-      });
-    }
+    selectedDate = picked;
+    formatDate = selectedDate.year.toString() +
+        "/" +
+        selectedDate.month.toString() +
+        "/" +
+        selectedDate.day.toString();
+    return formatDate;
   }
 
   _selectTime(BuildContext context) async {
@@ -132,7 +140,7 @@ class _CropInsState extends State<CropIns> {
                   child: TextFormField(
                     maxLength: 4,
                     maxLines: 1,
-                    // controller: amountController,
+                    controller: yearController,
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
@@ -191,7 +199,7 @@ class _CropInsState extends State<CropIns> {
                   // width: 170,
                   child: TextFormField(
                     maxLines: 1,
-                    // controller: amountController,
+                    controller: amountController,
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
@@ -279,7 +287,7 @@ class _CropInsState extends State<CropIns> {
                   // width: 170,
                   child: TextFormField(
                     maxLines: 1,
-                    // controller: amountController,
+                    controller: policyController,
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
@@ -306,7 +314,9 @@ class _CropInsState extends State<CropIns> {
                   Expanded(
                     flex: 1,
                     child: InkWell(
-                      onTap: () => _selectDate(context),
+                      onTap: () async {
+                        startingDate = await _selectDate(context);
+                      },
                       child: Container(
                         height: 45,
                         color: ColorResources.light_purple,
@@ -338,7 +348,9 @@ class _CropInsState extends State<CropIns> {
                   Expanded(
                     flex: 1,
                     child: InkWell(
-                      onTap: () => _selectDate(context),
+                      onTap: () async {
+                        endingDate = await _selectDate(context);
+                      },
                       child: Container(
                         height: 45,
                         color: ColorResources.light_purple,
@@ -347,7 +359,7 @@ class _CropInsState extends State<CropIns> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              formatDate ?? "Expiry date",
+                              endingDate ?? "Expiry date",
                               style: robotoMedium.copyWith(
                                   fontSize: 17, color: Colors.white),
                             ),
@@ -416,19 +428,24 @@ class _CropInsState extends State<CropIns> {
                             isLoad = true;
                           });
 
+                          await Provider.of<AuthProvider>(context,
+                                  listen: false)
+                              .cropInsurance(
+                            plotId: widget.plotId,
+                            insuranceName: cropNameSelect,
+                            year: yearController.text,
+                            season: cropVarieties,
+                            amount: amountController.text,
+                            premium: specificTech,
+                            loaner: showingDate,
+                            policyNo: policyController.text,
+                            startingDate: startingDate,
+                            expiryDate: endingDate,
+                          );
+
                           Get.to(() => CropStage(),
                               transition: Transition.rightToLeftWithFade,
                               duration: const Duration(milliseconds: 600));
-                          // await Provider.of<AuthProvider>(context,
-                          //         listen: false)
-                          //     .addFieldVisitApi(
-                          //         cropTypeSelect,
-                          //         cropNameSelect,
-                          //         cropVarieties,
-                          //         sourceFrom,
-                          //         specificTech,
-                          //         showingDate,
-                          //         mixedCrop);
 
                           setState(() {
                             isLoad = false;
