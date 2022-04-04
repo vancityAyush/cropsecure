@@ -95,6 +95,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.text,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "25/m",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -132,6 +133,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "%",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -169,6 +171,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "kg/ha",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -206,6 +209,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "kg/ha",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -243,6 +247,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "kg/ha",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -280,6 +285,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "ppm",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -317,6 +323,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "ppm",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -354,6 +361,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "ppm",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -391,6 +399,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
+                        suffixText: "ppm",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -548,6 +557,18 @@ class _AddReportState extends State<AddReport> {
 
                           setState(() {
                             isLoad = false;
+                            soilPhController.clear();
+                            soilNameController.clear();
+                            organicController.clear();
+                            nitrogenController.clear();
+                            phosphorousController.clear();
+                            potasiumController.clear();
+                            sulphurController.clear();
+                            zincController.clear();
+                            boronController.clear();
+                            ironController.clear();
+                            magneseController.clear();
+                            copperController.clear();
                           });
                         }
                       },

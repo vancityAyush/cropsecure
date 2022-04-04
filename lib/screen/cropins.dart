@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'fieldvisit/cropstage.dart';
-
 class CropIns extends StatefulWidget {
   String plotId;
   CropIns({this.plotId});
@@ -21,7 +19,6 @@ class _CropInsState extends State<CropIns> {
       cropNameSelect = "",
       cropVarieties = "",
       sourceFrom = "",
-      specificTech = "",
       showingDate = "",
       mixedCrop = "",
       startingDate = "",
@@ -33,6 +30,7 @@ class _CropInsState extends State<CropIns> {
   String gradeSelect = "", weightSelect = "", selectedTimeSelect = "";
 
   TextEditingController yearController = TextEditingController();
+  TextEditingController specificTech = TextEditingController();
   TextEditingController amountController = TextEditingController();
 
   TextEditingController policyController = TextEditingController();
@@ -226,25 +224,24 @@ class _CropInsState extends State<CropIns> {
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(
                 height: 48,
-                child: DropdownSearch(
-                  popupShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  mode: Mode.MENU,
-                  popupElevation: 5,
-                  dropdownSearchDecoration: const InputDecoration(
-                    hintText: "",
-                    hintStyle: TextStyle(color: ColorResources.light_purple),
-                    contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                    border: OutlineInputBorder(),
-                  ),
-                  // showSearchBox:true,
-                  onFind: (String filter) async {
-                    return gender;
-                  },
-                  onChanged: (String data) async {
-                    specificTech = data;
-                  },
-                  itemAsString: (String da) => da,
+                child: TextFormField(
+                  maxLines: 1,
+                  controller: specificTech,
+                  autofocus: false,
+                  decoration: InputDecoration(
+                      hintText: "",
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      hintStyle: TextStyle(
+                          fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                          color: const Color(0xffb7b7b7))),
                 ),
               ),
               const SizedBox(
@@ -436,19 +433,29 @@ class _CropInsState extends State<CropIns> {
                             year: yearController.text,
                             season: cropVarieties,
                             amount: amountController.text,
-                            premium: specificTech,
+                            premium: specificTech.text,
                             loaner: showingDate,
                             policyNo: policyController.text,
                             startingDate: startingDate,
                             expiryDate: endingDate,
                           );
 
-                          Get.to(() => CropStage(),
-                              transition: Transition.rightToLeftWithFade,
-                              duration: const Duration(milliseconds: 600));
+                          //
+                          // Get.to(() => CropStage(),
+                          //     transition: Transition.rightToLeftWithFade,
+                          //     duration: const Duration(milliseconds: 600));
 
                           setState(() {
                             isLoad = false;
+                            cropNameSelect = "";
+                            yearController.clear();
+                            cropVarieties = "";
+                            amountController.clear();
+                            specificTech.clear();
+                            showingDate = "";
+                            policyController.clear();
+                            startingDate = "";
+                            endingDate = "";
                           });
                         }
                       },

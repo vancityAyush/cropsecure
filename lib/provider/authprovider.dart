@@ -445,6 +445,15 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  ///////////////////////// fetch Dashboard Api
+  Future fetchDashboardApi() async {
+    ApiResponse apiResponse = await authRepo.fetchDashBoardApi();
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      return apiResponse.response.data;
+    }
+  }
+
   /////// addBankDetails Api /////////
   Future<ResponseModel> addBankDetailsApi(
       String bankName,

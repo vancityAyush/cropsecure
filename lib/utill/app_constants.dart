@@ -31,6 +31,8 @@ class AppConstants {
   static const String fetchDiseaseAlert = 'fetch_disease_alert_type_form';
   static const String addDiseaseAlert = 'disease_alert_type_form';
   static const String fetchFarmercount = 'fetch_count';
+
+  static const String fetchDashboard = 'dashboard_api';
   static const String plotCce = 'plot_cce';
   static const String fetchCce = 'fetch_cce';
   static const String fetchCropStage = 'fetch_crop_stage';

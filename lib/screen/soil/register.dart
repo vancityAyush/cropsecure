@@ -6,6 +6,7 @@ import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class SoilRegister extends StatefulWidget {
@@ -25,17 +26,11 @@ class _SoilRegisterState extends State<SoilRegister> {
   File newFileObserverPhoto;
 
   void onFileObserberPhoto() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'png'],
-    );
-    if (result != null) {
-      file = result.files.first;
-      filename = File(file.path);
-      setState(() {
-        newFileObserverPhoto = filename;
-      });
-    }
+    dynamic image =
+        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    setState(() {
+      newFileObserverPhoto = File(image.path);
+    });
   }
 
   _selectDate(BuildContext context) async {
