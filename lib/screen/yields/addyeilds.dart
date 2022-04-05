@@ -1,7 +1,6 @@
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/styles.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +11,8 @@ class AddYields extends StatefulWidget {
 }
 
 class _AddYieldsState extends State<AddYields> {
-
-  List<String> particular  = ["Uttar Pradesh","Uttrakhand","Jharkhand"];
-  String gradeSelect="",weightSelect="",selectedTimeSelect = "";
+  List<String> particular = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
+  String gradeSelect = "", weightSelect = "", selectedTimeSelect = "";
   TextEditingController moistureController = TextEditingController();
   TextEditingController weightController = TextEditingController();
   TextEditingController noOfBagsController = TextEditingController();
@@ -31,12 +29,17 @@ class _AddYieldsState extends State<AddYields> {
       context: context,
       initialDate: selectedDate, // Refer step 1
       firstDate: DateTime(1940),
-      lastDate: DateTime(2035),);
+      lastDate: DateTime(2035),
+    );
 
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        formatDate = selectedDate.year.toString() + "/"+selectedDate.month.toString() + "/" +selectedDate.day.toString();
+        formatDate = selectedDate.year.toString() +
+            "/" +
+            selectedDate.month.toString() +
+            "/" +
+            selectedDate.day.toString();
       });
     }
   }
@@ -47,18 +50,18 @@ class _AddYieldsState extends State<AddYields> {
         initialTime: selectedTime,
         initialEntryMode: TimePickerEntryMode.dial);
 
-    if(timeOfDay != null && timeOfDay != selectedTime)
-    {
+    if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
-        selectedTimeSelect = selectedTime.hour.toString()+":"+selectedTime.minute.toString();
+        selectedTimeSelect =
+            selectedTime.hour.toString() + ":" + selectedTime.minute.toString();
       });
     }
   }
 
   void showSnackBar(String message) {
-    final snackBar = SnackBar(content: Text(message),
-        backgroundColor: Colors.red);
+    final snackBar =
+        SnackBar(content: Text(message), backgroundColor: Colors.red);
 
     // Find the Scaffold in the Widget tree and use it to show a SnackBar!
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -73,13 +76,14 @@ class _AddYieldsState extends State<AddYields> {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20.0,20,20,100),
+                padding: const EdgeInsets.fromLTRB(20.0, 20, 20, 100),
                 child: Column(
                   children: [
                     Column(
                       children: [
-
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
 
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,10 +92,11 @@ class _AddYieldsState extends State<AddYields> {
                             CircleAvatar(
                               radius: 18,
                               backgroundColor: ColorResources.light_purple,
-                              child: Text("1",
-                              style: robotoExtraBold.copyWith(
-                                color: Colors.white
-                              ),),
+                              child: Text(
+                                "1",
+                                style: robotoExtraBold.copyWith(
+                                    color: Colors.white),
+                              ),
                             ),
 /*
                             const SizedBox(
@@ -115,12 +120,12 @@ class _AddYieldsState extends State<AddYields> {
                                     color: Colors.white
                                 ),),
                             ),*/
-
-
                           ],
                         ),
 
-                        const SizedBox(height: 30,),
+                        const SizedBox(
+                          height: 30,
+                        ),
 
                         Row(
                           children: [
@@ -130,12 +135,12 @@ class _AddYieldsState extends State<AddYields> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Moisture:",
+                                  Text(
+                                    "Moisture:",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
@@ -145,128 +150,147 @@ class _AddYieldsState extends State<AddYields> {
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
-                                            enabledBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
-                                            focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             hintStyle: TextStyle(
-                                                fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                                                color: const Color(0xffb7b7b7)
-                                            )
-                                        ),
-                                      )
-                                  )
+                                                fontSize: 14 *
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                color:
+                                                    const Color(0xffb7b7b7))),
+                                      ))
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 20,),
+                            const SizedBox(
+                              width: 20,
+                            ),
                             Expanded(
                               flex: 1,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text("Grade:",
+                                  Text(
+                                    "Grade:",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   Container(
                                     height: 45,
                                     color: ColorResources.light_purple,
                                     child: DropdownSearch(
                                       popupShape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(20)
-                                      ),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
                                       mode: Mode.MENU,
                                       popupElevation: 5,
-                                      dropdownSearchDecoration: const InputDecoration(
+                                      dropdownSearchDecoration:
+                                          const InputDecoration(
                                         hintText: "Select",
                                         hintStyle: TextStyle(
                                             color: ColorResources.white),
-                                        contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                                        contentPadding:
+                                            EdgeInsets.fromLTRB(12, 12, 0, 0),
                                         border: OutlineInputBorder(),
                                       ),
                                       // showSearchBox:true,
-                                      onFind: (String filter) async{
-                                        return particular;},
-                                      onChanged: (String data) async{
+                                      onFind: (String filter) async {
+                                        return particular;
+                                      },
+                                      onChanged: (String data) async {
                                         gradeSelect = data;
                                       },
                                       itemAsString: (String da) => da,
                                     ),
                                   ),
-
-
-
                                 ],
                               ),
                             ),
                           ],
                         ),
 
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
 
                         Row(
                           children: [
                             Expanded(
                               flex: 1,
                               child: InkWell(
-                                onTap: ()=>_selectDate(context),
+                                onTap: () => _selectDate(context),
                                 child: Container(
                                   height: 45,
                                   color: ColorResources.light_purple,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(formatDate ?? "Pickup date",
+                                      Text(
+                                        formatDate ?? "Pickup date",
                                         style: robotoMedium.copyWith(
-                                            fontSize: 17,
-                                            color: Colors.white),),
-
+                                            fontSize: 17, color: Colors.white),
+                                      ),
                                       Padding(
-                                          padding: const EdgeInsets.only(left: 10.0),
-                                          child: Image.asset("assets/image/calender.png",
+                                          padding:
+                                              const EdgeInsets.only(left: 10.0),
+                                          child: Image.asset(
+                                            "assets/image/calender.png",
                                             color: Colors.white,
-                                            width: 25,height: 25,)),
-
+                                            width: 25,
+                                            height: 25,
+                                          )),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-
-                            const SizedBox(width: 20,),
-
+                            const SizedBox(
+                              width: 20,
+                            ),
                             Expanded(
                               flex: 1,
                               child: InkWell(
-                                onTap: ()=>_selectTime(context),
+                                onTap: () => _selectTime(context),
                                 child: Container(
                                   height: 45,
                                   color: ColorResources.light_purple,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(selectedTimeSelect == "" ?"Pickup Time":selectedTimeSelect,
+                                      Text(
+                                        selectedTimeSelect == ""
+                                            ? "Pickup Time"
+                                            : selectedTimeSelect,
                                         style: robotoMedium.copyWith(
-                                            fontSize: 17,
-                                            color: Colors.white),),
-
+                                            fontSize: 17, color: Colors.white),
+                                      ),
                                       Padding(
-                                          padding: const EdgeInsets.only(left: 10.0),
-                                          child: Image.asset("assets/image/calender.png",
+                                          padding:
+                                              const EdgeInsets.only(left: 10.0),
+                                          child: Image.asset(
+                                            "assets/image/calender.png",
                                             color: Colors.white,
-                                            width: 25,height: 25,)),
-
+                                            width: 25,
+                                            height: 25,
+                                          )),
                                     ],
                                   ),
                                 ),
@@ -281,28 +305,29 @@ class _AddYieldsState extends State<AddYields> {
                           color: ColorResources.light_purple,
                           child: DropdownSearch(
                             popupShape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)
-                            ),
+                                borderRadius: BorderRadius.circular(20)),
                             mode: Mode.MENU,
                             popupElevation: 5,
                             dropdownSearchDecoration: const InputDecoration(
                               hintText: "Select weight",
-                              hintStyle: TextStyle(
-                                  color: ColorResources.white),
+                              hintStyle: TextStyle(color: ColorResources.white),
                               contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                               border: OutlineInputBorder(),
                             ),
                             // showSearchBox:true,
-                            onFind: (String filter) async{
-                              return particular;},
-                            onChanged: (String data) async{
+                            onFind: (String filter) async {
+                              return particular;
+                            },
+                            onChanged: (String data) async {
                               weightSelect = data;
                             },
                             itemAsString: (String da) => da,
                           ),
                         ),
 
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
 
                         Row(
                           children: [
@@ -312,12 +337,12 @@ class _AddYieldsState extends State<AddYields> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Enter Weight:",
+                                  Text(
+                                    "Enter Weight:",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
@@ -327,38 +352,45 @@ class _AddYieldsState extends State<AddYields> {
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
-                                            enabledBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
-                                            focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             hintStyle: TextStyle(
-                                                fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                                                color: const Color(0xffb7b7b7)
-                                            )
-                                        ),
-                                      )
-                                  )
+                                                fontSize: 14 *
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                color:
+                                                    const Color(0xffb7b7b7))),
+                                      ))
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 20,),
+                            const SizedBox(
+                              width: 20,
+                            ),
                             Expanded(
                               flex: 1,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("No of Bags:",
+                                  Text(
+                                    "No of Bags:",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
@@ -368,29 +400,36 @@ class _AddYieldsState extends State<AddYields> {
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
-                                            enabledBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
-                                            focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             hintStyle: TextStyle(
-                                                fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                                                color: const Color(0xffb7b7b7)
-                                            )
-                                        ),
-                                      )
-                                  )
+                                                fontSize: 14 *
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                color:
+                                                    const Color(0xffb7b7b7))),
+                                      ))
                                 ],
                               ),
                             ),
                           ],
                         ),
 
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
 
                         Row(
                           children: [
@@ -400,12 +439,12 @@ class _AddYieldsState extends State<AddYields> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text("Total weight:",
+                                  Text(
+                                    "Total weight:",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
@@ -415,39 +454,45 @@ class _AddYieldsState extends State<AddYields> {
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
-                                            enabledBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
-                                            focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             hintStyle: TextStyle(
-                                                fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                                                color: const Color(0xffb7b7b7)
-                                            )
-                                        ),
-                                      )
-                                  )
+                                                fontSize: 14 *
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                color:
+                                                    const Color(0xffb7b7b7))),
+                                      ))
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 20,),
-
+                            const SizedBox(
+                              width: 20,
+                            ),
                             Expanded(
                               flex: 1,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text("Price/kg(INR)",
+                                  Text(
+                                    "Price/kg(INR)",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
@@ -457,29 +502,36 @@ class _AddYieldsState extends State<AddYields> {
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
-                                            enabledBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
-                                            focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             hintStyle: TextStyle(
-                                                fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                                                color: const Color(0xffb7b7b7)
-                                            )
-                                        ),
-                                      )
-                                  )
+                                                fontSize: 14 *
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                color:
+                                                    const Color(0xffb7b7b7))),
+                                      ))
                                 ],
                               ),
                             ),
                           ],
                         ),
 
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
 
                         Row(
                           children: [
@@ -489,12 +541,12 @@ class _AddYieldsState extends State<AddYields> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text("Total Amount:",
+                                  Text(
+                                    "Total Amount:",
                                     style: robotoMedium.copyWith(
                                         color: const Color(0xff262626),
-                                        fontSize: 18
-                                    ),),
-
+                                        fontSize: 18),
+                                  ),
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
@@ -504,26 +556,33 @@ class _AddYieldsState extends State<AddYields> {
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
-                                            enabledBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
-                                            focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
                                             ),
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             hintStyle: TextStyle(
-                                                fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                                                color: const Color(0xffb7b7b7)
-                                            )
-                                        ),
-                                      )
-                                  )
+                                                fontSize: 14 *
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                color:
+                                                    const Color(0xffb7b7b7))),
+                                      ))
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 20,),
+                            const SizedBox(
+                              width: 20,
+                            ),
                             const Expanded(
                               flex: 1,
                               child: Text(""),
@@ -531,7 +590,9 @@ class _AddYieldsState extends State<AddYields> {
                           ],
                         ),
 
-                        const SizedBox(height: 30,),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         //
                         // Text("+ Add More",
                         // style: robotoExtraBold.copyWith(
@@ -642,67 +703,93 @@ class _AddYieldsState extends State<AddYields> {
                         ),
                       ],
                     ),*/
-
                   ],
                 ),
               ),
             ),
-
             Positioned(
               bottom: 20,
               left: 20,
               right: 20,
-              child: isLoad == true ?
-              const SizedBox(width:22,height: 22,child: Center(child: CircularProgressIndicator(),)):
-              SizedBox(
-                  height: 47.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF6cbd47),), //button color
-                    ),
-                    onPressed: () async {
-                      if(moistureController.text.isEmpty){
-                        showSnackBar("Enter moisture");
-                      }else if(gradeSelect == ""){
-                        showSnackBar("Select grade");
-                      }else if(formatDate == null){
-                        showSnackBar("Select date");
-                      }else if(selectedTimeSelect == "null"){
-                        showSnackBar("Select time");
-                      }else if(weightSelect == ""){
-                        showSnackBar("Select weight");
-                      }else if(weightController.text.isEmpty){
-                        showSnackBar("Enter weight");
-                      }else if(noOfBagsController.text.isEmpty){
-                        showSnackBar("Enter no of bags");
-                      }else if(totalWeightController.text.isEmpty){
-                        showSnackBar("Enter total weight");
-                      }else if(pricePerKgController.text.isEmpty){
-                        showSnackBar("Enter price/kg");
-                      }else if(totalAmountController.text.isEmpty){
-                        showSnackBar("Enter total amount");
-                      }else{
+              child: isLoad == true
+                  ? const SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ))
+                  : SizedBox(
+                      height: 47.0,
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color(0xFF6cbd47),
+                          ), //button color
+                        ),
+                        onPressed: () async {
+                          if (moistureController.text.isEmpty) {
+                            showSnackBar("Enter moisture");
+                          } else if (gradeSelect == "") {
+                            showSnackBar("Select grade");
+                          } else if (formatDate == null) {
+                            showSnackBar("Select date");
+                          } else if (selectedTimeSelect == "null") {
+                            showSnackBar("Select time");
+                          } else if (weightSelect == "") {
+                            showSnackBar("Select weight");
+                          } else if (weightController.text.isEmpty) {
+                            showSnackBar("Enter weight");
+                          } else if (noOfBagsController.text.isEmpty) {
+                            showSnackBar("Enter no of bags");
+                          } else if (totalWeightController.text.isEmpty) {
+                            showSnackBar("Enter total weight");
+                          } else if (pricePerKgController.text.isEmpty) {
+                            showSnackBar("Enter price/kg");
+                          } else if (totalAmountController.text.isEmpty) {
+                            showSnackBar("Enter total amount");
+                          } else {
+                            setState(() {
+                              isLoad = true;
+                            });
+                            // Get.offAll(() => Dashboard(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+                            await Provider.of<AuthProvider>(context,
+                                    listen: false)
+                                .addYieldApi(
+                                    moistureController.text,
+                                    gradeSelect,
+                                    formatDate,
+                                    selectedTimeSelect,
+                                    weightSelect,
+                                    weightController.text,
+                                    noOfBagsController.text,
+                                    totalWeightController.text,
+                                    pricePerKgController.text,
+                                    totalAmountController.text);
 
-                        setState(() {
-                          isLoad = true;
-                        });
-                        // Get.offAll(() => Dashboard(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                        await Provider.of<AuthProvider>(context,listen: false).addYieldApi(moistureController.text, gradeSelect,
-                            formatDate, selectedTimeSelect,weightSelect, weightController.text,noOfBagsController.text,
-                            totalWeightController.text, pricePerKgController.text, totalAmountController.text);
+                            setState(() {
+                              isLoad = false;
 
-                        setState(() {
-                          isLoad = false;
-                        });
-                      }
-                    },
-                    child: Text('Submit',
-                        style: robotoBold.copyWith(fontSize: 19,color: Colors.white)),
-                  )),
+                              gradeSelect = "";
+                              weightSelect = "";
+                              selectedTimeSelect = "";
+                              moistureController.clear();
+                              weightController.clear();
+                              noOfBagsController.clear();
+                              totalWeightController.clear();
+                              pricePerKgController.clear();
+                              totalAmountController.clear();
+                              formatDate = null;
+                              selectedDate = DateTime.now();
+                              selectedTime = TimeOfDay.now();
+                            });
+                          }
+                        },
+                        child: Text('Submit',
+                            style: robotoBold.copyWith(
+                                fontSize: 19, color: Colors.white)),
+                      )),
             ),
-
           ],
         ),
       ),

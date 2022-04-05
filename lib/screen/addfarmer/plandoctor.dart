@@ -10,7 +10,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:record/record.dart';
 
 enum flags { YES, NO }
 
@@ -23,14 +25,40 @@ class PlantDoctor extends StatefulWidget {
 
 class _State extends State<PlantDoctor> {
   flags _flag = flags.YES;
-  String _comment = "";
+  TextEditingController _commentController = TextEditingController();
   bool isLoad = false;
   File _image = null;
+  bool isRecording = null;
   Future<File> selectImage() async {
     PickedFile image =
         await ImagePicker.platform.pickImage(source: ImageSource.gallery);
     setState(() {
       _image = File(image.path);
+    });
+  }
+
+  final record = Record();
+  Future<File> recordAudio() async {
+    bool result = await record.hasPermission();
+    Directory dir = await getTemporaryDirectory();
+    _image = File(dir.path + "/audio.mp3");
+    if (result) {
+      if (!isRecording || isRecording == null) {
+        await record.start(
+          path: _image.path, // required
+          encoder: AudioEncoder.AAC, // by default
+          bitRate: 128000, // by default
+          samplingRate: 44100, // by default
+        );
+        isRecording = true;
+      } else {
+        record.stop();
+        _image = _image;
+        isRecording = false;
+      }
+    }
+    setState(() {
+      isRecording = isRecording;
     });
   }
 
@@ -148,6 +176,7 @@ class _State extends State<PlantDoctor> {
                       Container(
                         padding: EdgeInsets.all(10),
                         child: TextField(
+                          controller: _commentController,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: "Comment",
@@ -155,17 +184,12 @@ class _State extends State<PlantDoctor> {
                                   fontSize: 16, fontWeight: FontWeight.bold)),
                           maxLines: 5,
                           keyboardType: TextInputType.multiline,
-                          onChanged: (val) {
-                            setState(() {
-                              _comment = val;
-                            });
-                          },
                         ),
                       ),
                       SizedBox(height: 20),
 
                       // Visibility for image
-                      if (_image != null)
+                      if (_image != null && isRecording == null)
                         Container(
                           child: Image.file(_image),
                         ),
@@ -176,12 +200,18 @@ class _State extends State<PlantDoctor> {
                           Column(
                             children: [
                               IconButton(
-                                icon: const Icon(
-                                  Icons.mic,
+                                icon: Icon(
+                                  isRecording == null
+                                      ? Icons.mic
+                                      : isRecording
+                                          ? Icons.stop
+                                          : Icons.record_voice_over,
                                   size: 30,
                                   color: Colors.black,
                                 ),
-                                onPressed: () => {},
+                                onPressed: () {
+                                  recordAudio();
+                                },
                               ),
                               const Text("Mic",
                                   style: TextStyle(
@@ -233,16 +263,28 @@ class _State extends State<PlantDoctor> {
                               setState(() {
                                 isLoad = true;
                               });
-                              if (_comment.isNotEmpty) {
+                              if (isRecording != null) {
+                                if (isRecording) {
+                                  await recordAudio();
+                                }
+                              }
+                              if (_commentController.isBlank) {
                                 var res = await Provider.of<AuthProvider>(
                                         context,
                                         listen: false)
                                     .addPlantDoctorApi(widget.id,
-                                        comment: _comment, image: _image);
+                                        comment: _commentController.text,
+                                        image: _image);
                                 setState(() {
+                                  _commentController.clear();
+                                  _image = null;
                                   isLoad = false;
+                                  isRecording = null;
                                 });
                               }
+                              setState(() {
+                                isLoad = false;
+                              });
                             }),
                       ),
                     ],

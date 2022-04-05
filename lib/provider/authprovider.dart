@@ -21,6 +21,7 @@ import 'package:cropsecure/utill/sharedprefrence.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../data/model/response/base/response_farmercount.dart';
 
@@ -448,6 +449,15 @@ class AuthProvider with ChangeNotifier {
   ///////////////////////// fetch Dashboard Api
   Future fetchDashboardApi() async {
     ApiResponse apiResponse = await authRepo.fetchDashBoardApi();
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      return apiResponse.response.data;
+    }
+  }
+
+  ///////////////////////// fetch Result Api
+  Future fetchResult() async {
+    ApiResponse apiResponse = await authRepo.fetchResult();
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
       return apiResponse.response.data;
@@ -1108,6 +1118,12 @@ class AuthProvider with ChangeNotifier {
   /////// orderNowApi /////////
   Future<ResponseModel> orderNowApi(String product, String isRent,
       String rentFromDate, String rentToDate) async {
+    if (rentFromDate == null) {
+      rentFromDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+    }
+    if (rentToDate == null) {
+      rentToDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+    }
     ApiResponse apiResponse =
         await authRepo.orderNowApi(product, isRent, rentFromDate, rentToDate);
 

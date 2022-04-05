@@ -372,6 +372,21 @@ class AuthRepo {
     }
   }
 
+  ////// fetch Result ///////
+
+  Future<ApiResponse> fetchResult() async {
+    var key = await SharedPrefManager.getPrefrenceString(AppConstants.farmerId);
+
+    try {
+      Response response =
+          await dioClient.get(AppConstants.fetchResult + "/" + key);
+
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   ////////// addBankDetails ///////////
   Future<ApiResponse> addBankDetailsApi(
       String bankName,
