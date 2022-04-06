@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/model/response/responsefamer.dart';
+
 class AddFarmer extends StatefulWidget {
   final String register;
   AddFarmer({this.register});
@@ -22,6 +24,7 @@ class AddFarmer extends StatefulWidget {
 
 class _AddFarmerState extends State<AddFarmer> {
   List<String> gender = ["Male", "Female"];
+  List<String> farmerTypeD = ["Cattle", "Farmer"];
   bool isLoad = false;
   List<String> handicapped = ["Yes", "No"];
   List<String> minority = ["Yes", "No"];
@@ -37,6 +40,8 @@ class _AddFarmerState extends State<AddFarmer> {
       stateSelect = "",
       districtSelect = "",
       gramaSelect = "";
+
+  farmerType type;
 
   TextEditingController farmerName = TextEditingController();
   TextEditingController fatherHusbandName = TextEditingController();
@@ -187,6 +192,40 @@ class _AddFarmerState extends State<AddFarmer> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  "Farmer Type",
+                  style: robotoBold.copyWith(
+                      color: const Color(0xff262626), fontSize: 17),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: DropdownSearch(
+                    popupShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    mode: Mode.MENU,
+                    popupElevation: 5,
+                    dropdownSearchDecoration: const InputDecoration(
+                      hintText: "Select Farmer Type",
+                      hintStyle: TextStyle(color: ColorResources.light_purple),
+                      contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                      border: OutlineInputBorder(),
+                    ),
+                    // showSearchBox:true,
+                    onFind: (String filter) async {
+                      return farmerTypeD;
+                    },
+                    onChanged: (String data) async {
+                      if (data == farmerTypeD[0])
+                        type = farmerType.C;
+                      else
+                        type = farmerType.F;
+                    },
+                    itemAsString: (String da) => da,
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Text(
                   "Farmer Name",
                   style: robotoBold.copyWith(
@@ -1326,7 +1365,7 @@ class _AddFarmerState extends State<AddFarmer> {
                                       newFileRashan,
                                       newFilePan,
                                       newFileFarmer,
-                                      type: farmerType.C);
+                                      type: type);
 
                               setState(() {
                                 isLoad = false;

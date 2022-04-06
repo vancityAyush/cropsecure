@@ -23,6 +23,7 @@ class _CattieInfoState extends State<CattieInfo> {
 
   List<Data> responses = [];
   List filteredData = [];
+  int count = 0;
   Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -34,8 +35,9 @@ class _CattieInfoState extends State<CattieInfo> {
   void filterData(String value) {
     setState(() {
       filteredData = responses
-          .where(
-              (data) => data.name.toLowerCase().contains(value.toLowerCase()))
+          .where((data) =>
+              (data.name.toLowerCase().contains(value.toLowerCase()) &&
+                  data.type == farmerType.C))
           .toList();
     });
   }
@@ -68,6 +70,12 @@ class _CattieInfoState extends State<CattieInfo> {
             return Text("${snapshots.error}");
           } else if (snapshots.hasData) {
             ResponseFarmer responseFarmer = snapshots.data;
+            count = 0;
+            for (var item in responseFarmer.data) {
+              if (item.type == farmerType.C) {
+                count++;
+              }
+            }
             return Column(
               children: [
                 Container(
@@ -127,9 +135,7 @@ class _CattieInfoState extends State<CattieInfo> {
                             height: 13,
                           ),
                           Text(
-                            responseFarmer.data == null
-                                ? ""
-                                : responseFarmer.data.length.toString(),
+                            count.toString(),
                             style: robotoBold.copyWith(
                                 color: ColorResources.light_purple),
                           ),
@@ -172,44 +178,46 @@ class _CattieInfoState extends State<CattieInfo> {
                         physics: const BouncingScrollPhysics(),
                         itemCount: filteredData.length,
                         itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () async {
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.farmerId,
-                                  responseFarmer.data[index].id);
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.farmerImage,
-                                  responseFarmer.data[index].image);
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.farmerName,
-                                  responseFarmer.data[index].name);
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.genderFarmer,
-                                  responseFarmer.data[index].gender);
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.dobFarmer,
-                                  responseFarmer.data[index].dob);
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.age,
-                                  responseFarmer.data[index].age);
-                              await SharedPrefManager.savePrefString(
-                                  AppConstants.addressFarmer,
-                                  responseFarmer.data[index].villageName +
-                                      " " +
-                                      responseFarmer.data[index].taluka +
-                                      " " +
-                                      responseFarmer.data[index].districtName +
-                                      " " +
-                                      responseFarmer.data[index].state);
-                              Get.to(
-                                  () => CattleList(
-                                      farmerId: responseFarmer.data[index].id),
-                                  transition: Transition.rightToLeftWithFade,
-                                  duration: const Duration(milliseconds: 600));
-                            },
-                            child: Visibility(
-                              visible: responseFarmer.data[index].type ==
-                                  farmerType.C,
+                          return Visibility(
+                            visible: filteredData[index].type == farmerType.C,
+                            child: InkWell(
+                              onTap: () async {
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.farmerId,
+                                    responseFarmer.data[index].id);
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.farmerImage,
+                                    responseFarmer.data[index].image);
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.farmerName,
+                                    responseFarmer.data[index].name);
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.genderFarmer,
+                                    responseFarmer.data[index].gender);
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.dobFarmer,
+                                    responseFarmer.data[index].dob);
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.age,
+                                    responseFarmer.data[index].age);
+                                await SharedPrefManager.savePrefString(
+                                    AppConstants.addressFarmer,
+                                    responseFarmer.data[index].villageName +
+                                        " " +
+                                        responseFarmer.data[index].taluka +
+                                        " " +
+                                        responseFarmer
+                                            .data[index].districtName +
+                                        " " +
+                                        responseFarmer.data[index].state);
+                                Get.to(
+                                    () => CattleList(
+                                        farmerId:
+                                            responseFarmer.data[index].id),
+                                    transition: Transition.rightToLeftWithFade,
+                                    duration:
+                                        const Duration(milliseconds: 600));
+                              },
                               child: Container(
                                 margin: const EdgeInsets.all(15),
                                 padding: const EdgeInsets.all(15),

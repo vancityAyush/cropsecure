@@ -3,8 +3,9 @@ import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/dimensions.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
+
 class CattieShed extends StatefulWidget {
   @override
   State<CattieShed> createState() => _CattieShedState();
@@ -16,14 +17,21 @@ class _CattieShedState extends State<CattieShed> {
   String userType = "New Cattle Shed";
   TextEditingController belowShedNameController = TextEditingController();
   TextEditingController shedNameController = TextEditingController();
-  TextEditingController shedGeoController = TextEditingController();
+  Position position;
 
   void showSnackBar(String message) {
-    final snackBar = SnackBar(content: Text(message),
-        backgroundColor: Colors.red);
+    final snackBar =
+        SnackBar(content: Text(message), backgroundColor: Colors.red);
 
     // Find the Scaffold in the Widget tree and use it to show a SnackBar!
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);}
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Future<Position> getLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return position;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,6 @@ class _CattieShedState extends State<CattieShed> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -57,14 +64,12 @@ class _CattieShedState extends State<CattieShed> {
                               },
                             ),
                           ),
-                          const Text(
-                              "New Cattle Shed",
+                          const Text("New Cattle Shed",
                               style: TextStyle(
                                   color: ColorResources.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: Dimensions.text_13,
                                   fontFamily: "Roboto")),
-
                           Transform.scale(
                               scale: 1.0,
                               child: Radio(
@@ -78,7 +83,6 @@ class _CattieShedState extends State<CattieShed> {
                                   });
                                 },
                               )),
-
                           const Text(
                             "Old Cattle Shed",
                             style: TextStyle(
@@ -90,17 +94,14 @@ class _CattieShedState extends State<CattieShed> {
                         ],
                       )),
                 ),
-
                 const SizedBox(
                   height: 15,
                 ),
-
-                Text("Below Shed Name",
+                Text(
+                  "Below Shed Name",
                   style: robotoBold.copyWith(
-                      color: const Color(0xff262626),
-                      fontSize: 17
-                  ),),
-
+                      color: const Color(0xff262626), fontSize: 17),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
                   child: SizedBox(
@@ -122,24 +123,20 @@ class _CattieShedState extends State<CattieShed> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           hintStyle: TextStyle(
-                              fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                              color: const Color(0xffb7b7b7)
-                          )
-                      ),
+                              fontSize:
+                                  14 * MediaQuery.of(context).textScaleFactor,
+                              color: const Color(0xffb7b7b7))),
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   height: 15,
                 ),
-
-                Text("Shed Name",
+                Text(
+                  "Shed Name",
                   style: robotoBold.copyWith(
-                      color: const Color(0xff262626),
-                      fontSize: 17
-                  ),),
-
+                      color: const Color(0xff262626), fontSize: 17),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
                   child: SizedBox(
@@ -161,92 +158,86 @@ class _CattieShedState extends State<CattieShed> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           hintStyle: TextStyle(
-                              fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                              color: const Color(0xffb7b7b7)
-                          )
-                      ),
+                              fontSize:
+                                  14 * MediaQuery.of(context).textScaleFactor,
+                              color: const Color(0xffb7b7b7))),
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   height: 15,
                 ),
-
-                Text("Shed Geo Tag",
-                  style: robotoBold.copyWith(
-                      color: const Color(0xff262626),
-                      fontSize: 17
-                  ),),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: SizedBox(
-                    height: 48.0,
-                    child: TextFormField(
-                      controller: shedGeoController,
-                      maxLines: 1,
-                      keyboardType: TextInputType.text,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                          hintText: "",
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          hintStyle: TextStyle(
-                              fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                              color: const Color(0xffb7b7b7)
-                          )
-                      ),
-                    ),
+                Visibility(
+                  visible: position != null,
+                  child: Text(
+                    position.toString(),
+                    style: robotoBold.copyWith(
+                        color: const Color(0xff262626), fontSize: 17),
                   ),
                 ),
-
+                MaterialButton(
+                  onPressed: () async {
+                    position = await getLocation();
+                    setState(() {
+                      position = position;
+                    });
+                  },
+                  color: const Color(0xFF6cbd47),
+                  child: Text(
+                    "Shed Geo Tag",
+                    style: robotoBold.copyWith(
+                        color: const Color(0xff262626), fontSize: 17),
+                  ),
+                )
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: isLoad == true ?
-              const Center(
-                child: SizedBox(width: 22,height: 22,
-                    child: CircularProgressIndicator()),)
-                  :SizedBox(
-                  height: 47.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFF6cbd47),), //button color
-                    ),
-                    onPressed: () async {
-                      if(belowShedNameController.text.isEmpty){
-                        showSnackBar("Enter below shed name");
-                      }else if(shedNameController.text.isEmpty){
-                        showSnackBar("Enter shed name");
-                      }else if(shedGeoController.text.isEmpty){
-                        showSnackBar("Enter geo tag");
-                      }else{
-                        setState(() {
-                          isLoad = true;
-                        });
+                padding: const EdgeInsets.only(top: 24.0),
+                child: isLoad == true
+                    ? const Center(
+                        child: SizedBox(
+                            width: 22,
+                            height: 22,
+                            child: CircularProgressIndicator()),
+                      )
+                    : SizedBox(
+                        height: 47.0,
+                        width: MediaQuery.of(context).size.width,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFF6cbd47),
+                            ), //button color
+                          ),
+                          onPressed: () async {
+                            if (belowShedNameController.text.isEmpty) {
+                              showSnackBar("Enter below shed name");
+                            } else if (shedNameController.text.isEmpty) {
+                              showSnackBar("Enter shed name");
+                            } else if (position != null) {
+                              showSnackBar("Enter geo tag");
+                            } else {
+                              setState(() {
+                                isLoad = true;
+                              });
 
-                        await Provider.of<AuthProvider>(context,listen: false).newCattleShedApi(userType, belowShedNameController.text, shedNameController.text, shedGeoController.text);
+                              await Provider.of<AuthProvider>(context,
+                                      listen: false)
+                                  .newCattleShedApi(
+                                      userType,
+                                      belowShedNameController.text,
+                                      shedNameController.text,
+                                      position.toString());
 
-                        setState(() {
-                          isLoad = false;
-                        });
-                      }
-                    },
-                    child: Text('Save',
-                        style: robotoBold.copyWith(fontSize: 19,color: Colors.white)),
-                  ))
-            ),
+                              setState(() {
+                                isLoad = false;
+                              });
+                            }
+                          },
+                          child: Text('Save',
+                              style: robotoBold.copyWith(
+                                  fontSize: 19, color: Colors.white)),
+                        ))),
           ],
         ),
       ),

@@ -79,13 +79,13 @@ class _HomeState extends State<Home> {
                                 const SizedBox(
                                   height: 5,
                                 ),
+                                // Text(
+                                //   "$audit Plots audited",
+                                //   style: robotoRegular.copyWith(
+                                //       color: Colors.green, fontSize: 13),
+                                // ),
                                 Text(
-                                  "$audit Plots audited",
-                                  style: robotoRegular.copyWith(
-                                      color: Colors.green, fontSize: 13),
-                                ),
-                                Text(
-                                  "$audit Plots Ceo tagged",
+                                  "$audit Plots Geo tagged",
                                   style: robotoRegular.copyWith(
                                       color: Colors.grey, fontSize: 13),
                                 ),
@@ -103,14 +103,14 @@ class _HomeState extends State<Home> {
                               width: MediaQuery.of(context).size.width,
                               height: 5,
                               color: Colors.grey),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "${data['plots_acre']['area']} Acre Adult",
-                              style: robotoRegular.copyWith(
-                                  color: Colors.green, fontSize: 13),
-                            ),
-                          ),
+                          // Align(
+                          //   alignment: Alignment.centerLeft,
+                          //   child: Text(
+                          //     "${data['plots_acre']['area']} Acre Adult",
+                          //     style: robotoRegular.copyWith(
+                          //         color: Colors.green, fontSize: 13),
+                          //   ),
+                          // ),
                           const SizedBox(height: 25),
                           Text(
                             "6135 Alerts",

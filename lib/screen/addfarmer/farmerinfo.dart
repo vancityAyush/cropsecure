@@ -27,6 +27,7 @@ class _FarmerInfoState extends State<FarmerInfo> {
 
   List<Data> responses = [];
   List filteredData = [];
+  int count = 0;
   Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -38,9 +39,8 @@ class _FarmerInfoState extends State<FarmerInfo> {
   void filterData(String value) {
     setState(() {
       filteredData = responses
-          .where((data) =>
-              (data.name.toLowerCase().contains(value.toLowerCase())) &&
-              data.type == farmerType.F)
+          .where(
+              (data) => (data.name.toLowerCase().contains(value.toLowerCase())))
           .toList();
     });
   }
@@ -73,6 +73,12 @@ class _FarmerInfoState extends State<FarmerInfo> {
             return Text("${snapshots.error}");
           } else if (snapshots.hasData) {
             ResponseFarmer responseFarmer = snapshots.data;
+            count = 0;
+            for (var item in responseFarmer.data) {
+              if (item.type == farmerType.F) {
+                count++;
+              }
+            }
             return Column(
               children: [
                 Container(
@@ -132,9 +138,7 @@ class _FarmerInfoState extends State<FarmerInfo> {
                             height: 13,
                           ),
                           Text(
-                            responseFarmer.data == null
-                                ? ""
-                                : responseFarmer.data.length.toString(),
+                            count.toString(),
                             style: robotoBold.copyWith(
                                 color: ColorResources.light_purple),
                           ),

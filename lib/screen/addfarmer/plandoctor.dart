@@ -198,26 +198,26 @@ class _State extends State<PlantDoctor> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Column(
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  isRecording == false ? Icons.mic : Icons.stop,
-                                  size: 30,
-                                  color: Colors.black,
-                                ),
-                                onPressed: () async {
-                                  await recordAudio();
-                                },
-                              ),
-                              Text(
-                                  isRecording == false ? "Mic" : "Recording...",
-                                  style: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16))
-                            ],
-                          ),
+                          // Column(
+                          //   children: [
+                          //     IconButton(
+                          //       icon: Icon(
+                          //         isRecording == false ? Icons.mic : Icons.stop,
+                          //         size: 30,
+                          //         color: Colors.black,
+                          //       ),
+                          //       onPressed: () async {
+                          //         await recordAudio();
+                          //       },
+                          //     ),
+                          //     Text(
+                          //         isRecording == false ? "Mic" : "Recording...",
+                          //         style: const TextStyle(
+                          //             color: Colors.black,
+                          //             fontWeight: FontWeight.bold,
+                          //             fontSize: 16))
+                          //   ],
+                          // ),
                           Column(
                             children: [
                               IconButton(
