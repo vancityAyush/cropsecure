@@ -263,7 +263,7 @@ class ResultPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          (yield + exp).toString(),
+                                          (yield - exp).toString(),
                                           style: robotoMedium.copyWith(
                                               fontSize: 17,
                                               color: Colors.black),

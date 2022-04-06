@@ -28,10 +28,11 @@ class _State extends State<PlantDoctor> {
   TextEditingController _commentController = TextEditingController();
   bool isLoad = false;
   File _image = null;
-  bool isRecording = null;
+  File _recordedFile = null;
+  bool isRecording = false;
   Future<File> selectImage() async {
     PickedFile image =
-        await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+        await ImagePicker.platform.pickImage(source: ImageSource.camera);
     setState(() {
       _image = File(image.path);
     });
@@ -41,19 +42,19 @@ class _State extends State<PlantDoctor> {
   Future<File> recordAudio() async {
     bool result = await record.hasPermission();
     Directory dir = await getTemporaryDirectory();
-    _image = File(dir.path + "/audio.mp3");
+    _recordedFile = File(dir.path + "/audio.mp3");
     if (result) {
       if (!isRecording || isRecording == null) {
         await record.start(
-          path: _image.path, // required
+          path: _recordedFile.path, // required
           encoder: AudioEncoder.AAC, // by default
-          bitRate: 128000, // by default
-          samplingRate: 44100, // by default
+          bitRate: 5000, // by default
+          samplingRate: 4000, // by default
         );
         isRecording = true;
       } else {
         record.stop();
-        _image = _image;
+        _recordedFile = _recordedFile;
         isRecording = false;
       }
     }
@@ -189,7 +190,7 @@ class _State extends State<PlantDoctor> {
                       SizedBox(height: 20),
 
                       // Visibility for image
-                      if (_image != null && isRecording == null)
+                      if (_image != null)
                         Container(
                           child: Image.file(_image),
                         ),
@@ -201,20 +202,17 @@ class _State extends State<PlantDoctor> {
                             children: [
                               IconButton(
                                 icon: Icon(
-                                  isRecording == null
-                                      ? Icons.mic
-                                      : isRecording
-                                          ? Icons.stop
-                                          : Icons.record_voice_over,
+                                  isRecording == false ? Icons.mic : Icons.stop,
                                   size: 30,
                                   color: Colors.black,
                                 ),
-                                onPressed: () {
-                                  recordAudio();
+                                onPressed: () async {
+                                  await recordAudio();
                                 },
                               ),
-                              const Text("Mic",
-                                  style: TextStyle(
+                              Text(
+                                  isRecording == false ? "Mic" : "Recording...",
+                                  style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16))
@@ -263,23 +261,22 @@ class _State extends State<PlantDoctor> {
                               setState(() {
                                 isLoad = true;
                               });
-                              if (isRecording != null) {
-                                if (isRecording) {
-                                  await recordAudio();
-                                }
-                              }
-                              if (_commentController.isBlank) {
+                              if (isRecording) await recordAudio();
+                              File sendFile = _recordedFile;
+                              if (_image != null) sendFile = _image;
+                              if (_commentController.text.isNotEmpty) {
                                 var res = await Provider.of<AuthProvider>(
                                         context,
                                         listen: false)
                                     .addPlantDoctorApi(widget.id,
                                         comment: _commentController.text,
-                                        image: _image);
+                                        image: sendFile);
                                 setState(() {
                                   _commentController.clear();
                                   _image = null;
                                   isLoad = false;
-                                  isRecording = null;
+                                  isRecording = false;
+                                  _recordedFile = null;
                                 });
                               }
                               setState(() {
