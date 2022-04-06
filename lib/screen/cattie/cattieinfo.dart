@@ -71,7 +71,7 @@ class _CattieInfoState extends State<CattieInfo> {
           } else if (snapshots.hasData) {
             ResponseFarmer responseFarmer = snapshots.data;
             count = 0;
-            for (var item in responseFarmer.data) {
+            for (var item in filteredData) {
               if (item.type == farmerType.C) {
                 count++;
               }

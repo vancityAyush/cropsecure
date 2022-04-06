@@ -266,7 +266,7 @@ class AuthRepo {
       {farmerType type}) async {
     var key =
         await SharedPrefManager.getPrefrenceString(AppConstants.newUserId);
-    FormData formData = FormData.fromMap({
+    var map = {
       "user_id": key,
       "name": name,
       "fathername_husbandname": fatherName,
@@ -290,10 +290,13 @@ class AuthRepo {
       "rashan": MultipartFile.fromFileSync(rashan.path),
       "image": MultipartFile.fromFileSync(image.path),
       "pan": MultipartFile.fromFileSync(panCard.path),
-      "type_of_farmer": type.toString()
-    });
-
-    print(formData.fields.toString());
+    };
+    if (type == farmerType.C) {
+      map.addAll({
+        "farmer_type": "C",
+      });
+    }
+    FormData formData = FormData.fromMap(map);
 
     try {
       Response response = await dioClient.post(
