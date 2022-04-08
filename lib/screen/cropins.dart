@@ -24,13 +24,17 @@ class _CropInsState extends State<CropIns> {
       startingDate = "",
       endingDate = "";
   List<String> gender = ["Male", "Female"];
+
+  List<String> loaner = ["Yes", "No"];
+
+  List<String> insP = ["1.5 %", "2.0 %", "5 %"];
   var formatDate;
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   String gradeSelect = "", weightSelect = "", selectedTimeSelect = "";
 
   TextEditingController yearController = TextEditingController();
-  TextEditingController specificTech = TextEditingController();
+  String specificTech = "";
   TextEditingController amountController = TextEditingController();
 
   TextEditingController policyController = TextEditingController();
@@ -224,24 +228,25 @@ class _CropInsState extends State<CropIns> {
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(
                 height: 48,
-                child: TextFormField(
-                  maxLines: 1,
-                  controller: specificTech,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                      hintText: "",
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      hintStyle: TextStyle(
-                          fontSize: 14 * MediaQuery.of(context).textScaleFactor,
-                          color: const Color(0xffb7b7b7))),
+                child: DropdownSearch(
+                  popupShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  mode: Mode.MENU,
+                  popupElevation: 5,
+                  dropdownSearchDecoration: const InputDecoration(
+                    hintText: "Select Insurance Premium",
+                    hintStyle: TextStyle(color: ColorResources.light_purple),
+                    contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    border: OutlineInputBorder(),
+                  ),
+                  // showSearchBox:true,
+                  onFind: (String filter) async {
+                    return insP;
+                  },
+                  onChanged: (String data) async {
+                    specificTech = data;
+                  },
+                  itemAsString: (String da) => da,
                 ),
               ),
               const SizedBox(
@@ -265,7 +270,7 @@ class _CropInsState extends State<CropIns> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return loaner;
                   },
                   onChanged: (String data) async {
                     showingDate = data;
@@ -433,7 +438,7 @@ class _CropInsState extends State<CropIns> {
                             year: yearController.text,
                             season: cropVarieties,
                             amount: amountController.text,
-                            premium: specificTech.text,
+                            premium: specificTech,
                             loaner: showingDate,
                             policyNo: policyController.text,
                             startingDate: startingDate,
@@ -451,7 +456,7 @@ class _CropInsState extends State<CropIns> {
                             yearController.clear();
                             cropVarieties = "";
                             amountController.clear();
-                            specificTech.clear();
+                            specificTech = "";
                             showingDate = "";
                             policyController.clear();
                             startingDate = "";

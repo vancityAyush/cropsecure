@@ -482,7 +482,7 @@ class ViewPlots extends StatelessWidget {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Image.asset(
-                                                "assets/image/spray.png",
+                                                "assets/image/location.png",
                                                 width: 28,
                                                 height: 28),
                                             const SizedBox(

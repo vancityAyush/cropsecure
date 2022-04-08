@@ -175,7 +175,6 @@ class _ApplyState extends State<Apply> {
                                 height: 48,
                                 child: TextFormField(
                                   maxLines: 1,
-                                  keyboardType: TextInputType.number,
                                   autofocus: false,
                                   controller: productName,
                                   decoration: InputDecoration(

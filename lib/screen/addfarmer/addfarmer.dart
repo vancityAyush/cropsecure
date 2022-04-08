@@ -24,7 +24,7 @@ class AddFarmer extends StatefulWidget {
 
 class _AddFarmerState extends State<AddFarmer> {
   List<String> gender = ["Male", "Female"];
-  List<String> farmerTypeD = ["Cattle", "Farmer"];
+  List<String> farmerTypeD = ["Cattle", "Farmer or Plot"];
   bool isLoad = false;
   List<String> handicapped = ["Yes", "No"];
   List<String> minority = ["Yes", "No"];
@@ -629,7 +629,7 @@ class _AddFarmerState extends State<AddFarmer> {
                       return state;
                     },
                     onChanged: (String data) async {
-                      districtSelect = data;
+                      talukaController.text = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -682,7 +682,7 @@ class _AddFarmerState extends State<AddFarmer> {
                       return state;
                     },
                     onChanged: (String data) async {
-                      districtSelect = data;
+                      hobaliController.text = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -768,7 +768,7 @@ class _AddFarmerState extends State<AddFarmer> {
                       return state;
                     },
                     onChanged: (String data) async {
-                      gramaSelect = data;
+                      villageController.text = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -1309,19 +1309,15 @@ class _AddFarmerState extends State<AddFarmer> {
                               showSnackBar("Select state");
                             } else if (districtSelect == "") {
                               showSnackBar("Select district");
-                            }
-                            // } else if (talukaController.text.isEmpty) {
-                            //   showSnackBar("Enter taluka");
-                            // } else if (hobaliController.text.isEmpty) {
-                            //   showSnackBar("Enter hobali");
-                            // }
-                            else if (gramaSelect == "") {
+                            } else if (talukaController.text.isEmpty) {
+                              showSnackBar("Enter taluka");
+                            } else if (hobaliController.text.isEmpty) {
+                              showSnackBar("Enter hobali");
+                            } else if (gramaSelect == "") {
                               showSnackBar("Select grama");
-                            }
-                            // } else if (villageController.text.isEmpty) {
-                            //   showSnackBar("Enter village");
-                            // }
-                            else if (aadharController.text.isEmpty) {
+                            } else if (villageController.text.isEmpty) {
+                              showSnackBar("Enter village");
+                            } else if (aadharController.text.isEmpty) {
                               showSnackBar("Enter Aadhar");
                             } else if (panController.text.isEmpty) {
                               showSnackBar("Enter Pan");
@@ -1351,10 +1347,10 @@ class _AddFarmerState extends State<AddFarmer> {
                                       panController.text,
                                       rashanController.text,
                                       gramaSelect,
+                                      hobaliController.text,
+                                      talukaController.text,
                                       districtSelect,
-                                      districtSelect,
-                                      districtSelect,
-                                      districtSelect,
+                                      stateSelect,
                                       genderSelect,
                                       formatDate,
                                       ageController.text,

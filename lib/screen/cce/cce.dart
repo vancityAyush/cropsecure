@@ -3,17 +3,13 @@ import 'dart:io';
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/dimensions.dart';
-import 'package:cropsecure/utill/sharedprefrence.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../../utill/app_constants.dart';
 
 class Cce extends StatefulWidget {
   @override
@@ -21,15 +17,22 @@ class Cce extends StatefulWidget {
 }
 
 class _CceState extends State<Cce> {
+  int _index = 0;
+
   @override
   initState() {
-    getData(context);
     super.initState();
   }
 
   List<String> gender = ["Male", "Female"];
   int tagRadio = 1, tagRadioNumber = 1;
   bool isLoad = false;
+  List<String> department = [
+    "Farmer Department",
+    "Govt. Department",
+    "Insurance Company",
+    "Cropsecure Company",
+  ];
   String userType = "Yes", chooseRandomNumber = "Yes";
   TextEditingController observerNameController = TextEditingController();
   TextEditingController observerMobileController = TextEditingController();
@@ -44,6 +47,12 @@ class _CceState extends State<Cce> {
   TextEditingController weightOfCropsController = TextEditingController();
   TextEditingController sumOfAllController = TextEditingController();
   TextEditingController sumOfBioMassController = TextEditingController();
+
+  List<String> departMentSelectList = [];
+  List<String> observerNameSelectList = [];
+  List<String> observerDesignationSelectList = [];
+  List<String> observerMobileList = [];
+  List<File> newFileObserverPhotoList = [];
   String departMentSelect = "",
       areaAcreSelect = "",
       insuranceSelect = "",
@@ -215,223 +224,221 @@ class _CceState extends State<Cce> {
     }
   }
 
-  List<Widget> DepartmentForm(BuildContext context) {
-    return [
-      Text("Department",
-          style: robotoBold.copyWith(
-              color: const Color(0xff262626), fontSize: 17)),
-      SizedBox(
-        height: 48,
-        child: DropdownSearch(
-          popupShape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          mode: Mode.MENU,
-          popupElevation: 5,
-          dropdownSearchDecoration: const InputDecoration(
-            hintText: "Insurance",
-            hintStyle: TextStyle(color: ColorResources.light_purple),
-            contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-            border: OutlineInputBorder(),
-          ),
-          // showSearchBox:true,
-          items: [
-            "Farmer",
-            "Govt. Department",
-            "Insurance Company",
-            "Cropsecure Company",
-          ],
-          // onFind: (String filter) async {
-          //   return gender;
-          // },
-          onChanged: (String data) async {
-            departMentSelect = data;
-          },
-          itemAsString: (String da) => da,
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: SizedBox(
-          height: 48.0,
-          child: TextFormField(
-            controller: observerNameController,
-            maxLines: 1,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-                hintText: "Observer Name",
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hintStyle: TextStyle(
-                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
-                    color: const Color(0xffb7b7b7))),
+  Widget DepartmentForm(BuildContext context) {
+    return Column(
+      children: [
+        Text(department[_index],
+            style: robotoBold.copyWith(
+                color: const Color(0xff262626), fontSize: 19)),
+        // SizedBox(
+        //   height: 48,
+        //   child: DropdownSearch(
+        //     popupShape:
+        //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        //     mode: Mode.MENU,
+        //     popupElevation: 5,
+        //     dropdownSearchDecoration: const InputDecoration(
+        //       hintText: "Insurance",
+        //       hintStyle: TextStyle(color: ColorResources.light_purple),
+        //       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+        //       border: OutlineInputBorder(),
+        //     ),
+        //     // showSearchBox:true,
+        //     items: const ,
+        //     // onFind: (String filter) async {
+        //     //   return gender;
+        //     // },
+        //     onChanged: (String data) async {
+        //       departMentSelect = data;
+        //     },
+        //     itemAsString: (String da) => da,
+        //   ),
+        // ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: SizedBox(
+            height: 48.0,
+            child: TextFormField(
+              controller: observerNameController,
+              maxLines: 1,
+              keyboardType: TextInputType.text,
+              autofocus: false,
+              decoration: InputDecoration(
+                  hintText: "Observer Name",
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  hintStyle: TextStyle(
+                      fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                      color: const Color(0xffb7b7b7))),
+            ),
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: SizedBox(
-          height: 48.0,
-          child: TextFormField(
-            controller: observerMobileController,
-            maxLines: 1,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-                hintText: "Observer Mobile",
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hintStyle: TextStyle(
-                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
-                    color: const Color(0xffb7b7b7))),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: SizedBox(
+            height: 48.0,
+            child: TextFormField(
+              controller: observerMobileController,
+              maxLines: 1,
+              keyboardType: TextInputType.text,
+              autofocus: false,
+              decoration: InputDecoration(
+                  hintText: "Observer Mobile",
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  hintStyle: TextStyle(
+                      fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                      color: const Color(0xffb7b7b7))),
+            ),
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: SizedBox(
-          height: 48.0,
-          child: TextFormField(
-            controller: observerDesignationController,
-            maxLines: 1,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-                hintText: "Observer Designation",
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hintStyle: TextStyle(
-                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
-                    color: const Color(0xffb7b7b7))),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: SizedBox(
+            height: 48.0,
+            child: TextFormField(
+              controller: observerDesignationController,
+              maxLines: 1,
+              keyboardType: TextInputType.text,
+              autofocus: false,
+              decoration: InputDecoration(
+                  hintText: "Observer Designation",
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  hintStyle: TextStyle(
+                      fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                      color: const Color(0xffb7b7b7))),
+            ),
           ),
         ),
-      ),
-      const SizedBox(
-        height: 10,
-      ),
-      Center(
-        child: Container(
-          height: 120,
-          width: 140,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(color: const Color(0xffb7b7b7))),
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(2),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: const Color(0xffe1ddde)),
-                    height: 40,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: Text(
-                          "Observer Photo",
-                          style: robotoMedium.copyWith(
-                              color: const Color(0xff262626), fontSize: 13),
+        const SizedBox(
+          height: 10,
+        ),
+        Center(
+          child: Container(
+            height: 120,
+            width: 140,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: const Color(0xffb7b7b7))),
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(2),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          color: const Color(0xffe1ddde)),
+                      height: 40,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.0),
+                          child: Text(
+                            "Observer Photo",
+                            style: robotoMedium.copyWith(
+                                color: const Color(0xff262626), fontSize: 13),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () => onFileObserberPhoto(),
-                    child: Container(
-                        margin: const EdgeInsets.only(right: 4, bottom: 3),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(13),
-                            color: const Color(0xffb7b7b7)),
-                        child: const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Icon(
-                            Icons.image_outlined,
-                            size: 25,
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-              newFileObserverPhoto == null
-                  ? const Text("")
-                  : Positioned(
-                      top: 0,
-                      bottom: 0,
-                      right: 0,
-                      left: 0,
+                    InkWell(
+                      onTap: () => onFileObserberPhoto(),
                       child: Container(
-                        height: 60,
-                        padding: const EdgeInsets.fromLTRB(20, 45, 25, 30),
-                        child: Image.file(
-                          newFileObserverPhoto,
-                        ),
-                      ))
-            ],
+                          margin: const EdgeInsets.only(right: 4, bottom: 3),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              color: const Color(0xffb7b7b7)),
+                          child: const Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Icon(
+                              Icons.image_outlined,
+                              size: 25,
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+                newFileObserverPhoto == null
+                    ? const Text("")
+                    : Positioned(
+                        top: 0,
+                        bottom: 0,
+                        right: 0,
+                        left: 0,
+                        child: Container(
+                          height: 60,
+                          padding: const EdgeInsets.fromLTRB(20, 45, 25, 30),
+                          child: Image.file(
+                            newFileObserverPhoto,
+                          ),
+                        ))
+              ],
+            ),
           ),
         ),
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      //Button to sumbit
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: 50,
-        child: RaisedButton(
-          onPressed: () async {
-            if (departMentSelect == "") {
-              showSnackBar("Select department");
-            } else if (observerNameController.text.isEmpty) {
-              showSnackBar("Enter observer name");
-            } else if (observerMobileController.text.isEmpty) {
-              showSnackBar("Enter observer mobile number");
-            } else if (observerDesignationController.text.isEmpty) {
-              showSnackBar("Enter observer designation");
-            } else if (newFileObserverPhoto == null) {
-              showSnackBar("Select observer photo");
-            } else {
-              await _sumbitObserver(context);
-              showSnackBar("Observer added successfully");
-            }
-          },
-          color: const Color(0xff262626),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          child: Text(
-            "Submit Observer",
-            style: robotoMedium.copyWith(
-                color: Colors.white,
-                fontSize: 14 * MediaQuery.of(context).textScaleFactor),
-          ),
-        ),
-      ),
-    ];
+        // const SizedBox(
+        //   height: 20,
+        // ),
+        //Button to sumbit
+        // Container(
+        //   width: MediaQuery.of(context).size.width,
+        //   height: 50,
+        //   child: RaisedButton(
+        //     onPressed: () async {
+        //       if (departMentSelect == "") {
+        //         showSnackBar("Select department");
+        //       } else if (observerNameController.text.isEmpty) {
+        //         showSnackBar("Enter observer name");
+        //       } else if (observerMobileController.text.isEmpty) {
+        //         showSnackBar("Enter observer mobile number");
+        //       } else if (observerDesignationController.text.isEmpty) {
+        //         showSnackBar("Enter observer designation");
+        //       } else if (newFileObserverPhoto == null) {
+        //         showSnackBar("Select observer photo");
+        //       } else {
+        //         await _sumbitObserver(context);
+        //         showSnackBar("Observer added successfully");
+        //       }
+        //     },
+        //     color: const Color(0xff262626),
+        //     shape:
+        //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+        //     child: Text(
+        //       "Submit Observer",
+        //       style: robotoMedium.copyWith(
+        //           color: Colors.white,
+        //           fontSize: 14 * MediaQuery.of(context).textScaleFactor),
+        //     ),
+        //   ),
+        // ),
+      ],
+    );
   }
 
   @override
@@ -459,23 +466,63 @@ class _CceState extends State<Cce> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "GPS ACCURACY : 20",
-                style: robotoBold.copyWith(
-                    color: ColorResources.light_purple, fontSize: 18),
-              ),
               Card(
-                elevation: 3,
+                elevation: 5,
                 child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      ...DepartmentForm(context),
+                  // padding: EdgeInsets.all(10),
+                  child: Stepper(
+                    physics: NeverScrollableScrollPhysics(),
+                    // type: StepperType.horizontal,
+                    currentStep: _index,
+                    onStepCancel: () {
+                      if (_index > 0) {
+                        setState(() {
+                          observerNameController.text =
+                              observerNameSelectList[_index];
+                          observerDesignationController.text =
+                              observerDesignationSelectList[_index];
+                          observerMobileController.text =
+                              observerMobileList[_index];
+                          newFileObserverPhoto =
+                              newFileObserverPhotoList[_index];
+                          _index -= 1;
+                        });
+                      }
+                    },
+                    onStepContinue: () async {
+                      await onContinue(context);
+                      if (_index < department.length - 1) {
+                        _index += 1;
+                      }
+                      setState(() {
+                        observerDesignationController.clear();
+                        observerNameController.clear();
+                        observerMobileController.clear();
+                        newFileObserverPhoto = null;
+                        observerDesignationController.clear();
+                      });
+                    },
+                    onStepTapped: (int index) {
+                      setState(() {
+                        observerNameController.text =
+                            observerNameSelectList[index];
+                        observerDesignationController.text =
+                            observerDesignationSelectList[index];
+                        observerMobileController.text =
+                            observerMobileList[index];
+                        newFileObserverPhoto = newFileObserverPhotoList[index];
+                        _index = index;
+                      });
+                    },
+                    steps: <Step>[
+                      for (var item in department)
+                        Step(
+                            title: Text(item),
+                            content: DepartmentForm(context)),
                     ],
+                    // children: [
+                    //   ...DepartmentForm(context),
+                    // ],
                   ),
                 ),
               ),
@@ -2025,70 +2072,59 @@ class _CceState extends State<Cce> {
                           ), //button color
                         ),
                         onPressed: () async {
-                          if (departMentSelect == "") {
-                            showSnackBar("Select department");
-                          } else if (observerNameController.text.isEmpty) {
-                            showSnackBar("Enter observer name");
-                          } else if (observerMobileController.text.isEmpty) {
-                            showSnackBar("Enter observer mobile number");
-                          } else if (observerDesignationController
-                              .text.isEmpty) {
-                            showSnackBar("Enter observer designation");
-                          } else if (newFileObserverPhoto == null) {
-                            showSnackBar("Select observer photo");
-                          } else if (areaAcreSelect == "") {
-                            showSnackBar("Select total area of cce fields");
-                          } else if (areaController.text.isEmpty) {
-                            showSnackBar("Enter area");
-                          } else if (areaAuditController.text.isEmpty) {
-                            showSnackBar("Enter area audit");
-                          } else if (areaAuditController.text.isEmpty) {
-                            showSnackBar("Enter area audit");
-                          } else if (newFileSouthWestPhoto == null) {
-                            showSnackBar("Select south west corner");
-                          } else if (newFileFieldImagePhoto == null) {
-                            showSnackBar("Select field image");
-                          } else if (lengthController.text.isEmpty) {
-                            showSnackBar("Enter length");
-                          } else if (breadthController.text.isEmpty) {
-                            showSnackBar("Enter breadth");
-                          } else if (randomLengthController.text.isEmpty) {
-                            showSnackBar("Enter random length");
-                          } else if (randomBreadthController.text.isEmpty) {
-                            showSnackBar("Enter random breadth");
-                          } else if (shapeOfCceSelect == "") {
-                            showSnackBar("Select cce plot");
-                          } else if (dimensionOfCCeController.text.isEmpty) {
-                            showSnackBar("Enter dimension of cce plot");
-                          } else if (newFileMarkedImagePhoto == null) {
-                            showSnackBar("Select marked plot photo");
-                          } else if (newFileCutHarvestPhoto == null) {
-                            showSnackBar("Select cut harvest photo");
-                          } else if (sumOfBioMassController.text.isEmpty) {
-                            showSnackBar("Enter sum of biomass");
-                          } else if (newFileWeightingPhoto == null) {
-                            showSnackBar("Select weighting photo");
-                          } else if (newFileThreshingPhoto == null) {
-                            showSnackBar("Select threshing photo");
-                          } else if (newFileCleaningPhoto == null) {
-                            showSnackBar("Select cleaning photo");
-                          } else if (weightOfCropsController.text.isEmpty) {
-                            showSnackBar("Enter weight of crops");
-                          } else if (newFileCutPlotPhoto == null) {
-                            showSnackBar("Select cut plot photo");
-                          } else if (newFileWeightPlotPhoto == null) {
-                            showSnackBar("Select weight");
-                          } else if (newFileMoisturePhoto == null) {
-                            showSnackBar("Select moisture photo");
-                          } else if (newFileJointPhoto == null) {
-                            showSnackBar("Select joint photo");
-                          } else {
-                            setState(() {
-                              isLoad = true;
-                            });
-                            // Get.to(() => AddBankDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                            await _sumbit(context);
-                          }
+                          // if (areaAcreSelect == "") {
+                          //   showSnackBar("Select total area of cce fields");
+                          // } else if (areaController.text.isEmpty) {
+                          //   showSnackBar("Enter area");
+                          // } else if (areaAuditController.text.isEmpty) {
+                          //   showSnackBar("Enter area audit");
+                          // } else if (areaAuditController.text.isEmpty) {
+                          //   showSnackBar("Enter area audit");
+                          // } else if (newFileSouthWestPhoto == null) {
+                          //   showSnackBar("Select south west corner");
+                          // } else if (newFileFieldImagePhoto == null) {
+                          //   showSnackBar("Select field image");
+                          // } else if (lengthController.text.isEmpty) {
+                          //   showSnackBar("Enter length");
+                          // } else if (breadthController.text.isEmpty) {
+                          //   showSnackBar("Enter breadth");
+                          // } else if (randomLengthController.text.isEmpty) {
+                          //   showSnackBar("Enter random length");
+                          // } else if (randomBreadthController.text.isEmpty) {
+                          //   showSnackBar("Enter random breadth");
+                          // } else if (shapeOfCceSelect == "") {
+                          //   showSnackBar("Select cce plot");
+                          // } else if (dimensionOfCCeController.text.isEmpty) {
+                          //   showSnackBar("Enter dimension of cce plot");
+                          // } else if (newFileMarkedImagePhoto == null) {
+                          //   showSnackBar("Select marked plot photo");
+                          // } else if (newFileCutHarvestPhoto == null) {
+                          //   showSnackBar("Select cut harvest photo");
+                          // } else if (sumOfBioMassController.text.isEmpty) {
+                          //   showSnackBar("Enter sum of biomass");
+                          // } else if (newFileWeightingPhoto == null) {
+                          //   showSnackBar("Select weighting photo");
+                          // } else if (newFileThreshingPhoto == null) {
+                          //   showSnackBar("Select threshing photo");
+                          // } else if (newFileCleaningPhoto == null) {
+                          //   showSnackBar("Select cleaning photo");
+                          // } else if (weightOfCropsController.text.isEmpty) {
+                          //   showSnackBar("Enter weight of crops");
+                          // } else if (newFileCutPlotPhoto == null) {
+                          //   showSnackBar("Select cut plot photo");
+                          // } else if (newFileWeightPlotPhoto == null) {
+                          //   showSnackBar("Select weight");
+                          // } else if (newFileMoisturePhoto == null) {
+                          //   showSnackBar("Select moisture photo");
+                          // } else if (newFileJointPhoto == null) {
+                          //   showSnackBar("Select joint photo");
+                          // } else {
+                          //   setState(() {
+                          //     isLoad = true;
+                          //   });
+                          // Get.to(() => AddBankDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+                          await _sumbit(context);
+                          // }
                         },
                         child: Text('Save',
                             style: robotoBold.copyWith(
@@ -2105,10 +2141,10 @@ class _CceState extends State<Cce> {
   void _sumbit(BuildContext context) async {
     await Provider.of<AuthProvider>(context, listen: false).addCceApi(
         "20",
-        departMentSelect,
-        observerNameController.text,
-        observerDesignationController.text,
-        newFileObserverPhoto,
+        departMentSelectList,
+        observerNameSelectList,
+        observerDesignationSelectList,
+        newFileObserverPhotoList,
         areaAcreSelect,
         areaController.text,
         areaAuditController.text,
@@ -2137,58 +2173,18 @@ class _CceState extends State<Cce> {
         newFileWeightPlotPhoto,
         newFileMoisturePhoto,
         newFileJointPhoto,
-        observerMobileController.text);
+        observerMobileList);
 
     setState(() {
       isLoad = false;
     });
   }
 
-  static Future<bool> saveImage(File file) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final path = directory.path;
-    final newfile = await file.copy("%path/image.jpg");
-    return true;
-  }
-
-  Future<File> getImage() async {
-    final directory = await getApplicationDocumentsDirectory();
-    final path = directory.path;
-    File file = File("$path/image.jpg");
-    return file;
-  }
-
-  void _sumbitObserver(BuildContext context) async {
-    await SharedPrefManager.savePrefString(
-        AppConstants.observerDepartment, departMentSelect);
-    await SharedPrefManager.savePrefString(
-        AppConstants.observerName, observerNameController.text);
-    await SharedPrefManager.savePrefString(
-        AppConstants.observerDesignation, observerDesignationController.text);
-    await SharedPrefManager.savePrefString(
-        AppConstants.observerMobile, observerMobileController.text);
-    await SharedPrefManager.savePrefString(
-        AppConstants.observerPhoto, newFileObserverPhoto.path);
-    await SharedPrefManager.savePreferenceBooleanFlag(
-        AppConstants.observerFlag, true);
-  }
-
-  void getData(BuildContext context) async {
-    if (await SharedPrefManager.getPreferenceBooleanFlag(
-        AppConstants.observerFlag)) {
-      departMentSelect = await SharedPrefManager.getPrefrenceString(
-          AppConstants.observerDepartment);
-      observerNameController.text =
-          await SharedPrefManager.getPrefrenceString(AppConstants.observerName);
-      observerDesignationController.text =
-          await SharedPrefManager.getPrefrenceString(
-              AppConstants.observerDesignation);
-      observerMobileController.text =
-          await SharedPrefManager.getPrefrenceString(
-              AppConstants.observerMobile);
-      newFileObserverPhoto = File(await SharedPrefManager.getPrefrenceString(
-          AppConstants.observerPhoto));
-      setState(() {});
-    }
+  void onContinue(BuildContext context) async {
+    departMentSelectList.add(department[_index]);
+    observerNameSelectList.add(observerNameController.text);
+    observerDesignationSelectList.add(observerDesignationController.text);
+    observerMobileList.add(observerMobileController.text);
+    newFileObserverPhotoList.add(newFileObserverPhoto);
   }
 }

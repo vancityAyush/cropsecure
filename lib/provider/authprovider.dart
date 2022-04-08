@@ -717,10 +717,10 @@ class AuthProvider with ChangeNotifier {
   /////// addCceApi/////////
   Future<ResponseModel> addCceApi(
       String gpsAccuracy,
-      String department,
-      String observerName,
-      String observerDesignation,
-      File observerPhoto,
+      List<String> department,
+      List<String> observerName,
+      List<String> observerDesignation,
+      List<File> observerPhoto,
       String areaInAcre,
       String manuallyEnteredArea,
       String areaAudit,
@@ -749,7 +749,7 @@ class AuthProvider with ChangeNotifier {
       File cpWeight,
       File moisturePhoto,
       File jointPhoto,
-      String obserberMobile) async {
+      List<String> obserberMobile) async {
     ApiResponse apiResponse = await authRepo.addPlotCceApi(
         gpsAccuracy,
         department,

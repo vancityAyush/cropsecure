@@ -200,6 +200,8 @@ class _FarmerListCattleState extends State<FarmerListCattle> {
                                             " " +
                                             responseFarmer.data[index].taluka +
                                             " " +
+                                            responseFarmer.data[index].hobble +
+                                            "" +
                                             responseFarmer
                                                 .data[index].districtName +
                                             " " +

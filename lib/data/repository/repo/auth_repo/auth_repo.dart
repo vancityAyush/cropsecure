@@ -720,10 +720,10 @@ class AuthRepo {
   ////////// addPlotCce ///////////
   Future<ApiResponse> addPlotCceApi(
       String gpsAccuracy,
-      String department,
-      String observerName,
-      String observerDesignation,
-      File observerPhoto,
+      List<String> department,
+      List<String> observerName,
+      List<String> observerDesignation,
+      List<File> observerPhoto,
       String areaInAcre,
       String manuallyEnteredArea,
       String areaAudit,
@@ -752,7 +752,7 @@ class AuthRepo {
       File cpWeight,
       File moisturePhoto,
       File jointPhoto,
-      String obserberMobile) async {
+      List<String> obserberMobile) async {
     var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
 
     FormData formData = FormData.fromMap({
@@ -762,7 +762,7 @@ class AuthRepo {
       "observer_name": observerName,
       "observer_mobile": obserberMobile,
       "observer_designation": observerDesignation,
-      "observer_photo": MultipartFile.fromFileSync(observerPhoto.path),
+      "observer_photo": MultipartFile.fromFileSync(observerPhoto[0].path),
       "area_in_acre": areaInAcre,
       "manually_entered_area": manuallyEnteredArea,
       "area_audit": areaAudit,
