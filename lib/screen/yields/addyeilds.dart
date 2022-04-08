@@ -347,6 +347,30 @@ class _AddYieldsState extends State<AddYields> {
                                       height: 48,
                                       child: TextFormField(
                                         controller: weightController,
+                                        onChanged: (value) {
+                                          int weight = value.isEmpty
+                                              ? 0
+                                              : int.parse(value);
+                                          int noOfBage =
+                                              noOfBagsController.text.isEmpty
+                                                  ? 0
+                                                  : int.parse(
+                                                      noOfBagsController.text);
+                                          totalWeightController.text =
+                                              (weight * noOfBage).toString();
+                                          int price = value.isEmpty
+                                              ? 0
+                                              : int.parse(value);
+                                          int totalWeight =
+                                              totalWeightController.text.isEmpty
+                                                  ? 0
+                                                  : int.parse(
+                                                      totalWeightController
+                                                          .text);
+                                          totalAmountController.text =
+                                              (price * totalWeight).toString();
+                                          setState(() {});
+                                        },
                                         maxLines: 1,
                                         keyboardType: TextInputType.number,
                                         autofocus: false,
@@ -397,6 +421,30 @@ class _AddYieldsState extends State<AddYields> {
                                         controller: noOfBagsController,
                                         maxLines: 1,
                                         keyboardType: TextInputType.number,
+                                        onChanged: (value) {
+                                          int weight =
+                                              weightController.text.isEmpty
+                                                  ? 0
+                                                  : int.parse(
+                                                      weightController.text);
+                                          int noOfBage = value.isEmpty
+                                              ? 0
+                                              : int.parse(value);
+                                          totalWeightController.text =
+                                              (weight * noOfBage).toString();
+                                          int price = value.isEmpty
+                                              ? 0
+                                              : int.parse(value);
+                                          int totalWeight =
+                                              totalWeightController.text.isEmpty
+                                                  ? 0
+                                                  : int.parse(
+                                                      totalWeightController
+                                                          .text);
+                                          totalAmountController.text =
+                                              (price * totalWeight).toString();
+                                          setState(() {});
+                                        },
                                         autofocus: false,
                                         decoration: InputDecoration(
                                             hintText: "",
@@ -448,6 +496,7 @@ class _AddYieldsState extends State<AddYields> {
                                   SizedBox(
                                       height: 48,
                                       child: TextFormField(
+                                        enabled: false,
                                         controller: totalWeightController,
                                         maxLines: 1,
                                         keyboardType: TextInputType.number,
@@ -498,6 +547,19 @@ class _AddYieldsState extends State<AddYields> {
                                       child: TextFormField(
                                         controller: pricePerKgController,
                                         maxLines: 1,
+                                        onChanged: (value) {
+                                          int price = value.isEmpty
+                                              ? 0
+                                              : int.parse(value);
+                                          int weight = totalWeightController
+                                                  .text.isEmpty
+                                              ? 0
+                                              : int.parse(
+                                                  totalWeightController.text);
+                                          totalAmountController.text =
+                                              (price * weight).toString();
+                                          setState(() {});
+                                        },
                                         keyboardType: TextInputType.number,
                                         autofocus: false,
                                         decoration: InputDecoration(
