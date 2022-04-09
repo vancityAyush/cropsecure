@@ -1365,6 +1365,30 @@ class _AddFarmerState extends State<AddFarmer> {
 
                               setState(() {
                                 isLoad = false;
+
+                                farmerName.clear();
+                                fatherHusbandName.clear();
+                                mobileController.clear();
+                                districtSelect = "";
+                                aadharController.clear();
+                                panController.clear();
+                                rashanController.clear();
+                                gramaSelect = "";
+                                hobaliController.clear();
+                                talukaController.clear();
+                                districtSelect = "";
+                                stateSelect = "";
+                                genderSelect = "";
+                                formatDate = "";
+                                ageController.clear();
+                                handicappedSelect = "";
+                                minoritySelect = "";
+                                casteSelect = "";
+                                newFile = null;
+                                newFileRashan = null;
+                                newFilePan = null;
+                                newFileFarmer = null;
+                                type = null;
                               });
                             }
                           },

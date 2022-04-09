@@ -7,6 +7,7 @@ import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CattieRegister extends StatefulWidget {
@@ -26,11 +27,25 @@ class _CattieRegisterState extends State<CattieRegister> {
   List<String> state = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
   TextEditingController cattleNameController = TextEditingController();
   TextEditingController bodyWeightController = TextEditingController();
-  TextEditingController heatDateController = TextEditingController();
   TextEditingController remarksController = TextEditingController();
   File filename;
   File newFile;
   PlatformFile file;
+  DateTime selectedDate = DateTime.now();
+  var formatDate;
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate, // Refer step 1
+      firstDate: DateTime(1940),
+      lastDate: DateTime(2035),
+    );
+    setState(() {
+      selectedDate = picked;
+      formatDate = DateFormat('dd-MM-yyyy').format(selectedDate);
+    });
+  }
 
   void onFileOpenPhoto() async {
     FilePickerResult result = await FilePicker.platform.pickFiles(
@@ -349,28 +364,25 @@ class _CattieRegisterState extends State<CattieRegister> {
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
-                child: SizedBox(
-                  height: 48.0,
-                  child: TextFormField(
-                    controller: heatDateController,
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                        hintText: "",
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
+                child: InkWell(
+                  onTap: () => _selectDate(context),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        border: Border.all(color: const Color(0xffb7b7b7))),
+                    height: 48,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: Text(
+                          formatDate ?? "Heat Date",
+                          style: robotoMedium.copyWith(
+                              color: const Color(0xff262626)),
                         ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        hintStyle: TextStyle(
-                            fontSize:
-                                14 * MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7))),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -562,8 +574,8 @@ class _CattieRegisterState extends State<CattieRegister> {
                               showSnackBar("Select breed");
                             } else if (bodyWeightController.text.isEmpty) {
                               showSnackBar("Enter body weight");
-                            } else if (heatDateController.text.isEmpty) {
-                              showSnackBar("Enter heat date");
+                            } else if (selectedDate == null) {
+                              showSnackBar("Select heat date");
                             } else if (remarksController.text.isEmpty) {
                               showSnackBar("Enter remarks");
                             } else if (newFile == null) {
@@ -583,7 +595,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                                       age,
                                       breed,
                                       bodyWeightController.text,
-                                      heatDateController.text,
+                                      formatDate,
                                       remarksController.text,
                                       newFile);
 
@@ -598,7 +610,8 @@ class _CattieRegisterState extends State<CattieRegister> {
                                 breed = "";
                                 cattleNameController.clear();
                                 bodyWeightController.clear();
-                                heatDateController.clear();
+                                formatDate = "";
+                                selectedDate = DateTime.now();
                                 remarksController.clear();
                                 newFile = null;
                               });

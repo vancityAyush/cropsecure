@@ -95,7 +95,7 @@ class _AddReportState extends State<AddReport> {
                     keyboardType: TextInputType.text,
                     autofocus: false,
                     decoration: InputDecoration(
-                        suffixText: "25/m",
+                        suffixText: "ds/m",
                         hintText: "",
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),

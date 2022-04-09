@@ -112,11 +112,11 @@ class _HomeState extends State<Home> {
                           //   ),
                           // ),
                           const SizedBox(height: 25),
-                          Text(
-                            "6135 Alerts",
-                            style: robotoRegular.copyWith(
-                                color: Colors.yellow, fontSize: 13),
-                          ),
+                          // Text(
+                          //   "6135 Alerts",
+                          //   style: robotoRegular.copyWith(
+                          //       color: Colors.yellow, fontSize: 13),
+                          // ),
                           const SizedBox(height: 1),
                           Container(
                               width: MediaQuery.of(context).size.width,
@@ -131,11 +131,11 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           const SizedBox(height: 25),
-                          Text(
-                            "123 Forms",
-                            style: robotoRegular.copyWith(
-                                color: Colors.yellow, fontSize: 13),
-                          ),
+                          // Text(
+                          //   "123 Forms",
+                          //   style: robotoRegular.copyWith(
+                          //       color: Colors.yellow, fontSize: 13),
+                          // ),
                           const SizedBox(height: 1),
                           Container(
                               width: MediaQuery.of(context).size.width,
@@ -342,25 +342,25 @@ class _HomeState extends State<Home> {
               height: 20,
             ),
 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/image/farmer.png",
-                  width: 30,
-                  height: 40,
-                ),
-                const SizedBox(
-                  width: 7,
-                ),
-                Text("124 Tasks",
-                    style: robotoBold.copyWith(color: Colors.grey)),
-                const SizedBox(
-                  width: 7,
-                ),
-              ],
-            ),
+            // Row(
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Image.asset(
+            //       "assets/image/farmer.png",
+            //       width: 30,
+            //       height: 40,
+            //     ),
+            //     const SizedBox(
+            //       width: 7,
+            //     ),
+            //     Text("124 Tasks",
+            //         style: robotoBold.copyWith(color: Colors.grey)),
+            //     const SizedBox(
+            //       width: 7,
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

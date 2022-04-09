@@ -588,39 +588,39 @@ class _CceState extends State<Cce> {
               const SizedBox(
                 height: 20,
               ),
-              Text("Area Audit(Automatically calculate)",
-                  style: robotoBold.copyWith(
-                      color: const Color(0xff262626), fontSize: 17)),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  height: 48.0,
-                  child: TextFormField(
-                    maxLines: 1,
-                    controller: areaAuditController,
-                    keyboardType: TextInputType.text,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                        hintText: "Manually Enter Area",
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        hintStyle: TextStyle(
-                            fontSize:
-                                14 * MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7))),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+              // Text("Area Audit(Automatically calculate)",
+              //     style: robotoBold.copyWith(
+              //         color: const Color(0xff262626), fontSize: 17)),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10),
+              //   child: SizedBox(
+              //     height: 48.0,
+              //     child: TextFormField(
+              //       maxLines: 1,
+              //       controller: areaAuditController,
+              //       keyboardType: TextInputType.text,
+              //       autofocus: false,
+              //       decoration: InputDecoration(
+              //           hintText: "Manually Enter Area",
+              //           enabledBorder: const OutlineInputBorder(
+              //             borderSide: BorderSide(color: Colors.grey),
+              //           ),
+              //           focusedBorder: const OutlineInputBorder(
+              //             borderSide: BorderSide(color: Colors.grey),
+              //           ),
+              //           border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(20),
+              //           ),
+              //           hintStyle: TextStyle(
+              //               fontSize:
+              //                   14 * MediaQuery.of(context).textScaleFactor,
+              //               color: const Color(0xffb7b7b7))),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               Text("Is South-West Corner?",
                   style: robotoBold.copyWith(
                       color: const Color(0xff262626), fontSize: 17)),
