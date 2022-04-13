@@ -122,7 +122,26 @@ class _CropInsState extends State<CropIns> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return [
+                      "AGRICULTURE INSURANCE COMPANY",
+                      "BAJAJ ALLIANZ GENERAL INSURANCE CO. LTD",
+                      "BHARTI AXA GENERAL INSURANCE COMPANY LTD.",
+                      "CHOLAMANDALAM MS GENERAL INSURANCE COMPANY LIMITED",
+                      "FUTURE GENERALI INDIA INSURANCE CO. LTD.",
+                      "HDFC ERGO GENERAL INSURANCE CO. LTD.",
+                      "ICICI LOMBARD GENERAL INSURANCE CO. LTD.",
+                      "IFFCO TOKIO GENERAL INSURANCE CO. LTD.",
+                      "NATIONAL INSURANCE COMPANY LIMITED",
+                      "NEW INDIA ASSURANCE COMPANY",
+                      "ORIENTAL INSURANCE",
+                      "RELIANCE GENERAL INSURANCE CO. LTD.",
+                      "ROYAL SUNDARAM GENERAL INSURANCE CO. LIMITED",
+                      "SBI GENERAL INSURANCE",
+                      "SHRIRAM GENERAL INSURANCE CO. LTD.",
+                      "TATA AIG GENERAL INSURANCE CO. LTD.",
+                      "UNITED INDIA INSURANCE CO.",
+                      "UNIVERSAL SOMPO GENERAL INSURANCE COMPANY"
+                    ];
                   },
                   onChanged: (String data) async {
                     cropTypeSelect = data;
@@ -182,7 +201,7 @@ class _CropInsState extends State<CropIns> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return ["Kharif", "Rabi", "Year"];
                   },
                   onChanged: (String data) async {
                     cropVarieties = data;

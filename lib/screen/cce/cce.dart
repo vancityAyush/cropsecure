@@ -1102,7 +1102,7 @@ class _CceState extends State<Cce> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return ["Square", "Circle", "Rectangular", "Triangular"];
                   },
                   onChanged: (String data) async {
                     shapeOfCceSelect = data;

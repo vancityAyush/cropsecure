@@ -100,7 +100,7 @@ class _AddLabAnalysisState extends State<AddLabAnalysis> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "Sample Quality  :  ",
+                      "Sample Quantity  :  ",
                       style: robotoMedium.copyWith(
                           color: const Color(0xff262626), fontSize: 18),
                     ),
@@ -147,7 +147,6 @@ class _AddLabAnalysisState extends State<AddLabAnalysis> {
                         child: TextFormField(
                           controller: sealController,
                           maxLines: 1,
-                          keyboardType: TextInputType.number,
                           autofocus: false,
                           decoration: InputDecoration(
                               hintText: "",

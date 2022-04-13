@@ -160,6 +160,13 @@ class RaiseAlerts extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       var data = snapshot.data['data'];
+                      if (data == null) {
+                        return Container(
+                          child: Center(
+                            child: Text("No Alerts"),
+                          ),
+                        );
+                      }
                       return ListView.builder(
                         itemCount: data.length,
                         shrinkWrap: true,

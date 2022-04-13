@@ -209,7 +209,12 @@ class _AddYieldsState extends State<AddYields> {
                                       ),
                                       // showSearchBox:true,
                                       onFind: (String filter) async {
-                                        return particular;
+                                        return [
+                                          "A - 100 to 90%",
+                                          "B - 90 to 80%",
+                                          "C - 80 to 75%",
+                                          "D - 75 to 70 %"
+                                        ];
                                       },
                                       onChanged: (String data) async {
                                         gradeSelect = data;
@@ -316,7 +321,16 @@ class _AddYieldsState extends State<AddYields> {
                             ),
                             // showSearchBox:true,
                             onFind: (String filter) async {
-                              return particular;
+                              return [
+                                "75 Kg",
+                                "70 Kg",
+                                "50 Kg",
+                                "25 Kg",
+                                "10 Kg",
+                                "5  Kg",
+                                "2 Kg",
+                                "1 Kg"
+                              ];
                             },
                             onChanged: (String data) async {
                               weightSelect = data;

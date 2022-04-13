@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/dimensions.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -28,11 +28,28 @@ class _CattieRegisterState extends State<CattieRegister> {
   TextEditingController cattleNameController = TextEditingController();
   TextEditingController bodyWeightController = TextEditingController();
   TextEditingController remarksController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
   File filename;
   File newFile;
   PlatformFile file;
-  DateTime selectedDate = DateTime.now();
-  var formatDate;
+  DateTime selectedDate = DateTime.now(), selectedDate2 = DateTime.now();
+  var formatDate, formatDate2;
+
+  _selectDate2(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate2, // Refer step 1
+      firstDate: DateTime(1940),
+      lastDate: DateTime(2035),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate2 = picked;
+        formatDate2 = DateFormat('dd-MM-yyyy').format(selectedDate2);
+      });
+    }
+  }
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -41,20 +58,43 @@ class _CattieRegisterState extends State<CattieRegister> {
       firstDate: DateTime(1940),
       lastDate: DateTime(2035),
     );
-    setState(() {
-      selectedDate = picked;
-      formatDate = DateFormat('dd-MM-yyyy').format(selectedDate);
-    });
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        formatDate = selectedDate.year.toString() +
+            "/" +
+            selectedDate.month.toString() +
+            "/" +
+            selectedDate.day.toString();
+        // agecal = calculateAge(formatDate);
+        ageController.text = calculateAge(picked).toString() + "years";
+      });
+    }
+  }
+
+  int calculateAge(DateTime birthDate) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
   }
 
   void onFileOpenPhoto() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'png'],
-    );
+    dynamic result =
+        await ImagePicker.platform.pickImage(source: ImageSource.camera);
     if (result != null) {
-      file = result.files.first;
-      filename = File(file.path);
+      filename = File(result.path);
       setState(() {
         newFile = filename;
       });
@@ -78,60 +118,60 @@ class _CattieRegisterState extends State<CattieRegister> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 0.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Transform.scale(
-                          scale: 1.0,
-                          child: Radio(
-                            activeColor: ColorResources.light_purple,
-                            value: 1,
-                            groupValue: tagRadio,
-                            onChanged: (val) {
-                              setState(() {
-                                tagRadio = 1;
-                                userType = "New Cattle";
-                              });
-                            },
-                          ),
-                        ),
-                        const Text("New Cattle",
-                            style: TextStyle(
-                                color: ColorResources.black,
-                                fontWeight: FontWeight.normal,
-                                fontSize: Dimensions.text_13,
-                                fontFamily: "Roboto")),
-                        Transform.scale(
-                            scale: 1.0,
-                            child: Radio(
-                              activeColor: ColorResources.light_purple,
-                              value: 2,
-                              groupValue: tagRadio,
-                              onChanged: (val) {
-                                setState(() {
-                                  tagRadio = 2;
-                                  userType = "Old Cattle";
-                                });
-                              },
-                            )),
-                        const Text(
-                          "Old Cattle",
-                          style: TextStyle(
-                              color: ColorResources.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: Dimensions.text_13,
-                              fontFamily: "Roboto"),
-                        ),
-                      ],
-                    )),
-              ),
-
-              const SizedBox(
-                height: 15,
-              ),
+              // SizedBox(
+              //   child: Padding(
+              //       padding: const EdgeInsets.only(top: 0.0),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.start,
+              //         children: <Widget>[
+              //           Transform.scale(
+              //             scale: 1.0,
+              //             child: Radio(
+              //               activeColor: ColorResources.light_purple,
+              //               value: 1,
+              //               groupValue: tagRadio,
+              //               onChanged: (val) {
+              //                 setState(() {
+              //                   tagRadio = 1;
+              //                   userType = "New Cattle";
+              //                 });
+              //               },
+              //             ),
+              //           ),
+              //           const Text("New Cattle",
+              //               style: TextStyle(
+              //                   color: ColorResources.black,
+              //                   fontWeight: FontWeight.normal,
+              //                   fontSize: Dimensions.text_13,
+              //                   fontFamily: "Roboto")),
+              //           Transform.scale(
+              //               scale: 1.0,
+              //               child: Radio(
+              //                 activeColor: ColorResources.light_purple,
+              //                 value: 2,
+              //                 groupValue: tagRadio,
+              //                 onChanged: (val) {
+              //                   setState(() {
+              //                     tagRadio = 2;
+              //                     userType = "Old Cattle";
+              //                   });
+              //                 },
+              //               )),
+              //           const Text(
+              //             "Old Cattle",
+              //             style: TextStyle(
+              //                 color: ColorResources.black,
+              //                 fontWeight: FontWeight.normal,
+              //                 fontSize: Dimensions.text_13,
+              //                 fontFamily: "Roboto"),
+              //           ),
+              //         ],
+              //       )),
+              // ),
+              //
+              // const SizedBox(
+              //   height: 15,
+              // ),
 
               Text(
                 "Cattle Name",
@@ -198,7 +238,8 @@ class _CattieRegisterState extends State<CattieRegister> {
                     onChanged: (String data) async {
                       cattleType = data;
                     },
-                    itemAsString: (String da) => da,
+                    selectedItem: cattleType,
+                    // itemAsString: (String da) => da,
                   ),
                 ),
               ),
@@ -235,9 +276,45 @@ class _CattieRegisterState extends State<CattieRegister> {
                     onChanged: (String data) async {
                       liftStage = data;
                     },
-                    itemAsString: (String da) => da,
+                    selectedItem: liftStage,
+                    // itemAsString: (String da) => da,
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Date of Birth",
+                style: robotoBold.copyWith(
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: InkWell(
+                  onTap: () => _selectDate(context),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        border: Border.all(color: const Color(0xffb7b7b7))),
+                    height: 48,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: Text(
+                          formatDate ?? "DOB",
+                          style: robotoMedium.copyWith(
+                              color: const Color(0xff262626)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
 
               const SizedBox(
@@ -249,31 +326,28 @@ class _CattieRegisterState extends State<CattieRegister> {
                 style: robotoBold.copyWith(
                     color: const Color(0xff262626), fontSize: 17),
               ),
-
               Padding(
                 padding: const EdgeInsets.only(top: 3),
-                child: SizedBox(
-                  height: 48,
-                  child: DropdownSearch(
-                    popupShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    mode: Mode.MENU,
-                    popupElevation: 5,
-                    dropdownSearchDecoration: const InputDecoration(
-                      hintText: "Select state",
-                      hintStyle: TextStyle(color: ColorResources.light_purple),
-                      contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                      border: OutlineInputBorder(),
-                    ),
-                    // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return state;
-                    },
-                    onChanged: (String data) async {
-                      age = data;
-                    },
-                    itemAsString: (String da) => da,
-                  ),
+                child: TextFormField(
+                  enabled: false,
+                  controller: ageController,
+                  maxLines: 1,
+                  keyboardType: TextInputType.text,
+                  autofocus: false,
+                  decoration: InputDecoration(
+                      hintText: "",
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      hintStyle: TextStyle(
+                          fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                          color: const Color(0xffb7b7b7))),
                 ),
               ),
 
@@ -309,7 +383,8 @@ class _CattieRegisterState extends State<CattieRegister> {
                     onChanged: (String data) async {
                       breed = data;
                     },
-                    itemAsString: (String da) => da,
+                    selectedItem: breed,
+                    // itemAsString: (String da) => da,
                   ),
                 ),
               ),
@@ -365,7 +440,7 @@ class _CattieRegisterState extends State<CattieRegister> {
               Padding(
                 padding: const EdgeInsets.only(top: 3),
                 child: InkWell(
-                  onTap: () => _selectDate(context),
+                  onTap: () => _selectDate2(context),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -377,7 +452,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12.0),
                         child: Text(
-                          formatDate ?? "Heat Date",
+                          formatDate2 ?? "Heat Date",
                           style: robotoMedium.copyWith(
                               color: const Color(0xff262626)),
                         ),
@@ -568,7 +643,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                               showSnackBar("Select cattle type");
                             } else if (liftStage == "") {
                               showSnackBar("Select lift stage");
-                            } else if (age == "") {
+                            } else if (ageController.text.isEmpty) {
                               showSnackBar("Select age");
                             } else if (breed == "") {
                               showSnackBar("Select breed");
@@ -592,10 +667,10 @@ class _CattieRegisterState extends State<CattieRegister> {
                                       cattleNameController.text,
                                       cattleType,
                                       liftStage,
-                                      age,
+                                      ageController.text,
                                       breed,
                                       bodyWeightController.text,
-                                      formatDate,
+                                      formatDate2,
                                       remarksController.text,
                                       newFile);
 
@@ -606,11 +681,13 @@ class _CattieRegisterState extends State<CattieRegister> {
                                 file = null;
                                 cattleType = "";
                                 liftStage = "";
-                                age = "";
+                                ageController.clear();
                                 breed = "";
                                 cattleNameController.clear();
                                 bodyWeightController.clear();
                                 formatDate = "";
+                                formatDate2 = "";
+                                selectedDate2 = DateTime.now();
                                 selectedDate = DateTime.now();
                                 remarksController.clear();
                                 newFile = null;

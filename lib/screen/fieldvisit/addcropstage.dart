@@ -15,7 +15,20 @@ class AddCropStage extends StatefulWidget {
 }
 
 class _AddCropStageState extends State<AddCropStage> {
-  List<String> particular = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
+  List<String> cropLoss = ["Weather", "Diesesses", "Rain", "Fire", "Others"];
+  List<String> cropStages = [
+    "Vegetative",
+    "Reproductive",
+    "Ripening",
+    "Sowing",
+    "Transplanting or Replanting ",
+    "Fertilizers",
+    "Pesticide",
+    "Milking stage ",
+    "Grain filling",
+    "Maturing stage ",
+    "Harvesting stage"
+  ];
   File filename, newFileObserverPhoto;
   PlatformFile file;
   var formatDate;
@@ -111,7 +124,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           ),
                           // showSearchBox:true,
                           onFind: (String filter) async {
-                            return particular;
+                            return cropStages;
                           },
                           onChanged: (String data) async {
                             cropStage = data;
@@ -179,7 +192,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           ),
                           // showSearchBox:true,
                           onFind: (String filter) async {
-                            return particular;
+                            return cropLoss;
                           },
                           onChanged: (String data) async {
                             cropDueTo = data;

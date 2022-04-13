@@ -18,7 +18,19 @@ class _AddExpenditureState extends State<AddExpenditure> {
   DateTime selectedDate = DateTime.now();
   String particularSelect = "Select";
   bool isLoad = false;
-  List<String> particular = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
+  List<String> particular = [
+    "Tractor Rent",
+    "Labour Wages",
+    "Equipments Rent",
+    "Input Amount",
+    "Harvest Rent",
+    "Soil test Amount",
+    "Transporatation",
+    "Hessian Cloth rent",
+    "Bags Amount",
+    "Field lease amount",
+    "Others"
+  ];
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(

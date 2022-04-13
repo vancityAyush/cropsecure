@@ -24,7 +24,14 @@ class _AddPlotsState extends State<AddPlots> {
   File _image;
   File _imagepan;
   List<String> gender = ["Male", "Female"];
-  List<String> selectUnit = ["Beegha", "Hectare", "Square"];
+  List<String> selectUnit = [
+    "Hectare",
+    "Guntha",
+    "Cent",
+    "Bigha",
+    "Marla",
+    "Acre"
+  ];
   String area = "",
       category = "",
       soiltype = "",
@@ -218,7 +225,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return ["Small ", "Marginal", "Medium", "Big"];
                     },
                     onChanged: (String data) async {
                       category = data;
@@ -270,7 +277,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return ["Irrigation", "Unirrigation"];
                     },
                     onChanged: (String data) async {
                       irrigation = data;
@@ -296,7 +303,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return ["Canal", "Waterpound", "Borewall", "River"];
                     },
                     onChanged: (String data) async {
                       water = data;

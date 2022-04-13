@@ -23,7 +23,7 @@ class AddFarmer extends StatefulWidget {
 }
 
 class _AddFarmerState extends State<AddFarmer> {
-  List<String> gender = ["Male", "Female"];
+  List<String> gender = ["Male", "Female", "Others"];
   List<String> farmerTypeD = ["Cattle", "Farmer or Plot"];
   bool isLoad = false;
   List<String> handicapped = ["Yes", "No"];

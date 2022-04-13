@@ -1,15 +1,12 @@
 import 'dart:io';
 
 import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/screen/addfarmer/addfarmersuccessfull.dart';
+import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:file_picker/file_picker.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class AddBankDetail extends StatefulWidget {
@@ -27,7 +24,7 @@ class _AddBankDetailState extends State<AddBankDetail> {
   TextEditingController bankNameController = TextEditingController();
   TextEditingController branchController = TextEditingController();
   bool isLoad = false;
-  List<String> state = ["saving", "joint", "current"];
+  List<String> state = ["Savings", "Joint", "Current"];
   String accounttype = "";
   File newFile;
   File _image;
@@ -261,7 +258,83 @@ class _AddBankDetailState extends State<AddBankDetail> {
                       ),
                       // showSearchBox:true,
                       onFind: (String filter) async {
-                        return state;
+                        return [
+                          "Bank of India",
+                          "Bank of Maharashtra",
+                          "Canara Bank",
+                          "Central Bank of India",
+                          "Indian Bank",
+                          "Indian Overseas Bank",
+                          "Punjab and Sind Bank",
+                          "Punjab National Bank",
+                          "State Bank of India",
+                          "UCO Bank",
+                          "Union Bank of India",
+                          "Axis Bank",
+                          "Bandhan Bank",
+                          "CSB Bank",
+                          "City Union Bank",
+                          "DCB Bank",
+                          "Dhanlaxmi Bank",
+                          "Federal Bank",
+                          "HDFC Bank",
+                          "ICICI Bank",
+                          "IDBI Bank",
+                          "IDFC First Bank",
+                          "IndusInd Bank",
+                          "Jammu & Kashmir Bank",
+                          "Karnataka Bank",
+                          "Karur Vysya Bank",
+                          "Kotak Mahindra Bank",
+                          "Nainital Bank",
+                          "RBL Bank",
+                          "South Indian Bank",
+                          "Tamilnad Mercantile Bank",
+                          "Yes Bank",
+                          "Andhra Pradesh Grameena Vikas Bank",
+                          "Andhra Pragathi Grameena Bank",
+                          "Chaitanya Godavari Gramin Bank",
+                          "Saptagiri Gramin Bank",
+                          "Arunachal Pradesh Rural Bank",
+                          "Assam Gramin Vikash Bank",
+                          "Dakshin Bihar Gramin Bank",
+                          "Uttar Bihar Gramin Bank",
+                          "Chhattisgarh Rajya Gramin Bank",
+                          "Baroda Gujarat Gramin Bank",
+                          "Saurashtra Gramin Bank",
+                          "Sarva Haryana Gramin Bank",
+                          "Himachal Pradesh Gramin Bank",
+                          "Ellaquai Dehati Bank",
+                          "Jammu And Kashmir Grameen Bank",
+                          "Jharkhand Rajya Gramin Bank",
+                          "Karnataka Gramin Bank",
+                          "Karnataka Vikas Grameena Bank",
+                          "Kerala Gramin Bank",
+                          "Madhya Pradesh Gramin Bank",
+                          "Madhyanchal Gramin Bank",
+                          "Maharashtra Gramin Bank",
+                          "Vidarbha Konkan Gramin Bank",
+                          "Manipur Rural Bank",
+                          "Meghalaya Rural Bank",
+                          "Mizoram Rural Bank",
+                          "Nagaland Rural Bank",
+                          "Odisha Gramya Bank",
+                          "Utkal Grameen Bank",
+                          "Puduvai Bharathiar Grama Bank",
+                          "Punjab Gramin Bank",
+                          "Rajasthan Marudhara Gramin Bank",
+                          "Baroda Rajasthan Kshetriya Gramin Bank",
+                          "Tamil Nadu Grama Bank",
+                          "Telangana Grameena Bank",
+                          "Tripura Gramin Bank",
+                          "Aryavart Bank",
+                          "Baroda UP Bank",
+                          "Prathama UP Gramin Bank",
+                          "Uttarakhand Gramin Bank",
+                          "Bangiya Gramin Vikash Bank",
+                          "Paschim Banga Gramin Bank",
+                          "Uttarbanga Kshetriya Gramin Bank"
+                        ];
                       },
                       onChanged: (String data) async {
                         accounttype = data;
