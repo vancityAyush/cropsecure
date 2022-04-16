@@ -609,6 +609,53 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  /////// FeedBackApi/////////
+  Future<ResponseModel> feedBackApi(
+      String user_id,
+      String plot_digitisation,
+      String crop_management,
+      String specific_crop_advisory,
+      String expected_harvest_quantity,
+      String masked_linkage,
+      String farm_level_meeting,
+      String farm_level_alerts,
+      String weather_report,
+      String welcome_sms,
+      String comments) async {
+    ApiResponse apiResponse = await authRepo.feedbackApi(
+        user_id,
+        plot_digitisation,
+        crop_management,
+        specific_crop_advisory,
+        expected_harvest_quantity,
+        masked_linkage,
+        farm_level_meeting,
+        farm_level_alerts,
+        weather_report,
+        welcome_sms,
+        comments);
+
+    ResponseModel responseModel;
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      if (apiResponse.response.data['error_code'] == 1) {
+        responseModel = ResponseModel(true, 'successful');
+        Fluttertoast.showToast(msg: "Feedback added successfully");
+      } else {
+        String errorMessage;
+        if (apiResponse.error is String) {
+          errorMessage = apiResponse.error.toString();
+        } else {
+          ErrorResponse errorResponse = apiResponse.error;
+          errorMessage = errorResponse.errors[0].message;
+        }
+        print(errorMessage);
+        _registrationErrorMessage = errorMessage;
+        responseModel = ResponseModel(false, errorMessage);
+      }
+      return responseModel;
+    }
+  }
   ///////////////////////// fetch Farmer Api
 
   Future fetchPlotsApi() async {

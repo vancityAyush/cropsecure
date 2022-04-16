@@ -1,4 +1,5 @@
 import 'package:cropsecure/provider/authprovider.dart';
+import 'package:cropsecure/screen/addfarmer/feedback_form.dart';
 import 'package:cropsecure/screen/addfarmer/geo_tag.dart';
 import 'package:cropsecure/screen/addfarmer/plandoctor.dart';
 import 'package:cropsecure/screen/alerts/alerts.dart';
@@ -652,7 +653,10 @@ class ViewPlots extends StatelessWidget {
                                       flex: 1,
                                       child: InkWell(
                                         onTap: () {
-                                          Get.to(() => YieldScreen(),
+                                          Get.to(
+                                              () => FeedbackForm(
+                                                  id: snapshots.data['data']
+                                                      [index]['id']),
                                               transition: Transition
                                                   .rightToLeftWithFade,
                                               duration: const Duration(
@@ -672,7 +676,7 @@ class ViewPlots extends StatelessWidget {
                                               height: 7,
                                             ),
                                             Text(
-                                              "Feed Talk Form",
+                                              "Feedback Form",
                                               // Text("Yields Register",
                                               style: robotoBold.copyWith(
                                                   color: ColorResources

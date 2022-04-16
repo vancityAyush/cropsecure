@@ -219,6 +219,43 @@ class AuthRepo {
     }
   }
 
+  /////////////////feedbackApi///////////////////////
+
+  Future<ApiResponse> feedbackApi(
+      String user_id,
+      String plot_digitisation,
+      String crop_management,
+      String specific_crop_advisory,
+      String expected_harvest_quantity,
+      String masked_linkage,
+      String farm_level_meeting,
+      String farm_level_alerts,
+      String weather_report,
+      String welcome_sms,
+      String comments) async {
+    FormData formData = FormData.fromMap({
+      "user_id": user_id,
+      "plot_digitisation": plot_digitisation,
+      "crop_management": crop_management,
+      "specific_crop_advisory": specific_crop_advisory,
+      "expected_harvest_quantity": expected_harvest_quantity,
+      "masked_linkage": masked_linkage,
+      "farm_level_meeting": farm_level_meeting,
+      "farm_level_alerts": farm_level_alerts,
+      "weather_report": weather_report,
+      "welcome_sms": welcome_sms,
+      "comments": comments
+    });
+    try {
+      Response response =
+          await dioClient.post(AppConstants.feedBackApi, data: formData);
+
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   /////////////////profileApi///////////////////////
 
   Future<ApiResponse> profileApi() async {

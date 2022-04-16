@@ -6,6 +6,7 @@ class AppConstants {
 
   ///eCommerce End Point
   static const String loginApi = 'login_user';
+  static const String feedBackApi = 'feedback_form';
   static const String registerApi = 'register_user';
   static const String editProfileApi = 'edit_profile';
   static const String fetchProfileApi = 'fetch_profile';
@@ -58,6 +59,12 @@ class AppConstants {
   static const String fetchCattleShed = 'fetch_cattle_shed';
   static const String orderListApi = 'orderList';
 
+  static const List<String> ratings = [
+    'Bad',
+    'Normal',
+    'Satisfied',
+    'Highly Satisfied',
+  ];
   // Shared Key
   static const String theme = 'theme';
   static const String userId = 'userId';
