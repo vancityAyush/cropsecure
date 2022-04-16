@@ -21,7 +21,10 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
       sourceFrom = "",
       specificTech = "",
       showingDate = "",
-      mixedCrop = "";
+      mixedCrop = "",
+      mixedCropName = "",
+      mixedCropVarieties = "",
+      mixedCropSpecificTech = "";
   List<String> gender = ["Male", "Female"];
   List<String> option = ["Yes", "No"];
   DateTime selectedDate = DateTime.now();
@@ -426,7 +429,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                         },
                         onChanged: (String data) async {
                           setState(() {
-                            mixedCrop = data;
+                            mixedCropName = data;
                           });
                         },
                         itemAsString: (String da) => da,
@@ -455,7 +458,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                         },
                         onChanged: (String data) async {
                           setState(() {
-                            mixedCrop = data;
+                            mixedCropVarieties = data;
                           });
                         },
                         itemAsString: (String da) => da,
@@ -484,7 +487,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                         },
                         onChanged: (String data) async {
                           setState(() {
-                            mixedCrop = data;
+                            mixedCropSpecificTech = data;
                           });
                         },
                         itemAsString: (String da) => da,

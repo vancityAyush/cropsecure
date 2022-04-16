@@ -119,7 +119,8 @@ class _GeotagState extends State<Geotag> {
       ),
       body: Stack(
         children: [
-          Expanded(
+          Align(
+            alignment: Alignment.center,
             child: GoogleMap(
               zoomControlsEnabled: false,
               initialCameraPosition: CameraPosition(

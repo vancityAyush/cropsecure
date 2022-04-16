@@ -330,6 +330,7 @@ class AuthRepo {
     };
     if (type == farmerType.C) {
       map.addAll({
+        "type_of_farmer": "C",
         "farmer_type": "C",
       });
     }
