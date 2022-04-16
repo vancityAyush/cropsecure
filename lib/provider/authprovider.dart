@@ -999,6 +999,16 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  ///////////////////////// fetch Gallery Api
+
+  Future fetchGallery() async {
+    ApiResponse apiResponse = await authRepo.fetchGallery();
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      return apiResponse.response.data;
+    }
+  }
+
   ///////////////////////// fetch yields Api
 
   Future fetchDiseasePopup() async {

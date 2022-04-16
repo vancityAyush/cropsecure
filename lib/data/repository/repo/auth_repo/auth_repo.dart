@@ -907,6 +907,17 @@ class AuthRepo {
     }
   }
 
+  /////////////////fetchGallery///////////////////////
+
+  Future<ApiResponse> fetchGallery() async {
+    try {
+      Response response = await dioClient.post(AppConstants.fetchGallery);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   ////////// addPlotFieldVisitCropStageApi ///////////
   Future<ApiResponse> addPlotFieldVisitCropStageApi(String cropStage,
       String cropLossDueTo, String lossDate, File image) async {

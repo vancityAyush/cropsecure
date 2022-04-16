@@ -10,6 +10,8 @@ import 'package:cropsecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../gallery/gallery.dart';
+
 class Drawers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -243,7 +245,11 @@ class Drawers extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(() => GovtSchemas(),
+                              transition: Transition.rightToLeftWithFade,
+                              duration: const Duration(milliseconds: 600));
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),

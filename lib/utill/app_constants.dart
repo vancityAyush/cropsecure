@@ -37,6 +37,8 @@ class AppConstants {
   static const String fetchDashboard = 'dashboard_api';
   static const String plotCce = 'plot_cce';
   static const String fetchCce = 'fetch_cce';
+
+  static const String fetchGallery = 'fetch_gallery';
   static const String fetchCropStage = 'fetch_crop_stage';
   static const String plotFieldVisitCropStage = 'plot_field_visit_crop_stage';
   static const String plotLabAnalysis = 'plot_lab_analysis';
