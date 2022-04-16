@@ -401,11 +401,9 @@ class AuthRepo {
   Future<ApiResponse> fetchDashBoardApi() async {
     var key =
         await SharedPrefManager.getPrefrenceString(AppConstants.newUserId);
-
     try {
       Response response =
           await dioClient.get(AppConstants.fetchDashboard + "/" + key);
-
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -756,50 +754,78 @@ class AuthRepo {
 
   ////////// addPlotCce ///////////
   Future<ApiResponse> addPlotCceApi(
-      String gpsAccuracy,
-      List<String> department,
-      List<String> observerName,
-      List<String> observerDesignation,
-      List<File> observerPhoto,
-      String areaInAcre,
-      String manuallyEnteredArea,
-      String areaAudit,
-      String tagSouthWest,
-      File southWest,
-      File fieldImage,
-      String length,
-      String breadth,
-      String chooseRandom,
-      String randomLength,
-      String randomNumberBreadth,
-      shapeOfCcePlot,
-      String dimensionOfCcePlot,
-      File markedPlotPhoto,
-      File cutHarvestPhoto,
-      String bmwotca,
-      String bmwotcb,
-      String bmwotcc,
-      String bioMassWeightOfTheCrop,
-      File weightingPhoto,
-      File threshingPhoto,
-      File cleaningPhoto,
-      String weightOfCrops,
-      String yieldSumOfAllColumns,
-      File cutPlot,
-      File cpWeight,
-      File moisturePhoto,
-      File jointPhoto,
-      List<String> obserberMobile) async {
+    String farmer_observer,
+    String farmer_observer_mobile,
+    String farmer_observer_designation,
+    File farmer_observer_photo,
+    String govt_observer_name,
+    String govt_observer_mobile,
+    String govt_observer_designation,
+    File govt_observer_photo,
+    String insurance_observer_name,
+    String insurance_observer_mobile,
+    String insurance_observer_designation,
+    File insurance_observer_photo,
+    String company_observer_name,
+    String company_observer_mobile,
+    String company_observer_designation,
+    File company_observer_photo,
+    String areaInAcre,
+    String manuallyEnteredArea,
+    String tagSouthWest,
+    String areaAudit,
+    File southWest,
+    File fieldImage,
+    String length,
+    String breadth,
+    String chooseRandom,
+    String randomLength,
+    String randomNumberBreadth,
+    shapeOfCcePlot,
+    String dimensionOfCcePlot,
+    File markedPlotPhoto,
+    File cutHarvestPhoto,
+    String bioMassWeightOfTheCrop,
+    File weightingPhoto,
+    File threshingPhoto,
+    File cleaningPhoto,
+    String weightOfCrops,
+    File cutPlot,
+    File cpWeight,
+    File moisturePhoto,
+    File jointPhoto,
+    String gpsAccuracy,
+    String observer_designation,
+    String bmwotca,
+    String bmwotcb,
+    String bmwotcc,
+    String yieldSumOfAllColumns,
+  ) async {
     var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
 
     FormData formData = FormData.fromMap({
       "plot_id": key,
-      "gps_accuracy": gpsAccuracy,
-      "department": department,
-      "observer_name": observerName,
-      "observer_mobile": obserberMobile,
-      "observer_designation": observerDesignation,
-      "observer_photo": MultipartFile.fromFileSync(observerPhoto[0].path),
+      "gps_accuracy": "as",
+      "farmer_observer": farmer_observer,
+      "farmer_observer_mobile": farmer_observer_mobile,
+      "farmer_observer_designation": farmer_observer_designation,
+      "farmer_observer_photo":
+          MultipartFile.fromFileSync(farmer_observer_photo.path),
+      "govt_observer_name": govt_observer_name,
+      "govt_observer_mobile": govt_observer_mobile,
+      "govt_observer_designation": govt_observer_designation,
+      "govt_observer_photo":
+          MultipartFile.fromFileSync(govt_observer_photo.path),
+      "insurance_observer_name": insurance_observer_name,
+      "insurance_observer_mobile": insurance_observer_mobile,
+      "insurance_observer_designation": insurance_observer_designation,
+      "insurance_observer_photo":
+          MultipartFile.fromFileSync(insurance_observer_photo.path),
+      "company_observer_name": company_observer_name,
+      "company_observer_mobile": company_observer_mobile,
+      "company_observer_designation": company_observer_designation,
+      "company_observer_photo":
+          MultipartFile.fromFileSync(company_observer_photo.path),
       "area_in_acre": areaInAcre,
       "manually_entered_area": manuallyEnteredArea,
       "area_audit": areaAudit,
@@ -847,6 +873,7 @@ class AuthRepo {
       "joint_photo": jointPhoto != null
           ? MultipartFile.fromFileSync(jointPhoto.path)
           : null,
+      "observer_designation": "as",
     });
 
     print(formData.fields.toString());

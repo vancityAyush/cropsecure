@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/dimensions.dart';
 import 'package:cropsecure/utill/styles.dart';
@@ -10,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import '../../provider/authprovider.dart';
 
 class Cce extends StatefulWidget {
   @override
@@ -230,30 +231,6 @@ class _CceState extends State<Cce> {
         Text(department[_index],
             style: robotoBold.copyWith(
                 color: const Color(0xff262626), fontSize: 19)),
-        // SizedBox(
-        //   height: 48,
-        //   child: DropdownSearch(
-        //     popupShape:
-        //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        //     mode: Mode.MENU,
-        //     popupElevation: 5,
-        //     dropdownSearchDecoration: const InputDecoration(
-        //       hintText: "Insurance",
-        //       hintStyle: TextStyle(color: ColorResources.light_purple),
-        //       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-        //       border: OutlineInputBorder(),
-        //     ),
-        //     // showSearchBox:true,
-        //     items: const ,
-        //     // onFind: (String filter) async {
-        //     //   return gender;
-        //     // },
-        //     onChanged: (String data) async {
-        //       departMentSelect = data;
-        //     },
-        //     itemAsString: (String da) => da,
-        //   ),
-        // ),
         Padding(
           padding: const EdgeInsets.only(top: 10),
           child: SizedBox(
@@ -287,7 +264,7 @@ class _CceState extends State<Cce> {
             child: TextFormField(
               controller: observerMobileController,
               maxLines: 1,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               autofocus: false,
               decoration: InputDecoration(
                   hintText: "Observer Mobile",
@@ -588,39 +565,6 @@ class _CceState extends State<Cce> {
               const SizedBox(
                 height: 20,
               ),
-              // Text("Area Audit(Automatically calculate)",
-              //     style: robotoBold.copyWith(
-              //         color: const Color(0xff262626), fontSize: 17)),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 10),
-              //   child: SizedBox(
-              //     height: 48.0,
-              //     child: TextFormField(
-              //       maxLines: 1,
-              //       controller: areaAuditController,
-              //       keyboardType: TextInputType.text,
-              //       autofocus: false,
-              //       decoration: InputDecoration(
-              //           hintText: "Manually Enter Area",
-              //           enabledBorder: const OutlineInputBorder(
-              //             borderSide: BorderSide(color: Colors.grey),
-              //           ),
-              //           focusedBorder: const OutlineInputBorder(
-              //             borderSide: BorderSide(color: Colors.grey),
-              //           ),
-              //           border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(20),
-              //           ),
-              //           hintStyle: TextStyle(
-              //               fontSize:
-              //                   14 * MediaQuery.of(context).textScaleFactor,
-              //               color: const Color(0xffb7b7b7))),
-              //     ),
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 20,
-              // ),
               Text("Is South-West Corner?",
                   style: robotoBold.copyWith(
                       color: const Color(0xff262626), fontSize: 17)),
@@ -2072,59 +2016,60 @@ class _CceState extends State<Cce> {
                           ), //button color
                         ),
                         onPressed: () async {
-                          // if (areaAcreSelect == "") {
-                          //   showSnackBar("Select total area of cce fields");
-                          // } else if (areaController.text.isEmpty) {
-                          //   showSnackBar("Enter area");
-                          // } else if (areaAuditController.text.isEmpty) {
-                          //   showSnackBar("Enter area audit");
-                          // } else if (areaAuditController.text.isEmpty) {
-                          //   showSnackBar("Enter area audit");
-                          // } else if (newFileSouthWestPhoto == null) {
-                          //   showSnackBar("Select south west corner");
-                          // } else if (newFileFieldImagePhoto == null) {
-                          //   showSnackBar("Select field image");
-                          // } else if (lengthController.text.isEmpty) {
-                          //   showSnackBar("Enter length");
-                          // } else if (breadthController.text.isEmpty) {
-                          //   showSnackBar("Enter breadth");
-                          // } else if (randomLengthController.text.isEmpty) {
-                          //   showSnackBar("Enter random length");
-                          // } else if (randomBreadthController.text.isEmpty) {
-                          //   showSnackBar("Enter random breadth");
-                          // } else if (shapeOfCceSelect == "") {
-                          //   showSnackBar("Select cce plot");
-                          // } else if (dimensionOfCCeController.text.isEmpty) {
-                          //   showSnackBar("Enter dimension of cce plot");
-                          // } else if (newFileMarkedImagePhoto == null) {
-                          //   showSnackBar("Select marked plot photo");
-                          // } else if (newFileCutHarvestPhoto == null) {
-                          //   showSnackBar("Select cut harvest photo");
-                          // } else if (sumOfBioMassController.text.isEmpty) {
-                          //   showSnackBar("Enter sum of biomass");
-                          // } else if (newFileWeightingPhoto == null) {
-                          //   showSnackBar("Select weighting photo");
-                          // } else if (newFileThreshingPhoto == null) {
-                          //   showSnackBar("Select threshing photo");
-                          // } else if (newFileCleaningPhoto == null) {
-                          //   showSnackBar("Select cleaning photo");
-                          // } else if (weightOfCropsController.text.isEmpty) {
-                          //   showSnackBar("Enter weight of crops");
-                          // } else if (newFileCutPlotPhoto == null) {
-                          //   showSnackBar("Select cut plot photo");
-                          // } else if (newFileWeightPlotPhoto == null) {
-                          //   showSnackBar("Select weight");
-                          // } else if (newFileMoisturePhoto == null) {
-                          //   showSnackBar("Select moisture photo");
-                          // } else if (newFileJointPhoto == null) {
-                          //   showSnackBar("Select joint photo");
-                          // } else {
-                          //   setState(() {
-                          //     isLoad = true;
-                          //   });
-                          // Get.to(() => AddBankDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                          await _sumbit(context);
-                          // }
+                          if (areaAcreSelect == "") {
+                            showSnackBar("Select total area of cce fields");
+                          } else if (areaController.text.isEmpty) {
+                            showSnackBar("Enter area");
+                          } else if (newFileSouthWestPhoto == null) {
+                            showSnackBar("Select south west corner");
+                          } else if (newFileFieldImagePhoto == null) {
+                            showSnackBar("Select field image");
+                          } else if (lengthController.text.isEmpty) {
+                            showSnackBar("Enter length");
+                          } else if (breadthController.text.isEmpty) {
+                            showSnackBar("Enter breadth");
+                          } else if (randomLengthController.text.isEmpty) {
+                            showSnackBar("Enter random length");
+                          } else if (randomBreadthController.text.isEmpty) {
+                            showSnackBar("Enter random breadth");
+                          } else if (shapeOfCceSelect == "") {
+                            showSnackBar("Select cce plot");
+                          } else if (dimensionOfCCeController.text.isEmpty) {
+                            showSnackBar("Enter dimension of cce plot");
+                          } else if (newFileMarkedImagePhoto == null) {
+                            showSnackBar("Select marked plot photo");
+                          } else if (newFileCutHarvestPhoto == null) {
+                            showSnackBar("Select cut harvest photo");
+                          } else if (sumOfBioMassController.text.isEmpty) {
+                            showSnackBar("Enter sum of biomass");
+                          } else if (newFileWeightingPhoto == null) {
+                            showSnackBar("Select weighting photo");
+                          } else if (newFileThreshingPhoto == null) {
+                            showSnackBar("Select threshing photo");
+                          } else if (newFileCleaningPhoto == null) {
+                            showSnackBar("Select cleaning photo");
+                          } else if (weightOfCropsController.text.isEmpty) {
+                            showSnackBar("Enter weight of crops");
+                          } else if (newFileCutPlotPhoto == null) {
+                            showSnackBar("Select cut plot photo");
+                          } else if (newFileWeightPlotPhoto == null) {
+                            showSnackBar("Select weight");
+                          } else if (newFileMoisturePhoto == null) {
+                            showSnackBar("Select moisture photo");
+                          } else if (newFileJointPhoto == null) {
+                            showSnackBar("Select joint photo");
+                          } else if (observerNameSelectList.length != 4 ||
+                              observerMobileList.length != 4 ||
+                              observerDesignationSelectList.length != 4 ||
+                              newFileObserverPhotoList.length != 4) {
+                            showSnackBar("Observer Form must be filled");
+                          } else {
+                            setState(() {
+                              isLoad = true;
+                            });
+                            // Get.to(() => AddBankDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+                            await _sumbit(context);
+                          }
                         },
                         child: Text('Save',
                             style: robotoBold.copyWith(
@@ -2140,42 +2085,77 @@ class _CceState extends State<Cce> {
 
   void _sumbit(BuildContext context) async {
     await Provider.of<AuthProvider>(context, listen: false).addCceApi(
-        "20",
-        departMentSelectList,
-        observerNameSelectList,
-        observerDesignationSelectList,
-        newFileObserverPhotoList,
-        areaAcreSelect,
-        areaController.text,
-        areaAuditController.text,
-        userType,
-        newFileSouthWestPhoto,
-        newFileFieldImagePhoto,
-        lengthController.text,
-        breadthController.text,
-        chooseRandomNumber,
-        randomLengthController.text,
-        randomBreadthController.text,
-        shapeOfCceSelect,
-        dimensionOfCCeController.text,
-        newFileMarkedImagePhoto,
-        newFileCutHarvestPhoto,
-        "20",
-        "20",
-        "20",
-        sumOfBioMassController.text,
-        newFileWeightPlotPhoto,
-        newFileThreshingPhoto,
-        newFileCleaningPhoto,
-        weightOfCropsController.text,
-        weightOfCropsController.text,
-        newFileCutPlotPhoto,
-        newFileWeightPlotPhoto,
-        newFileMoisturePhoto,
-        newFileJointPhoto,
-        observerMobileList);
+      observerNameSelectList[0],
+      observerMobileList[0],
+      observerDesignationSelectList[0],
+      newFileObserverPhotoList[0],
+      observerNameSelectList[1],
+      observerMobileList[1],
+      observerDesignationSelectList[1],
+      newFileObserverPhotoList[1],
+      observerNameSelectList[2],
+      observerMobileList[2],
+      observerDesignationSelectList[2],
+      newFileObserverPhotoList[2],
+      observerNameSelectList[3],
+      observerMobileList[3],
+      observerDesignationSelectList[3],
+      newFileObserverPhotoList[3],
+      areaAcreSelect,
+      areaController.text,
+      tagRadio.toString(),
+      "as",
+      newFileSouthWestPhoto,
+      newFileFieldImagePhoto,
+      lengthController.text,
+      breadthController.text,
+      chooseRandomNumber,
+      randomLengthController.text,
+      randomBreadthController.text,
+      shapeOfCceSelect,
+      dimensionOfCCeController.text,
+      newFileMarkedImagePhoto,
+      newFileCutHarvestPhoto,
+      sumOfBioMassController.text,
+      newFileWeightingPhoto,
+      newFileThreshingPhoto,
+      newFileCleaningPhoto,
+      weightOfCropsController.text,
+      newFileCutPlotPhoto,
+      newFileWeightPlotPhoto,
+      newFileMoisturePhoto,
+      newFileJointPhoto,
+    );
 
     setState(() {
+      observerNameSelectList = [];
+      observerMobileList = [];
+      observerDesignationSelectList = [];
+      newFileObserverPhotoList = [];
+      areaAcreSelect = "";
+      areaController.clear();
+      newFileSouthWestPhoto = null;
+      newFileFieldImagePhoto = null;
+      lengthController.clear();
+      breadthController.clear();
+      chooseRandomNumber = "";
+      randomLengthController.clear();
+      randomBreadthController.clear();
+      shapeOfCceSelect = "";
+      dimensionOfCCeController.clear();
+      newFileMarkedImagePhoto = null;
+      newFileCutHarvestPhoto = null;
+      sumOfBioMassController.clear();
+      newFileWeightPlotPhoto = null;
+      newFileWeightingPhoto = null;
+      newFileThreshingPhoto = null;
+      newFileCleaningPhoto = null;
+      weightOfCropsController.clear();
+      newFileCutPlotPhoto = null;
+      newFileWeightPlotPhoto = null;
+      newFileMoisturePhoto = null;
+      newFileJointPhoto = null;
+      bioMass = List.generate(8, (index) => 0);
       isLoad = false;
     });
   }

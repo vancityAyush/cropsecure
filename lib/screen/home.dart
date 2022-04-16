@@ -1,5 +1,4 @@
 import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +31,7 @@ class _HomeState extends State<Home> {
                     int noAudit =
                         int.parse(data['plots_without_audit']['count']);
                     int total = audit + noAudit;
+                    int diff = noAudit - audit;
                     return Container(
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.all(20),
@@ -62,13 +62,13 @@ class _HomeState extends State<Home> {
                             height: 10,
                           ),
                           Text(
-                            "$total Plots",
+                            "$noAudit Plots",
                             style: robotoMedium.copyWith(color: Colors.grey),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 5,
-                            color: ColorResources.light_purple,
+                          LinearProgressIndicator(
+                            value: diff / total,
+                            backgroundColor: Colors.grey,
+                            valueColor: AlwaysStoppedAnimation(Colors.green),
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width,
@@ -79,11 +79,6 @@ class _HomeState extends State<Home> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                // Text(
-                                //   "$audit Plots audited",
-                                //   style: robotoRegular.copyWith(
-                                //       color: Colors.green, fontSize: 13),
-                                // ),
                                 Text(
                                   "$audit Plots Geo tagged",
                                   style: robotoRegular.copyWith(
@@ -96,58 +91,19 @@ class _HomeState extends State<Home> {
                           Text(
                             "${data['plots_acre']['area']} Acre Declared",
                             style: robotoRegular.copyWith(
-                                color: Colors.grey, fontSize: 13),
-                          ),
-                          const SizedBox(height: 1),
-                          Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 5,
-                              color: Colors.grey),
-                          // Align(
-                          //   alignment: Alignment.centerLeft,
-                          //   child: Text(
-                          //     "${data['plots_acre']['area']} Acre Adult",
-                          //     style: robotoRegular.copyWith(
-                          //         color: Colors.green, fontSize: 13),
-                          //   ),
-                          // ),
-                          const SizedBox(height: 25),
-                          // Text(
-                          //   "6135 Alerts",
-                          //   style: robotoRegular.copyWith(
-                          //       color: Colors.yellow, fontSize: 13),
-                          // ),
-                          const SizedBox(height: 1),
-                          Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 5,
-                              color: Colors.grey),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "0 Alerts",
-                              style: robotoRegular.copyWith(
-                                  color: Colors.green, fontSize: 13),
-                            ),
+                                color: Colors.grey, fontSize: 16),
                           ),
                           const SizedBox(height: 25),
-                          // Text(
-                          //   "123 Forms",
-                          //   style: robotoRegular.copyWith(
-                          //       color: Colors.yellow, fontSize: 13),
-                          // ),
-                          const SizedBox(height: 1),
-                          Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 5,
-                              color: Colors.grey),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "0 Forms Filed",
-                              style: robotoRegular.copyWith(
-                                  color: Colors.green, fontSize: 13),
-                            ),
+                          Text(
+                            "${data['alert_count']['count']} Alerts",
+                            style: robotoRegular.copyWith(
+                                color: Colors.grey, fontSize: 16),
+                          ),
+                          const SizedBox(height: 25),
+                          Text(
+                            "${data['orders_count']['count']} Orders",
+                            style: robotoRegular.copyWith(
+                                color: Colors.grey, fontSize: 16),
                           ),
                         ],
                       ),
