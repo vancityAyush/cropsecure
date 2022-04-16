@@ -336,6 +336,7 @@ class _CropInsState extends State<CropIns> {
                     child: InkWell(
                       onTap: () async {
                         startingDate = await _selectDate(context);
+                        setState(() {});
                       },
                       child: Container(
                         height: 45,
@@ -370,6 +371,7 @@ class _CropInsState extends State<CropIns> {
                     child: InkWell(
                       onTap: () async {
                         endingDate = await _selectDate(context);
+                        setState(() {});
                       },
                       child: Container(
                         height: 45,
