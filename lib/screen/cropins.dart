@@ -480,8 +480,8 @@ class _CropInsState extends State<CropIns> {
                             specificTech = "";
                             showingDate = "";
                             policyController.clear();
-                            startingDate = "";
-                            endingDate = "";
+                            startingDate = null;
+                            endingDate = null;
                           });
                         }
                       },
