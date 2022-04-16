@@ -110,7 +110,7 @@ class _CattieInfoState extends State<CattieInfo> {
                           },
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Search Farmer",
+                            hintText: "Search Cattles",
                             hintStyle: TextStyle(
                                 color: ColorResources.grey_text_bold,
                                 fontWeight: FontWeight.w500,
@@ -140,7 +140,7 @@ class _CattieInfoState extends State<CattieInfo> {
                                 color: ColorResources.light_purple),
                           ),
                           Text(
-                            "  Farmer",
+                            "  Cattles",
                             style: robotoBold.copyWith(
                                 fontSize: 12, color: const Color(0xff767876)),
                           )
@@ -255,46 +255,46 @@ class _CattieInfoState extends State<CattieInfo> {
                                                 color: const Color(0xffb8b8b8),
                                                 fontSize: 10),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 15.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  width: 70,
-                                                  height: 19,
-                                                  decoration: BoxDecoration(
-                                                      color: const Color(
-                                                          0xffc8f6c8),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "0 plots",
-                                                      style: robotoRegular
-                                                          .copyWith(
-                                                              fontSize: 11,
-                                                              color: const Color(
-                                                                  0xff262626)),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 30,
-                                                ),
-                                                Text(
-                                                  "",
-                                                  style: robotoRegular.copyWith(
-                                                      fontSize: 11,
-                                                      color: const Color(
-                                                          0xff262626)),
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(
+                                          //       top: 15.0),
+                                          //   child: Row(
+                                          //     crossAxisAlignment:
+                                          //         CrossAxisAlignment.start,
+                                          //     children: [
+                                          //       Container(
+                                          //         width: 70,
+                                          //         height: 19,
+                                          //         decoration: BoxDecoration(
+                                          //             color: const Color(
+                                          //                 0xffc8f6c8),
+                                          //             borderRadius:
+                                          //                 BorderRadius.circular(
+                                          //                     10)),
+                                          //         child: Center(
+                                          //           child: Text(
+                                          //             "0 plots",
+                                          //             style: robotoRegular
+                                          //                 .copyWith(
+                                          //                     fontSize: 11,
+                                          //                     color: const Color(
+                                          //                         0xff262626)),
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //       const SizedBox(
+                                          //         width: 30,
+                                          //       ),
+                                          //       Text(
+                                          //         "",
+                                          //         style: robotoRegular.copyWith(
+                                          //             fontSize: 11,
+                                          //             color: const Color(
+                                          //                 0xff262626)),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     )),

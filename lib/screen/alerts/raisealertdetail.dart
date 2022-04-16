@@ -27,7 +27,7 @@ class _RaiseAlertDetailState extends State<RaiseAlertDetail> {
   File _image = null;
   Future<File> selectImage() async {
     PickedFile image =
-        await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+        await ImagePicker.platform.pickImage(source: ImageSource.camera);
     setState(() {
       _image = File(image.path);
     });
@@ -208,7 +208,7 @@ class _RaiseAlertDetailState extends State<RaiseAlertDetail> {
                             TextField(
                               controller: adviceController,
                               decoration: const InputDecoration(
-                                  hintText: "New Advice",
+                                  hintText: "% of affected",
                                   isDense: true,
                                   filled: false),
                             )

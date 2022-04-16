@@ -21,14 +21,13 @@ class _CropInsState extends State<CropIns> {
       sourceFrom = "",
       showingDate = "",
       mixedCrop = "",
-      startingDate = "",
-      endingDate = "";
+      startingDate = "";
   List<String> gender = ["Male", "Female"];
 
   List<String> loaner = ["Yes", "No"];
 
   List<String> insP = ["1.5 %", "2.0 %", "5 %"];
-  var formatDate;
+  var formatDate, endingDate;
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   String gradeSelect = "", weightSelect = "", selectedTimeSelect = "";
@@ -146,7 +145,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     cropTypeSelect = data;
                   },
-                  itemAsString: (String da) => da,
+                  selectedItem: cropTypeSelect,
                 ),
               ),
               const SizedBox(
@@ -206,7 +205,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     cropVarieties = data;
                   },
-                  itemAsString: (String da) => da,
+                  selectedItem: cropVarieties,
                 ),
               ),
               const SizedBox(
@@ -265,7 +264,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     specificTech = data;
                   },
-                  itemAsString: (String da) => da,
+                  selectedItem: specificTech,
                 ),
               ),
               const SizedBox(
@@ -294,7 +293,8 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     showingDate = data;
                   },
-                  itemAsString: (String da) => da,
+                  selectedItem: showingDate,
+                  // itemAsString: (String da) => da,
                 ),
               ),
               const SizedBox(
@@ -309,7 +309,6 @@ class _CropInsState extends State<CropIns> {
                   child: TextFormField(
                     maxLines: 1,
                     controller: policyController,
-                    keyboardType: TextInputType.number,
                     autofocus: false,
                     decoration: InputDecoration(
                         hintText: "",
@@ -380,7 +379,7 @@ class _CropInsState extends State<CropIns> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              endingDate ?? "Expiry date",
+                              endingDate ?? "End Date",
                               style: robotoMedium.copyWith(
                                   fontSize: 17, color: Colors.white),
                             ),
@@ -472,6 +471,7 @@ class _CropInsState extends State<CropIns> {
                           setState(() {
                             isLoad = false;
                             cropNameSelect = "";
+                            cropTypeSelect = "";
                             yearController.clear();
                             cropVarieties = "";
                             amountController.clear();

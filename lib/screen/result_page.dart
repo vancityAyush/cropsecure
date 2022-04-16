@@ -57,7 +57,7 @@ class ResultPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "Result ID: ${data[index]['plot']['id']}",
+                                          "Survey Number : ${data[index]['plot']['id']}",
                                           style: robotoMedium.copyWith(
                                               fontSize: 17,
                                               color: Colors.white),

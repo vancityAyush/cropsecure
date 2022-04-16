@@ -374,7 +374,7 @@ class _TractorState extends State<Tractor> {
                                                                                                                             child: Column(
                                                                                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                                                                                               children: [
-                                                                                                                                Text("Are You sure to ${widget.category} this product?",
+                                                                                                                                Text("Are you sure to buy this products?",
                                                                                                                                     softWrap: false,
                                                                                                                                     overflow: TextOverflow.ellipsis,
                                                                                                                                     textAlign: TextAlign.start,

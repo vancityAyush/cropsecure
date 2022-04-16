@@ -1,6 +1,5 @@
 import 'package:cropsecure/screen/addfarmer/addfarmer.dart';
 import 'package:cropsecure/screen/alerts/alerts.dart';
-import 'package:cropsecure/screen/authscreen/profile.dart';
 import 'package:cropsecure/screen/cattie/maincattie.dart';
 import 'package:cropsecure/screen/equipments/equipments.dart';
 import 'package:cropsecure/screen/input/input.dart';
@@ -243,25 +242,30 @@ class Drawers extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(color: const Color(0xff92C89C))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Filed Farmer",
-                              style: robotoExtraBold.copyWith(
-                                  color: const Color(0xffddf0e0), fontSize: 15),
-                            ),
-                            Image.asset(
-                              "assets/image/syncstatus.png",
-                              width: 35,
-                              height: 35,
-                              color: Colors.white,
-                            ),
-                          ],
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border:
+                                  Border.all(color: const Color(0xff92C89C))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "Govt Schemes",
+                                style: robotoExtraBold.copyWith(
+                                    color: const Color(0xffddf0e0),
+                                    fontSize: 15),
+                              ),
+                              Image.asset(
+                                "assets/image/locations.png",
+                                width: 35,
+                                height: 35,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -305,76 +309,150 @@ class Drawers extends StatelessWidget {
                 ),
               ),
 
-              Container(
-                padding: const EdgeInsets.only(left: 0, right: 0),
-                margin: const EdgeInsets.only(top: 20),
-                height: 95,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(color: const Color(0xff92C89C))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Govt Schemes",
-                              style: robotoExtraBold.copyWith(
-                                  color: const Color(0xffddf0e0), fontSize: 15),
-                            ),
-                            Image.asset(
-                              "assets/image/locations.png",
-                              width: 35,
-                              height: 35,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
-                        onTap: () {
-                          Get.to(() => Irrigation(),
-                              transition: Transition.rightToLeftWithFade,
-                              duration: const Duration(milliseconds: 600));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border:
-                                  Border.all(color: const Color(0xff92C89C))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "Success story video",
-                                textAlign: TextAlign.center,
-                                style: robotoExtraBold.copyWith(
-                                    color: const Color(0xffddf0e0),
-                                    fontSize: 15),
-                              ),
-                              Image.asset(
-                                "assets/image/irrigation.png",
-                                width: 35,
-                                height: 35,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.only(left: 0, right: 0),
+              //   margin: const EdgeInsets.only(top: 20),
+              //   height: 95,
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //         flex: 1,
+              //         child: Container(
+              //           decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(6),
+              //               border: Border.all(color: const Color(0xff92C89C))),
+              //           child: Column(
+              //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //             children: [
+              //               Text(
+              //                 "Govt Schemes",
+              //                 style: robotoExtraBold.copyWith(
+              //                     color: const Color(0xffddf0e0), fontSize: 15),
+              //               ),
+              //               Image.asset(
+              //                 "assets/image/locations.png",
+              //                 width: 35,
+              //                 height: 35,
+              //                 color: Colors.white,
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Expanded(
+              //         flex: 1,
+              //         child: InkWell(
+              //           onTap: () {
+              //             Get.to(() => Irrigation(),
+              //                 transition: Transition.rightToLeftWithFade,
+              //                 duration: const Duration(milliseconds: 600));
+              //           },
+              //           child: Container(
+              //             decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(6),
+              //                 border:
+              //                     Border.all(color: const Color(0xff92C89C))),
+              //             child: Column(
+              //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //               children: [
+              //                 Text(
+              //                   "Success story video",
+              //                   textAlign: TextAlign.center,
+              //                   style: robotoExtraBold.copyWith(
+              //                       color: const Color(0xffddf0e0),
+              //                       fontSize: 15),
+              //                 ),
+              //                 Image.asset(
+              //                   "assets/image/irrigation.png",
+              //                   width: 35,
+              //                   height: 35,
+              //                   color: Colors.white,
+              //                 )
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+
+              // Container(
+              //   padding: const EdgeInsets.only(left: 0, right: 0),
+              //   margin: const EdgeInsets.only(top: 20),
+              //   height: 95,
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //         flex: 1,
+              //         child: Container(
+              //           decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(6),
+              //               border: Border.all(color: const Color(0xff92C89C))),
+              //           child: Column(
+              //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //             children: [
+              //               Text(
+              //                 "Sync Status",
+              //                 style: robotoExtraBold.copyWith(
+              //                     color: const Color(0xffddf0e0), fontSize: 15),
+              //               ),
+              //               Image.asset(
+              //                 "assets/image/syncstatus.png",
+              //                 width: 35,
+              //                 height: 35,
+              //                 color: Colors.white,
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       Expanded(
+              //         flex: 1,
+              //         child: InkWell(
+              //           onTap: () {
+              //             // Get.to(() => RaiseAlertDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+              //             Get.to(() => RaiseAlerts(""),
+              //                 transition: Transition.rightToLeftWithFade,
+              //                 duration: const Duration(milliseconds: 600));
+              //             // Get.to(() => CattieShed(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+              //             // Get.to(() => CattieInfo(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+              //             // Get.to(() => CattieRegister(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+              //           },
+              //           child: Container(
+              //             decoration: BoxDecoration(
+              //                 borderRadius: BorderRadius.circular(6),
+              //                 border:
+              //                     Border.all(color: const Color(0xff92C89C))),
+              //             child: Column(
+              //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //               children: [
+              //                 Text(
+              //                   "QR Code",
+              //                   style: robotoExtraBold.copyWith(
+              //                       color: const Color(0xffddf0e0),
+              //                       fontSize: 15),
+              //                 ),
+              //                 Image.asset(
+              //                   "assets/image/cows.png",
+              //                   width: 35,
+              //                   height: 35,
+              //                   color: Colors.white,
+              //                 )
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
               Container(
                 padding: const EdgeInsets.only(left: 0, right: 0),
@@ -382,33 +460,6 @@ class Drawers extends StatelessWidget {
                 height: 95,
                 child: Row(
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(color: const Color(0xff92C89C))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Sync Status",
-                              style: robotoExtraBold.copyWith(
-                                  color: const Color(0xffddf0e0), fontSize: 15),
-                            ),
-                            Image.asset(
-                              "assets/image/syncstatus.png",
-                              width: 35,
-                              height: 35,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
                     Expanded(
                       flex: 1,
                       child: InkWell(
@@ -441,44 +492,6 @@ class Drawers extends StatelessWidget {
                                 height: 35,
                                 color: Colors.white,
                               )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Container(
-                padding: const EdgeInsets.only(left: 0, right: 0),
-                margin: const EdgeInsets.only(top: 20),
-                height: 95,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
-                        onTap: () {
-                          // Get.to(() => LabAnalysis(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                          Get.to(() => ProfileScreen(),
-                              transition: Transition.rightToLeftWithFade,
-                              duration: const Duration(milliseconds: 600));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              border:
-                                  Border.all(color: const Color(0xff92C89C))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("Profile",
-                                  style: robotoExtraBold.copyWith(
-                                      color: const Color(0xffddf0e0),
-                                      fontSize: 15)),
-                              Image.asset("assets/image/form.png",
-                                  width: 35, height: 35, color: Colors.white)
                             ],
                           ),
                         ),

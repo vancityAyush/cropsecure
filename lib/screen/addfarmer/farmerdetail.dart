@@ -373,7 +373,7 @@ class _FarmerDetailsState extends State<FarmerDetails> {
                               width: 5,
                             ),
                             Text(
-                              "Acre",
+                              "Area",
                               style: robotoBold.copyWith(
                                   color: const Color(0xff262626), fontSize: 13),
                             ),

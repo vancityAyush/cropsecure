@@ -129,7 +129,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           onChanged: (String data) async {
                             cropStage = data;
                           },
-                          itemAsString: (String da) => da,
+                          selectedItem: cropStage,
                         ),
                       )
                     ],
@@ -197,7 +197,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           onChanged: (String data) async {
                             cropDueTo = data;
                           },
-                          itemAsString: (String da) => da,
+                          selectedItem: cropDueTo,
                         ),
                       )
                     ],
@@ -282,6 +282,10 @@ class _AddCropStageState extends State<AddCropStage> {
                                       formatDate, newFileObserverPhoto);
 
                               setState(() {
+                                cropStage = "";
+                                cropDueTo = "";
+                                formatDate = null;
+                                newFileObserverPhoto = null;
                                 isLoad = false;
                               });
                             }

@@ -912,6 +912,18 @@ class AuthRepo {
     }
   }
 
+  ////////// delete alert ///////////
+  Future<ApiResponse> deleteAlert(String id) async {
+    try {
+      Response response = await dioClient.post(
+        AppConstants.deleteAlert + "/" + id,
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
   /////////////////fetchLabAnalysisAPi///////////////////////
 
   Future<ApiResponse> fetchLabAnalysisAPi() async {

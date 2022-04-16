@@ -6,9 +6,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-class RaiseAlerts extends StatelessWidget {
+class RaiseAlerts extends StatefulWidget {
   String plotId;
   RaiseAlerts(this.plotId);
+
+  @override
+  State<RaiseAlerts> createState() => _RaiseAlertsState();
+}
+
+class _RaiseAlertsState extends State<RaiseAlerts> {
+  RxInt count = 0.obs;
+  var data;
+  initState() {
+    super.initState();
+    Provider.of<AuthProvider>(context, listen: false)
+        .fetchDiseaseAlert(widget.plotId)
+        .then((value) => {
+              setState(() {
+                data = value['data'];
+                count.value = value['data'].length;
+              })
+            });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +108,7 @@ class RaiseAlerts extends StatelessWidget {
                                               onTap: () {
                                                 Get.to(
                                                     () => RaiseAlertDetail(
-                                                          plotId: plotId,
+                                                          plotId: widget.plotId,
                                                           disease: res['data']
                                                               [index],
                                                         ),
@@ -154,121 +174,114 @@ class RaiseAlerts extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              FutureBuilder(
-                  future: Provider.of<AuthProvider>(context, listen: false)
-                      .fetchDiseaseAlert(plotId),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      var data = snapshot.data['data'];
-                      if (data == null) {
-                        return Container(
-                          child: Center(
-                            child: Text("No Alerts"),
-                          ),
-                        );
-                      }
-                      return ListView.builder(
-                        itemCount: data.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) => Card(
-                          elevation: 9,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Open Alerts",
-                                        style: robotoMedium.copyWith(
-                                            color: Colors.black),
-                                      ),
-                                      const SizedBox(
-                                        width: 7,
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 20,
-                                            right: 20,
-                                            top: 2,
-                                            bottom: 2),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: const Color(0xffea7011)),
-                                        child: Text(
-                                          data.length.toString(),
-                                          style: robotoMedium.copyWith(
-                                              color: Colors.white),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Aphids",
-                                        style: robotoMedium.copyWith(
-                                            color: Colors.black, fontSize: 14),
-                                      ),
-                                      Row(
-                                        children: const [
-                                          SizedBox(
-                                            width: 15,
-                                          ),
-                                          CircleAvatar(
-                                              radius: 14,
-                                              backgroundColor: Colors.red,
-                                              child: Icon(
-                                                Icons.clear,
-                                                color: Colors.white,
-                                                size: 15,
-                                              )),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        data[index]['area_date'],
-                                        style: robotoMedium.copyWith(
-                                            color: Colors.black),
-                                      ),
-                                      const SizedBox(
-                                        width: 7,
-                                      ),
-                                      Text(
-                                        data[index]['comment'],
-                                        style: robotoMedium.copyWith(
-                                            color: Colors.black),
-                                      ),
-                                    ],
-                                  ),
-                                  const Divider(),
-                                ],
-                              ),
+              Row(
+                children: [
+                  Text(
+                    "Open Alerts",
+                    style: robotoMedium.copyWith(color: Colors.black),
+                  ),
+                  const SizedBox(
+                    width: 7,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 2, bottom: 2),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: const Color(0xffea7011)),
+                    child: Obx(
+                      () => Text(
+                        count.toString(),
+                        style: robotoMedium.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              data == null
+                  ? Container(
+                      child: Center(
+                        child: Text("No Alerts"),
+                      ),
+                    )
+                  : ListView.builder(
+                      itemCount: data.length,
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) => Card(
+                        elevation: 9,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Aphids",
+                                      style: robotoMedium.copyWith(
+                                          color: Colors.black, fontSize: 14),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Provider.of<AuthProvider>(context,
+                                                listen: false)
+                                            .deleteAlert(data[index]['id'])
+                                            .then((value) {
+                                          if (value.isSuccess)
+                                            setState(() {
+                                              data.removeAt(index);
+                                              count.value--;
+                                            });
+                                        });
+                                      },
+                                      child: CircleAvatar(
+                                          radius: 14,
+                                          backgroundColor: Colors.red,
+                                          child: Icon(
+                                            Icons.clear,
+                                            color: Colors.white,
+                                            size: 15,
+                                          )),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      data[index]['area_date'],
+                                      style: robotoMedium.copyWith(
+                                          color: Colors.black),
+                                    ),
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text(
+                                      data[index]['comment'],
+                                      style: robotoMedium.copyWith(
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                                const Divider(),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    } else
-                      return Container(child: CircularProgressIndicator());
-                  })
+                      ),
+                    )
             ],
           ),
         ),

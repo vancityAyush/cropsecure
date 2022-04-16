@@ -39,6 +39,7 @@ class AppConstants {
   static const String fetchCropStage = 'fetch_crop_stage';
   static const String plotFieldVisitCropStage = 'plot_field_visit_crop_stage';
   static const String plotLabAnalysis = 'plot_lab_analysis';
+  static const String deleteAlert = 'delete_alert';
   static const String fetchLabAnalysis = 'fetch_lab_analysis';
   static const String plotSoilInformationReg = 'plot_soil_information_reg';
   static const String fetchSoilInformationApi = 'fetch_soil_information_reg';

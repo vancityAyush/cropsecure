@@ -166,7 +166,10 @@ class ViewPlots extends StatelessWidget {
                                         ),
                                         Text(
                                           snapshots.data['data'][index]
-                                                      ['village']
+                                                  ['district'] +
+                                              " " +
+                                              snapshots.data['data'][index]
+                                                      ['taluka']
                                                   .toString() +
                                               " " +
                                               snapshots.data['data'][index]
@@ -174,11 +177,7 @@ class ViewPlots extends StatelessWidget {
                                                   .toString() +
                                               " " +
                                               snapshots.data['data'][index]
-                                                      ['taluka']
-                                                  .toString() +
-                                              " " +
-                                              snapshots.data['data'][index]
-                                                      ['district']
+                                                      ['village']
                                                   .toString(),
                                           style: robotoRegular.copyWith(
                                               color: const Color(0xff262626),

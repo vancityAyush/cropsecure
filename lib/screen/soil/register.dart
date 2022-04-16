@@ -146,7 +146,7 @@ class _SoilRegisterState extends State<SoilRegister> {
                         onChanged: (String data) async {
                           smapleCollectedBy = data;
                         },
-                        itemAsString: (String da) => da,
+                        selectedItem: smapleCollectedBy,
                       ),
                     )
                   ],
@@ -307,6 +307,9 @@ class _SoilRegisterState extends State<SoilRegister> {
 
                             setState(() {
                               isLoad = false;
+                              formatDate = null;
+                              smapleCollectedBy = "";
+                              newFileObserverPhoto = null;
                             });
                           }
                         },

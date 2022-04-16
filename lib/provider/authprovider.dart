@@ -892,6 +892,32 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  /////// deleteAlert/////////
+  Future<ResponseModel> deleteAlert(String id) async {
+    ApiResponse apiResponse = await authRepo.deleteAlert(id);
+    ResponseModel responseModel;
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
+      if (apiResponse.response.data['error_code'] == 1) {
+        responseModel = ResponseModel(true, 'successful');
+        Fluttertoast.showToast(msg: "Alert deleted successfully");
+      } else {
+        String errorMessage;
+        if (apiResponse.error is String) {
+          errorMessage = apiResponse.error.toString();
+        } else {
+          ErrorResponse errorResponse = apiResponse.error;
+          errorMessage = errorResponse.errors[0].message;
+        }
+        print(errorMessage);
+        _registrationErrorMessage = errorMessage;
+        responseModel = ResponseModel(false, errorMessage);
+      }
+      _isLoading = false;
+      notifyListeners();
+      return responseModel;
+    }
+  }
   ///////////////////////// fetch yields Api
 
   Future fetchYieldApi() async {
