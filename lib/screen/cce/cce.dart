@@ -75,8 +75,8 @@ class _CceState extends State<Cce> {
       newFileJointPhoto;
 
   void onFileObserberPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -94,8 +94,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileSouthWestPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -105,8 +105,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileFieldImagePhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -116,8 +116,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileMarkedImagePhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -138,8 +138,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileCutHarvestPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -149,8 +149,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileWeightingPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -160,8 +160,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileThreshingPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -171,8 +171,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileCleaningPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -182,8 +182,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileCutPlotPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -193,8 +193,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileWeightPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -204,8 +204,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileMoisturePhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -215,8 +215,8 @@ class _CceState extends State<Cce> {
   }
 
   void onFileJointPhoto() async {
-    dynamic result =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    dynamic result = await ImagePicker.platform
+        .pickImage(source: ImageSource.camera, imageQuality: 50);
     if (result != null) {
       filename = File(result.path);
       setState(() {
@@ -2058,10 +2058,10 @@ class _CceState extends State<Cce> {
                             showSnackBar("Select moisture photo");
                           } else if (newFileJointPhoto == null) {
                             showSnackBar("Select joint photo");
-                          } else if (observerNameSelectList.length != 4 ||
-                              observerMobileList.length != 4 ||
-                              observerDesignationSelectList.length != 4 ||
-                              newFileObserverPhotoList.length != 4) {
+                          } else if (observerNameSelectList.length < 4 ||
+                              observerMobileList.length < 4 ||
+                              observerDesignationSelectList.length < 4 ||
+                              newFileObserverPhotoList.length < 4) {
                             showSnackBar("Observer Form must be filled");
                           } else {
                             setState(() {
@@ -2128,6 +2128,7 @@ class _CceState extends State<Cce> {
     );
 
     setState(() {
+      isLoad = false;
       observerNameSelectList = [];
       observerMobileList = [];
       observerDesignationSelectList = [];
@@ -2161,10 +2162,12 @@ class _CceState extends State<Cce> {
   }
 
   void onContinue(BuildContext context) async {
-    departMentSelectList.add(department[_index]);
-    observerNameSelectList.add(observerNameController.text);
-    observerDesignationSelectList.add(observerDesignationController.text);
-    observerMobileList.add(observerMobileController.text);
-    newFileObserverPhotoList.add(newFileObserverPhoto);
+    if (observerDesignationSelectList.length <= 4) {
+      departMentSelectList.add(department[_index]);
+      observerNameSelectList.add(observerNameController.text);
+      observerDesignationSelectList.add(observerDesignationController.text);
+      observerMobileList.add(observerMobileController.text);
+      newFileObserverPhotoList.add(newFileObserverPhoto);
+    }
   }
 }

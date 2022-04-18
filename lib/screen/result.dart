@@ -241,72 +241,53 @@ class _ResultState extends State<Result> {
                                                   responseFarmer
                                                       .data[index].image)),
                                       Expanded(
-                                          child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 19.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${filteredData[index].name},${responseFarmer.data[index].age}",
-                                              style: robotoBold.copyWith(
-                                                  color:
-                                                      const Color(0xff262626),
-                                                  fontSize: 16),
-                                            ),
-                                            Text(
-                                              "${responseFarmer.data[index].districtName},${responseFarmer.data[index].state},"
-                                              "${responseFarmer.data[index].pincode}",
-                                              style: robotoRegular.copyWith(
-                                                  color:
-                                                      const Color(0xffb8b8b8),
-                                                  fontSize: 10),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 15.0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  // Container(
-                                                  //   width: 70,
-                                                  //   height: 19,
-                                                  //   decoration: BoxDecoration(
-                                                  //       color: const Color(
-                                                  //           0xffc8f6c8),
-                                                  //       borderRadius:
-                                                  //           BorderRadius
-                                                  //               .circular(10)),
-                                                  //   // child: Center(
-                                                  //   //   child: Text(
-                                                  //   //     "${responseFarmer.data1[0].count} Plots",
-                                                  //   //     style: robotoRegular
-                                                  //   //         .copyWith(
-                                                  //   //             fontSize: 11,
-                                                  //   //             color: const Color(
-                                                  //   //                 0xff262626)),
-                                                  //   //   ),
-                                                  //   // ),
-                                                  // ),
-                                                  const SizedBox(
-                                                    width: 30,
-                                                  ),
-                                                  Text(
-                                                    "",
-                                                    style:
-                                                        robotoRegular.copyWith(
-                                                            fontSize: 11,
-                                                            color: const Color(
-                                                                0xff262626)),
-                                                  )
-                                                ],
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 19.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${filteredData[index].name},${responseFarmer.data[index].age}",
+                                                style: robotoBold.copyWith(
+                                                    color:
+                                                        const Color(0xff262626),
+                                                    fontSize: 16),
                                               ),
-                                            ),
-                                          ],
+                                              Text(
+                                                "${responseFarmer.data[index].districtName},${responseFarmer.data[index].taluka},\n"
+                                                "${responseFarmer.data[index].gramaPanchayath},${responseFarmer.data[index].villageName}",
+                                                style: robotoRegular.copyWith(
+                                                    color:
+                                                        const Color(0xffb8b8b8),
+                                                    fontSize: 10),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 15.0),
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    const SizedBox(
+                                                      width: 30,
+                                                    ),
+                                                    Text(
+                                                      "",
+                                                      style: robotoRegular
+                                                          .copyWith(
+                                                              fontSize: 11,
+                                                              color: const Color(
+                                                                  0xff262626)),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      )),
+                                      ),
                                       InkWell(
                                           onTap: () => _launchURL(
                                               'tel:${responseFarmer.data[index].mobileNumber}'),

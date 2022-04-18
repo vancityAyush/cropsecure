@@ -30,8 +30,6 @@ class _HomeState extends State<Home> {
                     int audit = int.parse(data['plots_audit']['count']);
                     int noAudit =
                         int.parse(data['plots_without_audit']['count']);
-                    int total = audit + noAudit;
-                    int diff = noAudit - audit;
                     return Container(
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.all(20),
@@ -66,7 +64,7 @@ class _HomeState extends State<Home> {
                             style: robotoMedium.copyWith(color: Colors.grey),
                           ),
                           LinearProgressIndicator(
-                            value: diff / total,
+                            value: audit / noAudit,
                             backgroundColor: Colors.grey,
                             valueColor: AlwaysStoppedAnimation(Colors.green),
                           ),

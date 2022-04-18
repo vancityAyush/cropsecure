@@ -803,7 +803,6 @@ class AuthRepo {
     String yieldSumOfAllColumns,
   ) async {
     var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
-
     FormData formData = FormData.fromMap({
       "plot_id": key,
       "gps_accuracy": "as",
