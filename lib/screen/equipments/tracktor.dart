@@ -204,6 +204,11 @@ class _TractorState extends State<Tractor> {
                                                       snapshots) {
                                                 ResponseFarmer response =
                                                     snapshots.data;
+
+                                                response.data.removeWhere(
+                                                    (element) =>
+                                                        element.type ==
+                                                        farmerType.C);
                                                 if (snapshots.connectionState ==
                                                     ConnectionState.none) {
                                                   return const Center(
@@ -217,6 +222,11 @@ class _TractorState extends State<Tractor> {
                                                   ResponseFarmer
                                                       responseFarmer =
                                                       snapshots.data;
+
+                                                  responseFarmer.data
+                                                      .removeWhere((element) =>
+                                                          element.type ==
+                                                          farmerType.C);
                                                   return Stack(
                                                     children: <Widget>[
                                                       Padding(

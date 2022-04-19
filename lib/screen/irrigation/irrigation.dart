@@ -154,6 +154,10 @@ class _IrrigationState extends State<Irrigation> {
                                                   ResponseFarmer
                                                       responseFarmer =
                                                       snapshots.data;
+                                                  responseFarmer.data
+                                                      .removeWhere((element) =>
+                                                          element.type ==
+                                                          farmerType.C);
                                                   return Stack(
                                                     children: <Widget>[
                                                       Padding(
@@ -547,6 +551,11 @@ class _IrrigationState extends State<Irrigation> {
                                                       snapshots) {
                                                 ResponseFarmer response =
                                                     snapshots.data;
+
+                                                response.data.removeWhere(
+                                                    (element) =>
+                                                        element.type ==
+                                                        farmerType.C);
                                                 if (snapshots.connectionState ==
                                                     ConnectionState.none) {
                                                   return const Center(
@@ -560,6 +569,11 @@ class _IrrigationState extends State<Irrigation> {
                                                   ResponseFarmer
                                                       responseFarmer =
                                                       snapshots.data;
+
+                                                  responseFarmer.data
+                                                      .removeWhere((element) =>
+                                                          element.type ==
+                                                          farmerType.C);
                                                   return Stack(
                                                     children: <Widget>[
                                                       Padding(

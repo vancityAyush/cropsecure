@@ -37,6 +37,10 @@ class ResultPage extends StatelessWidget {
                         data[index]['expenses']['amount'] != null
                             ? data[index]['expenses']['amount'].toString()
                             : "0");
+                    double input = double.parse(
+                        data[index]['expenditure']['amount'] != null
+                            ? data[index]['expenditure']['amount'].toString()
+                            : "0");
                     return Card(
                       elevation: 4,
                       child: Padding(
@@ -199,7 +203,7 @@ class ResultPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          exp.toString(),
+                                          (exp + input).toString(),
                                           style: robotoMedium.copyWith(
                                               fontSize: 17,
                                               color: Colors.black),
@@ -263,7 +267,7 @@ class ResultPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          (yield - exp).toString(),
+                                          (yield - (exp + input)).toString(),
                                           style: robotoMedium.copyWith(
                                               fontSize: 17,
                                               color: Colors.black),

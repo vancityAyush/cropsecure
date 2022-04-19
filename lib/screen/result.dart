@@ -68,6 +68,8 @@ class _ResultState extends State<Result> {
             return Text("${snapshots.error}");
           } else if (snapshots.hasData) {
             ResponseFarmer responseFarmer = snapshots.data;
+            responseFarmer.data
+                .removeWhere((element) => element.type == farmerType.C);
             return Column(
               children: [
                 Container(

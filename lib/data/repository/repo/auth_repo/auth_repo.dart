@@ -805,7 +805,7 @@ class AuthRepo {
     var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
     FormData formData = FormData.fromMap({
       "plot_id": key,
-      "gps_accuracy": "as",
+      "gps_accuracy": gpsAccuracy,
       "farmer_observer": farmer_observer,
       "farmer_observer_mobile": farmer_observer_mobile,
       "farmer_observer_designation": farmer_observer_designation,

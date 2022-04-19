@@ -6,6 +6,7 @@ import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -60,6 +61,7 @@ class _CceState extends State<Cce> {
       shapeOfCceSelect = "";
   File filename;
   PlatformFile file;
+  Position position;
   List<int> bioMass = List.generate(8, (index) => 0);
   File newFileObserverPhoto,
       newFileSouthWestPhoto,
@@ -135,6 +137,12 @@ class _CceState extends State<Cce> {
     setState(() {
       sumOfBioMassController.text = sum.toString();
     });
+  }
+
+  Future<Position> getLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return position;
   }
 
   void onFileCutHarvestPhoto() async {
@@ -443,6 +451,28 @@ class _CceState extends State<Cce> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              MaterialButton(
+                onPressed: () async {
+                  position = await getLocation();
+                  setState(() {
+                    position = position;
+                  });
+                },
+                color: const Color(0xFF6cbd47),
+                child: Text(
+                  "Shed Geo Tag",
+                  style: robotoBold.copyWith(
+                      color: const Color(0xff262626), fontSize: 17),
+                ),
+              ),
+              Visibility(
+                visible: position != null,
+                child: Text(
+                  position.toString(),
+                  style: robotoBold.copyWith(
+                      color: const Color(0xff262626), fontSize: 14),
+                ),
+              ),
               Card(
                 elevation: 5,
                 child: Container(
@@ -2125,6 +2155,7 @@ class _CceState extends State<Cce> {
       newFileWeightPlotPhoto,
       newFileMoisturePhoto,
       newFileJointPhoto,
+      gpsAccuracy: position.toString(),
     );
 
     setState(() {
