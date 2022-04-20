@@ -24,6 +24,13 @@ class ResultPage extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var data = snapshot.data['data'];
+              if (data == null) {
+                return Center(
+                  child: Text('No Data Found',
+                      style: robotoBold.copyWith(
+                          color: Colors.black, fontSize: 19)),
+                );
+              }
               return ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {

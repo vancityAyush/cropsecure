@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/authprovider.dart';
@@ -140,9 +141,21 @@ class _CceState extends State<Cce> {
   }
 
   Future<Position> getLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    return position;
+    if (await Permission.location.request().isGranted) {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      return position;
+    } else {
+      showSnackBar("Location Permission is Required");
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.location,
+      ].request();
+      if (statuses[Permission.location] == PermissionStatus.granted) {
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+        return position;
+      }
+    }
   }
 
   void onFileCutHarvestPhoto() async {
@@ -460,7 +473,7 @@ class _CceState extends State<Cce> {
                 },
                 color: const Color(0xFF6cbd47),
                 child: Text(
-                  "Shed Geo Tag",
+                  "CCE Geo Tag",
                   style: robotoBold.copyWith(
                       color: const Color(0xff262626), fontSize: 17),
                 ),

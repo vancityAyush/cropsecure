@@ -3,6 +3,7 @@ import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../../utill/color_resources.dart';
@@ -29,9 +30,21 @@ class _CattieShedState extends State<CattieShed> {
   }
 
   Future<Position> getLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    return position;
+    if (await Permission.location.request().isGranted) {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      return position;
+    } else {
+      showSnackBar("Location Permission is Required");
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.location,
+      ].request();
+      if (statuses[Permission.location] == PermissionStatus.granted) {
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+        return position;
+      }
+    }
   }
 
   @override
