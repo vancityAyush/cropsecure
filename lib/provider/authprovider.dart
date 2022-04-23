@@ -916,6 +916,7 @@ class AuthProvider with ChangeNotifier {
 
   /////// addYieldApi/////////
   Future<ResponseModel> addYieldApi(
+      String plotId,
       String moisture,
       String grade,
       String pickupdate,
@@ -927,6 +928,7 @@ class AuthProvider with ChangeNotifier {
       String pricePerKg,
       String totalAmount) async {
     ApiResponse apiResponse = await authRepo.addPlotYieldsApi(
+        plotId,
         moisture,
         grade,
         pickupdate,
@@ -991,8 +993,8 @@ class AuthProvider with ChangeNotifier {
   }
   ///////////////////////// fetch yields Api
 
-  Future fetchYieldApi() async {
-    ApiResponse apiResponse = await authRepo.fetchPlotYieldsApi();
+  Future fetchYieldApi(String plotId) async {
+    ApiResponse apiResponse = await authRepo.fetchPlotYieldsApi(plotId);
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
       return apiResponse.response.data;

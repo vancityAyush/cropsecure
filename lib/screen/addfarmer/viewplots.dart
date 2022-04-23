@@ -581,7 +581,12 @@ class ViewPlots extends StatelessWidget {
                                       flex: 1,
                                       child: InkWell(
                                         onTap: () {
-                                          Get.to(() => YieldScreen(),
+                                          Get.to(
+                                              () => YieldScreen(
+                                                    plotId:
+                                                        snapshots.data['data']
+                                                            [index]['id'],
+                                                  ),
                                               transition: Transition
                                                   .rightToLeftWithFade,
                                               duration: const Duration(

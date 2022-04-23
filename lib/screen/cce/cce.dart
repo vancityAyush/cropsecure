@@ -552,7 +552,7 @@ class _CceState extends State<Cce> {
               const SizedBox(
                 height: 20,
               ),
-              Text("Total Area of CCE Fields(In Acre)",
+              Text("Total Area of CCE Fields",
                   style: robotoBold.copyWith(
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(

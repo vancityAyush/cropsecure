@@ -1,5 +1,5 @@
+import 'package:cropsecure/qr/qr_screen.dart';
 import 'package:cropsecure/screen/addfarmer/addfarmer.dart';
-import 'package:cropsecure/screen/alerts/alerts.dart';
 import 'package:cropsecure/screen/cattie/maincattie.dart';
 import 'package:cropsecure/screen/equipments/equipments.dart';
 import 'package:cropsecure/screen/input/input.dart';
@@ -265,7 +265,7 @@ class Drawers extends StatelessWidget {
                                     fontSize: 15),
                               ),
                               Image.asset(
-                                "assets/image/locations.png",
+                                "assets/image/govt.png",
                                 width: 35,
                                 height: 35,
                                 color: Colors.white,
@@ -471,7 +471,7 @@ class Drawers extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           // Get.to(() => RaiseAlertDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                          Get.to(() => RaiseAlerts(""),
+                          Get.to(() => QRScreen(),
                               transition: Transition.rightToLeftWithFade,
                               duration: const Duration(milliseconds: 600));
                           // Get.to(() => CattieShed(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
@@ -493,7 +493,7 @@ class Drawers extends StatelessWidget {
                                     fontSize: 15),
                               ),
                               Image.asset(
-                                "assets/image/cows.png",
+                                "assets/image/qr.png",
                                 width: 35,
                                 height: 35,
                                 color: Colors.white,

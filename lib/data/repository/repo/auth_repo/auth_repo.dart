@@ -697,6 +697,7 @@ class AuthRepo {
 
   ////////// addPlotYieldsApi ///////////
   Future<ApiResponse> addPlotYieldsApi(
+      String plotId,
       String moisture,
       String grade,
       String pickupdate,
@@ -707,9 +708,8 @@ class AuthRepo {
       String totalWeights,
       String pricePerKg,
       String totalAmount) async {
-    var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
     FormData formData = FormData.fromMap({
-      "plot_id": key,
+      "plot_id": plotId,
       "moisture": moisture,
       "grade": grade,
       "pickupdate": pickupdate,
@@ -737,15 +737,10 @@ class AuthRepo {
 
   /////////////////fetchPlotYieldsApi///////////////////////
 
-  Future<ApiResponse> fetchPlotYieldsApi() async {
-    var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
-    FormData formData = FormData.fromMap({});
-
-    print(formData.fields);
-
+  Future<ApiResponse> fetchPlotYieldsApi(String plotId) async {
     try {
-      Response response = await dioClient
-          .post(AppConstants.fetchYields + "/" + key, data: formData);
+      Response response =
+          await dioClient.post(AppConstants.fetchYields + "/" + plotId);
 
       return ApiResponse.withSuccess(response);
     } catch (e) {

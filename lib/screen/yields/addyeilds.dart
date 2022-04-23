@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddYields extends StatefulWidget {
+  String plotId;
+  AddYields({this.plotId});
   @override
   State<AddYields> createState() => _AddYieldsState();
 }
@@ -832,6 +834,7 @@ class _AddYieldsState extends State<AddYields> {
                             await Provider.of<AuthProvider>(context,
                                     listen: false)
                                 .addYieldApi(
+                                    widget.plotId,
                                     moistureController.text,
                                     gradeSelect,
                                     formatDate,
