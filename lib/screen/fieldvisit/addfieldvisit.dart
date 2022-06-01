@@ -2,6 +2,7 @@
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,6 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
       mixedCropName = "",
       mixedCropVarieties = "",
       mixedCropSpecificTech = "";
-  List<String> gender = ["Male", "Female"];
   List<String> option = ["Yes", "No"];
   DateTime selectedDate = DateTime.now();
   var formatDate = "";
@@ -100,15 +100,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return [
-                      "Agriculture",
-                      "Horticulture",
-                      "Sericulture",
-                      "Floweriture",
-                      "Vegrtables",
-                      "Forestry",
-                      "Fruits"
-                    ];
+                    return kCropType;
                   },
                   onChanged: (String data) async {
                     cropTypeSelect = data;
@@ -166,7 +158,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return kCropName;
                   },
                   onChanged: (String data) async {
                     cropNameSelect = data;
@@ -195,7 +187,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return kCropVariety;
                   },
                   onChanged: (String data) async {
                     cropVarieties = data;
@@ -253,71 +245,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return [
-                      "Direct Seeded Rice (DSR)",
-                      "Compartment Bund with pulse intercrop",
-                      "Sowing with Seed drill in Red gram",
-                      "Sowing with Seed drill in Bengal gram",
-                      "Drill sown with pulse intercrop",
-                      "Maize Intercrop with Avare",
-                      "Raised bed with pulse intercrop",
-                      "Seed Treatment and Nipping",
-                      "Siridhanya/Bajra sowing with pulse intercrop",
-                      "Demonstration on Stress tolerant verities",
-                      "Ragi intercrop Avare",
-                      "Nutri Cereals and Jowar Sowing",
-                      "Machine Transplanting in Rice",
-                      "Maize + Green Gram Intercrop",
-                      "Ground nut + Tur Intercropping",
-                      "New Variety soyabean (Soyabean LSD)",
-                      "Maize + Soyabean Intercrop",
-                      "Line Sowing in Black Gram",
-                      "Line Sowing in Green Gram",
-                      "Paddy – Green gram sequence",
-                      "Green gram + Tur Intercropping",
-                      "Mechanize Sowing",
-                      "Direct Sowing",
-                      "Transplanting",
-                      "Mechanised Transplanting",
-                      "Dibbling",
-                      "Sole Cropping",
-                      "Line Sowing",
-                      "Nipping",
-                      "Minikit",
-                      "SRI Method",
-                      "Direct line Sowing",
-                      "Nati Method",
-                      "Wide row Spacing",
-                      "Bund Planting",
-                      "Ragi Planting",
-                      "Optimum Spacing",
-                      "Tur intercrop Avare",
-                      "Ridges and Furrows",
-                      "Sugarcane with Pulses",
-                      "Line Sowing in Jowar",
-                      "Little Millet +Pulse Intercrop",
-                      "Pulse in paddy fallow",
-                      "Integrated Nutrient Management",
-                      "Maize + Tur Intercrop",
-                      "Paddy -Bengal gram sequence",
-                      "Tur pulse inter crop",
-                      "Proso Millet +Pulse Intercrop",
-                      "Line Sowing in Ragi",
-                      "Line sowing in Bengal gram",
-                      "Kodo Millet +Pulse Intercrop",
-                      "Varieties of Minor Millets",
-                      "Maize + Cowpea Intercrop",
-                      "Paddy -Black gram sequence",
-                      "Foliar Spray and Nipping",
-                      "Paddy - Green gram sequence",
-                      "Paddy - Cowpea sequence",
-                      "Transplanting method in Red gram",
-                      "Ragi With Pulses Inter Crop",
-                      "Foxtail Millet +Pulse Intercrop",
-                      "Line Sowing in   Bajra",
-                      "Barnyard Millet + Pulse Intercrop",
-                      "Ragi intercrop Red gram"
-                    ];
+                    return kSpecificTech;
                   },
                   onChanged: (String data) async {
                     specificTech = data;

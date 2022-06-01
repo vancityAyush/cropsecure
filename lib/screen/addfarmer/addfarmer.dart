@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cropsecure/data/model/response/responsefamer.dart';
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
@@ -23,13 +24,7 @@ class AddFarmer extends StatefulWidget {
 }
 
 class _AddFarmerState extends State<AddFarmer> {
-  List<String> gender = ["Male", "Female", "Others"];
-  List<String> farmerTypeD = ["Cattle", "Farmer or Plot"];
   bool isLoad = false;
-  List<String> handicapped = ["Yes", "No"];
-  List<String> minority = ["Yes", "No"];
-  List<String> caste = ["Gen", "OBC", "SC", "ST"];
-  List<String> state = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
   DateTime selectedDate = DateTime.now();
   var formatDate;
   int agecal;
@@ -564,7 +559,7 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kState;
                     },
                     onChanged: (String data) async {
                       stateSelect = data;
@@ -595,7 +590,7 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kDistrict;
                     },
                     onChanged: (String data) async {
                       districtSelect = data;
@@ -626,7 +621,7 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kTaluka;
                     },
                     onChanged: (String data) async {
                       talukaController.text = data;
@@ -679,7 +674,7 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kHobli;
                     },
                     onChanged: (String data) async {
                       hobaliController.text = data;
@@ -733,7 +728,7 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kGP;
                     },
                     onChanged: (String data) async {
                       gramaSelect = data;
@@ -765,7 +760,7 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kVillage;
                     },
                     onChanged: (String data) async {
                       villageController.text = data;

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cropsecure/utill/color_resources.dart';
 import 'package:cropsecure/utill/dimensions.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
@@ -570,7 +571,7 @@ class _CceState extends State<Cce> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return kAreaAffected;
                   },
                   onChanged: (String data) async {
                     areaAcreSelect = data;

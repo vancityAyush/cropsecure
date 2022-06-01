@@ -2,6 +2,7 @@
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -18,19 +19,6 @@ class _AddExpenditureState extends State<AddExpenditure> {
   DateTime selectedDate = DateTime.now();
   String particularSelect = "Select";
   bool isLoad = false;
-  List<String> particular = [
-    "Tractor Rent",
-    "Labour Wages",
-    "Equipments Rent",
-    "Input Amount",
-    "Harvest Rent",
-    "Soil test Amount",
-    "Transporatation",
-    "Hessian Cloth rent",
-    "Bags Amount",
-    "Field lease amount",
-    "Others"
-  ];
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -138,7 +126,7 @@ class _AddExpenditureState extends State<AddExpenditure> {
                             ),
                             // showSearchBox:true,
                             onFind: (String filter) async {
-                              return particular;
+                              return kExpenditureParticular;
                             },
                             onChanged: (String data) async {
                               particularSelect = data;

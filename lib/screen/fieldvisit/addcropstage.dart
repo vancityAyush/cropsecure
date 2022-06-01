@@ -9,26 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+import '../../utill/drop_down.dart';
+
 class AddCropStage extends StatefulWidget {
   @override
   State<AddCropStage> createState() => _AddCropStageState();
 }
 
 class _AddCropStageState extends State<AddCropStage> {
-  List<String> cropLoss = ["Weather", "Diesesses", "Rain", "Fire", "Others"];
-  List<String> cropStages = [
-    "Vegetative",
-    "Reproductive",
-    "Ripening",
-    "Sowing",
-    "Transplanting or Replanting ",
-    "Fertilizers",
-    "Pesticide",
-    "Milking stage ",
-    "Grain filling",
-    "Maturing stage ",
-    "Harvesting stage"
-  ];
   File filename, newFileObserverPhoto;
   PlatformFile file;
   var formatDate;
@@ -124,7 +112,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           ),
                           // showSearchBox:true,
                           onFind: (String filter) async {
-                            return cropStages;
+                            return kCropStages;
                           },
                           onChanged: (String data) async {
                             cropStage = data;
@@ -192,7 +180,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           ),
                           // showSearchBox:true,
                           onFind: (String filter) async {
-                            return cropLoss;
+                            return kCropLoss;
                           },
                           onChanged: (String data) async {
                             cropDueTo = data;

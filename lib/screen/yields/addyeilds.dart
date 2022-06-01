@@ -1,5 +1,6 @@
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -323,16 +324,7 @@ class _AddYieldsState extends State<AddYields> {
                             ),
                             // showSearchBox:true,
                             onFind: (String filter) async {
-                              return [
-                                "75 Kg",
-                                "70 Kg",
-                                "50 Kg",
-                                "25 Kg",
-                                "10 Kg",
-                                "5  Kg",
-                                "2 Kg",
-                                "1 Kg"
-                              ];
+                              return kSelectWeight;
                             },
                             onChanged: (String data) async {
                               weightSelect = data;

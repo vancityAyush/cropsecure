@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/screen/splash/splash_screen.dart';
 import 'package:cropsecure/theme/light_theme.dart';

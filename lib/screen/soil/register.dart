@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
@@ -15,7 +16,6 @@ class SoilRegister extends StatefulWidget {
 }
 
 class _SoilRegisterState extends State<SoilRegister> {
-  List<String> particular = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
   String smapleCollectedBy = "";
   var formatDate;
   DateTime selectedDate = DateTime.now();
@@ -141,7 +141,7 @@ class _SoilRegisterState extends State<SoilRegister> {
                         ),
                         // showSearchBox:true,
                         onFind: (String filter) async {
-                          return particular;
+                          return kSampleCollected;
                         },
                         onChanged: (String data) async {
                           smapleCollectedBy = data;

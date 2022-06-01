@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
@@ -23,15 +24,6 @@ class AddPlots extends StatefulWidget {
 class _AddPlotsState extends State<AddPlots> {
   File _image;
   File _imagepan;
-  List<String> gender = ["Male", "Female"];
-  List<String> selectUnit = [
-    "Hectare",
-    "Guntha",
-    "Cent",
-    "Bigha",
-    "Marla",
-    "Acre"
-  ];
   String area = "",
       category = "",
       soiltype = "",
@@ -67,34 +59,6 @@ class _AddPlotsState extends State<AddPlots> {
       _imagepan = newFilePan = File(image.path);
     });
   }
-
-  // void onFileOpenAdhaar() async {
-  //   FilePickerResult result = await FilePicker.platform.pickFiles(
-  //     type: FileType.custom,
-  //     allowedExtensions: ['jpg', 'png'],
-  //   );
-  //   if (result != null) {
-  //     file = result.files.first;
-  //     filename = File(file.path);
-  //     setState(() {
-  //       newFile = filename;
-  //     });
-  //   }
-  // }
-
-  // void onFileOpenPan() async {
-  //   FilePickerResult result = await FilePicker.platform.pickFiles(
-  //     type: FileType.custom,
-  //     allowedExtensions: ['jpg', 'png'],
-  //   );
-  //   if (result != null) {
-  //     file = result.files.first;
-  //     filename = File(file.path);
-  //     setState(() {
-  //       newFilePan = filename;
-  //     });
-  //   }
-  // }
 
   void showSnackBar(String message) {
     final snackBar =
@@ -251,7 +215,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return kSoilType;
                     },
                     onChanged: (String data) async {
                       soiltype = data;
@@ -303,7 +267,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return ["Canal", "Waterpound", "Borewall", "River"];
+                      return kWaterSource;
                     },
                     onChanged: (String data) async {
                       water = data;
@@ -329,7 +293,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return kDistrict;
                     },
                     onChanged: (String data) async {
                       district = data;
@@ -355,7 +319,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return kTaluka;
                     },
                     onChanged: (String data) async {
                       taluka = data;
@@ -381,7 +345,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return kHobli;
                     },
                     onChanged: (String data) async {
                       taluka = data;
@@ -407,7 +371,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return kGP;
                     },
                     onChanged: (String data) async {
                       gramPan = data;
@@ -433,7 +397,7 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return gender;
+                      return kVillage;
                     },
                     onChanged: (String data) async {
                       village = data;

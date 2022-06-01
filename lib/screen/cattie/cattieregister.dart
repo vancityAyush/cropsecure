@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cropsecure/provider/authprovider.dart';
 import 'package:cropsecure/utill/color_resources.dart';
+import 'package:cropsecure/utill/drop_down.dart';
 import 'package:cropsecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
@@ -233,7 +234,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return caste;
+                      return kCattleType;
                     },
                     onChanged: (String data) async {
                       cattleType = data;
@@ -271,7 +272,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kLifeStage;
                     },
                     onChanged: (String data) async {
                       liftStage = data;
@@ -378,7 +379,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return state;
+                      return kCattleBreed;
                     },
                     onChanged: (String data) async {
                       breed = data;
