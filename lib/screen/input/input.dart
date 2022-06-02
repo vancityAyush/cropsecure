@@ -17,25 +17,32 @@ class _InputState extends State<Input> {
       appBar: AppBar(
         elevation: 1,
         centerTitle: true,
-        title: Text("Inputs",
-          style: robotoBold.copyWith(color: Colors.white,
-              fontSize: 19),),
+        title: Text(
+          "Inputs",
+          style: robotoBold.copyWith(color: Colors.white, fontSize: 19),
+        ),
         leading: InkWell(
-            onTap: (){
+            onTap: () {
               Get.back();
             },
-            child: const Icon(Icons.arrow_back_ios,color: Colors.white,)),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            )),
       ),
       body: Padding(
         padding: const EdgeInsets.all(35.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             InkWell(
-              onTap: ()async{
-                await SharedPrefManager.savePrefString(AppConstants.categoryName, "Organic");
-                Get.to(() => Organic("Organic"),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));},
+              onTap: () async {
+                await SharedPrefManager.savePrefString(
+                    AppConstants.categoryName, "Organic");
+                Get.to(() => Organic("Organic"),
+                    transition: Transition.rightToLeftWithFade,
+                    duration: const Duration(milliseconds: 600));
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
@@ -44,21 +51,23 @@ class _InputState extends State<Input> {
                   color: const Color(0xff937ab3),
                 ),
                 child: Center(
-                  child: Text("Organic",
-                  style: robotoExtraBold.copyWith(
-                    color: Colors.white,
-                    fontSize: 23
-                  ),),
+                  child: Text(
+                    "Organic",
+                    style: robotoExtraBold.copyWith(
+                        color: Colors.white, fontSize: 23),
+                  ),
                 ),
               ),
             ),
-
-            const SizedBox(height: 15,),
-
+            const SizedBox(
+              height: 15,
+            ),
             InkWell(
-              onTap: ()async{
+              onTap: () async {
                 // await SharedPrefManager.savePrefString(AppConstants.categoryName, "Nonorganic");
-                Get.to(() => Organic("NonOrganic"),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+                Get.to(() => Organic("Non-Organic"),
+                    transition: Transition.rightToLeftWithFade,
+                    duration: const Duration(milliseconds: 600));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -68,15 +77,14 @@ class _InputState extends State<Input> {
                   color: const Color(0xffabc56c),
                 ),
                 child: Center(
-                  child: Text("Non-Organic",
+                  child: Text(
+                    "Non-Organic",
                     style: robotoExtraBold.copyWith(
-                        color: Colors.white,
-                      fontSize: 23
-                    ),),
+                        color: Colors.white, fontSize: 23),
+                  ),
                 ),
               ),
             ),
-
           ],
         ),
       ),

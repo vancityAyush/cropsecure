@@ -75,7 +75,7 @@ class _TractorState extends State<Tractor> {
         elevation: 1,
         centerTitle: true,
         title: Text(
-          "Tractor",
+          widget.category ?? "Tractor",
           style: robotoBold.copyWith(color: Colors.white, fontSize: 19),
         ),
         leading: InkWell(

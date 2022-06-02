@@ -37,7 +37,7 @@ class _SeedsState extends State<Seeds> {
         elevation: 1,
         centerTitle: true,
         title: Text(
-          "Seeds",
+          widget.subcategory ?? "Seeds",
           style: robotoBold.copyWith(color: Colors.white, fontSize: 19),
         ),
         leading: InkWell(
