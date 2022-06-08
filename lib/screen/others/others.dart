@@ -1,7 +1,7 @@
-import 'package:cropsecure/screen/calculator/calculator.dart';
-import 'package:cropsecure/screen/labanalysis/labanalysis.dart';
-import 'package:cropsecure/screen/soil/soil.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/calculator/calculator.dart';
+import 'package:CropSecure/screen/labanalysis/labanalysis.dart';
+import 'package:CropSecure/screen/soil/soil.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

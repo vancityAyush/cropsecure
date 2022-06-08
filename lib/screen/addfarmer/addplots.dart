@@ -2,10 +2,11 @@
 
 import 'dart:io';
 
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/drop_down.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/service/address_service.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/drop_down.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +25,9 @@ class AddPlots extends StatefulWidget {
 class _AddPlotsState extends State<AddPlots> {
   File _image;
   File _imagepan;
-  String area = "",
-      category = "",
-      soiltype = "",
-      irrigation = "",
-      water = "",
-      district = "",
-      taluka = "",
-      gramPan = "",
-      village = "";
+  String area = "", category = "", soiltype = "", irrigation = "", water = "";
+
+  AddressService addressService = AddressService();
   bool isLoad = false;
   TextEditingController surveyController = TextEditingController();
   TextEditingController areaController = TextEditingController();
@@ -286,6 +281,32 @@ class _AddPlotsState extends State<AddPlots> {
                     mode: Mode.MENU,
                     popupElevation: 5,
                     dropdownSearchDecoration: const InputDecoration(
+                      hintText: "State",
+                      hintStyle: TextStyle(color: ColorResources.light_purple),
+                      contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                      border: OutlineInputBorder(),
+                    ),
+                    // showSearchBox:true,
+                    onFind: (String filter) async {
+                      return addressService.getState();
+                    },
+                    onChanged: (String data) async {
+                      addressService.state = data;
+                    },
+                    itemAsString: (String da) => da,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: SizedBox(
+                  height: 48,
+                  child: DropdownSearch(
+                    popupShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    mode: Mode.MENU,
+                    popupElevation: 5,
+                    dropdownSearchDecoration: const InputDecoration(
                       hintText: "District",
                       hintStyle: TextStyle(color: ColorResources.light_purple),
                       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
@@ -293,10 +314,10 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kDistrict;
+                      return addressService.getDistrict();
                     },
                     onChanged: (String data) async {
-                      district = data;
+                      addressService.district = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -319,10 +340,10 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kTaluka;
+                      return addressService.getTaluka();
                     },
                     onChanged: (String data) async {
-                      taluka = data;
+                      addressService.taluka = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -345,10 +366,10 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kHobli;
+                      return addressService.getHobli();
                     },
                     onChanged: (String data) async {
-                      taluka = data;
+                      addressService.hobli = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -371,10 +392,10 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kGP;
+                      return addressService.getGP();
                     },
                     onChanged: (String data) async {
-                      gramPan = data;
+                      addressService.gp = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -397,10 +418,10 @@ class _AddPlotsState extends State<AddPlots> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kVillage;
+                      return addressService.getVillage();
                     },
                     onChanged: (String data) async {
-                      village = data;
+                      addressService.village = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -650,14 +671,9 @@ class _AddPlotsState extends State<AddPlots> {
                             showSnackBar("Select source of irrigation");
                           } else if (water == "") {
                             showSnackBar("Select source of water");
-                          } else if (district == "") {
-                            showSnackBar("Select district");
-                          } else if (taluka == "") {
-                            showSnackBar("Select taluka");
-                          } else if (gramPan == "") {
-                            showSnackBar("Select gram panchayath");
-                          } else if (village == "") {
-                            showSnackBar("Select village");
+                          } else if (addressService.village == "" ||
+                              addressService.village == null) {
+                            showSnackBar("Select Adrress");
                           } else if (pincodeController.text.isEmpty) {
                             showSnackBar("Enter pincode");
                           } else if (newFile == null) {
@@ -679,10 +695,10 @@ class _AddPlotsState extends State<AddPlots> {
                               soiltype,
                               irrigation,
                               water,
-                              district,
-                              taluka,
-                              gramPan,
-                              village,
+                              addressService.district,
+                              addressService.taluka,
+                              addressService.gp,
+                              addressService.village,
                               pincodeController.text,
                               newFile,
                               newFilePan,

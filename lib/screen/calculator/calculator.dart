@@ -1,7 +1,7 @@
-import 'package:cropsecure/screen/calculator/addcalculator.dart';
-import 'package:cropsecure/screen/calculator/apply.dart';
-import 'package:cropsecure/screen/calculator/calculatorhistory.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/calculator/addcalculator.dart';
+import 'package:CropSecure/screen/calculator/apply.dart';
+import 'package:CropSecure/screen/calculator/calculatorhistory.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

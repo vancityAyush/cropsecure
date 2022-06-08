@@ -1,5 +1,5 @@
-import 'package:cropsecure/screen/expenditure/expenditurehistory.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/expenditure/expenditurehistory.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

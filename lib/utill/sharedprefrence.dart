@@ -1,5 +1,5 @@
 // @dart=2.9
-import 'package:cropsecure/screen/authscreen/login.dart';
+import 'package:CropSecure/screen/authscreen/login.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,6 +1,6 @@
-import 'package:cropsecure/screen/yields/addyeilds.dart';
-import 'package:cropsecure/screen/yields/yieldshistory.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/yields/addyeilds.dart';
+import 'package:CropSecure/screen/yields/yieldshistory.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

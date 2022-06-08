@@ -1,14 +1,17 @@
-import 'package:cropsecure/qr/qr_screen.dart';
-import 'package:cropsecure/screen/addfarmer/addfarmer.dart';
-import 'package:cropsecure/screen/cattie/maincattie.dart';
-import 'package:cropsecure/screen/equipments/equipments.dart';
-import 'package:cropsecure/screen/input/input.dart';
-import 'package:cropsecure/screen/irrigation/irrigation.dart';
-import 'package:cropsecure/utill/app_constants.dart';
-import 'package:cropsecure/utill/sharedprefrence.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/data/model/response/responseprofile.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/qr/qr_screen.dart';
+import 'package:CropSecure/screen/addfarmer/addfarmer.dart';
+import 'package:CropSecure/screen/cattie/maincattie.dart';
+import 'package:CropSecure/screen/equipments/equipments.dart';
+import 'package:CropSecure/screen/input/input.dart';
+import 'package:CropSecure/screen/irrigation/irrigation.dart';
+import 'package:CropSecure/utill/app_constants.dart';
+import 'package:CropSecure/utill/sharedprefrence.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../gallery/gallery.dart';
 
@@ -43,11 +46,21 @@ class Drawers extends StatelessWidget {
                 height: 15,
               ),
 
-              Text(
-                "virat@gmail.com",
-                style: robotoExtraBold.copyWith(
-                    color: const Color(0xffddf0e0), fontSize: 15),
-              ),
+              FutureBuilder<ResponseProfile>(
+                  future: Provider.of<AuthProvider>(context, listen: false)
+                      .fetchProfileApi(),
+                  builder: (context, snapshot) {
+                    String name = "";
+                    if (snapshot.hasData) {
+                      ResponseProfile responseProfile = snapshot.data;
+                      name = responseProfile.data.name;
+                    }
+                    return Text(
+                      name,
+                      style: robotoExtraBold.copyWith(
+                          color: const Color(0xffddf0e0), fontSize: 15),
+                    );
+                  }),
 
               Container(
                 padding: const EdgeInsets.only(left: 0, right: 0),

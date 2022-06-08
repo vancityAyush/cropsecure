@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/screen/addfarmer/plant_doctor_history.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/screen/addfarmer/plant_doctor_history.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';

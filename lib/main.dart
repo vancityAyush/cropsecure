@@ -1,6 +1,6 @@
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/screen/splash/splash_screen.dart';
-import 'package:cropsecure/theme/light_theme.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/screen/splash/splash_screen.dart';
+import 'package:CropSecure/theme/light_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

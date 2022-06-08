@@ -1,9 +1,10 @@
 // ignore_for_file: unrelated_type_equality_checks, prefer_const_constructors
 
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/drop_down.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/service/crop_service.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/drop_down.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +17,7 @@ class AddFieldVisit extends StatefulWidget {
 
 class _AddFieldVisitState extends State<AddFieldVisit> {
   bool isLoad = false;
-  String cropTypeSelect = "",
-      cropNameSelect = "",
-      cropVarieties = "",
+  String cropSeason = "",
       sourceFrom = "",
       specificTech = "",
       showingDate = "",
@@ -29,6 +28,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
   List<String> option = ["Yes", "No"];
   DateTime selectedDate = DateTime.now();
   var formatDate = "";
+  CropTypeService cropTypeService = CropTypeService();
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -100,10 +100,10 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return kCropType;
+                    return cropTypeService.getCropType();
                   },
                   onChanged: (String data) async {
-                    cropTypeSelect = data;
+                    cropTypeService.cropType = data;
                   },
                   itemAsString: (String da) => da,
                 ),
@@ -132,7 +132,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                     return ["Kharif", "Rabi", "Year"];
                   },
                   onChanged: (String data) async {
-                    cropNameSelect = data;
+                    cropSeason = data;
                   },
                   itemAsString: (String da) => da,
                 ),
@@ -158,10 +158,10 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return kCropName;
+                    return cropTypeService.getCropName();
                   },
                   onChanged: (String data) async {
-                    cropNameSelect = data;
+                    cropTypeService.cropName = data;
                   },
                   itemAsString: (String da) => da,
                 ),
@@ -187,10 +187,10 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return kCropVariety;
+                    return cropTypeService.getCropVariety();
                   },
                   onChanged: (String data) async {
-                    cropVarieties = data;
+                    cropTypeService.cropVariety = data;
                   },
                   itemAsString: (String da) => da,
                 ),
@@ -216,7 +216,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                   ),
                   // showSearchBox:true,
                   onFind: (String filter) async {
-                    return gender;
+                    return kSeedSource;
                   },
                   onChanged: (String data) async {
                     sourceFrom = data;
@@ -336,91 +336,180 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
               ),
               if (mixedCrop == "Yes")
                 (Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 48,
-                      child: DropdownSearch(
-                        popupShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        mode: Mode.MENU,
-                        popupElevation: 5,
-                        dropdownSearchDecoration: const InputDecoration(
-                          hintText: "Crop name",
-                          hintStyle:
-                              TextStyle(color: ColorResources.light_purple),
-                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                          border: OutlineInputBorder(),
-                        ),
-                        // showSearchBox:true,
-                        onFind: (String filter) async {
-                          return option;
-                        },
-                        onChanged: (String data) async {
-                          setState(() {
-                            mixedCropName = data;
-                          });
-                        },
-                        itemAsString: (String da) => da,
-                      ),
+                    Text(
+                      "Mixed Crop Name",
+                      style: robotoMedium.copyWith(
+                          color: const Color(0xff262626), fontSize: 18),
                     ),
+                    SizedBox(
+                        height: 48,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            mixedCropName = value;
+                          },
+                          maxLines: 1,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                              hintText: "",
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintStyle: TextStyle(
+                                  fontSize: 14 *
+                                      MediaQuery.of(context).textScaleFactor,
+                                  color: const Color(0xffb7b7b7))),
+                        )),
+                    // SizedBox(
+                    //   height: 48,
+                    //   child: DropdownSearch(
+                    //     popupShape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(20)),
+                    //     mode: Mode.MENU,
+                    //     popupElevation: 5,
+                    //     dropdownSearchDecoration: const InputDecoration(
+                    //       hintText: "Crop name",
+                    //       hintStyle:
+                    //           TextStyle(color: ColorResources.light_purple),
+                    //       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    //       border: OutlineInputBorder(),
+                    //     ),
+                    //     // showSearchBox:true,
+                    //     onFind: (String filter) async {
+                    //       return option;
+                    //     },
+                    //     onChanged: (String data) async {
+                    //       setState(() {
+                    //         mixedCropName = data;
+                    //       });
+                    //     },
+                    //     itemAsString: (String da) => da,
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 48,
-                      child: DropdownSearch(
-                        popupShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        mode: Mode.MENU,
-                        popupElevation: 5,
-                        dropdownSearchDecoration: const InputDecoration(
-                          hintText: "Varities",
-                          hintStyle:
-                              TextStyle(color: ColorResources.light_purple),
-                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                          border: OutlineInputBorder(),
-                        ),
-                        // showSearchBox:true,
-                        onFind: (String filter) async {
-                          return option;
-                        },
-                        onChanged: (String data) async {
-                          setState(() {
-                            mixedCropVarieties = data;
-                          });
-                        },
-                        itemAsString: (String da) => da,
-                      ),
+                    Text(
+                      "Mixed Crop Variety",
+                      style: robotoMedium.copyWith(
+                          color: const Color(0xff262626), fontSize: 18),
                     ),
+                    SizedBox(
+                        height: 48,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            mixedCropVarieties = value;
+                          },
+                          maxLines: 1,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                              hintText: "",
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintStyle: TextStyle(
+                                  fontSize: 14 *
+                                      MediaQuery.of(context).textScaleFactor,
+                                  color: const Color(0xffb7b7b7))),
+                        )),
+                    // SizedBox(
+                    //   height: 48,
+                    //   child: DropdownSearch(
+                    //     popupShape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(20)),
+                    //     mode: Mode.MENU,
+                    //     popupElevation: 5,
+                    //     dropdownSearchDecoration: const InputDecoration(
+                    //       hintText: "Varities",
+                    //       hintStyle:
+                    //           TextStyle(color: ColorResources.light_purple),
+                    //       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    //       border: OutlineInputBorder(),
+                    //     ),
+                    //     // showSearchBox:true,
+                    //     onFind: (String filter) async {
+                    //       return option;
+                    //     },
+                    //     onChanged: (String data) async {
+                    //       setState(() {
+                    //         mixedCropVarieties = data;
+                    //       });
+                    //     },
+                    //     itemAsString: (String da) => da,
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 48,
-                      child: DropdownSearch(
-                        popupShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        mode: Mode.MENU,
-                        popupElevation: 5,
-                        dropdownSearchDecoration: const InputDecoration(
-                          hintText: "Specific Technologies",
-                          hintStyle:
-                              TextStyle(color: ColorResources.light_purple),
-                          contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                          border: OutlineInputBorder(),
-                        ),
-                        // showSearchBox:true,
-                        onFind: (String filter) async {
-                          return option;
-                        },
-                        onChanged: (String data) async {
-                          setState(() {
-                            mixedCropSpecificTech = data;
-                          });
-                        },
-                        itemAsString: (String da) => da,
-                      ),
+                    Text(
+                      "Mixed Crop Specific Tech",
+                      style: robotoMedium.copyWith(
+                          color: const Color(0xff262626), fontSize: 18),
                     ),
+                    SizedBox(
+                        height: 48,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            mixedCropSpecificTech = value;
+                          },
+                          maxLines: 1,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                              hintText: "",
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintStyle: TextStyle(
+                                  fontSize: 14 *
+                                      MediaQuery.of(context).textScaleFactor,
+                                  color: const Color(0xffb7b7b7))),
+                        )),
+                    // SizedBox(
+                    //   height: 48,
+                    //   child: DropdownSearch(
+                    //     popupShape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(20)),
+                    //     mode: Mode.MENU,
+                    //     popupElevation: 5,
+                    //     dropdownSearchDecoration: const InputDecoration(
+                    //       hintText: "Specific Technologies",
+                    //       hintStyle:
+                    //           TextStyle(color: ColorResources.light_purple),
+                    //       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    //       border: OutlineInputBorder(),
+                    //     ),
+                    //     // showSearchBox:true,
+                    //     onFind: (String filter) async {
+                    //       return option;
+                    //     },
+                    //     onChanged: (String data) async {
+                    //       setState(() {
+                    //         mixedCropSpecificTech = data;
+                    //       });
+                    //     },
+                    //     itemAsString: (String da) => da,
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -447,11 +536,11 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                       ), //button color
                     ),
                     onPressed: () async {
-                      if (cropTypeSelect == "") {
+                      if (cropTypeService.cropType == "") {
                         showSnackBar("Select crop type");
-                      } else if (cropNameSelect == "") {
+                      } else if (cropTypeService.cropName == "") {
                         showSnackBar("Select crop name");
-                      } else if (cropVarieties == "") {
+                      } else if (cropTypeService.cropVariety == "") {
                         showSnackBar("Select crop varieties");
                       } else if (sourceFrom == "") {
                         showSnackBar(
@@ -470,9 +559,9 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                         // Get.to(() => CropStage(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
                         await Provider.of<AuthProvider>(context, listen: false)
                             .addFieldVisitApi(
-                                cropTypeSelect,
-                                cropNameSelect,
-                                cropVarieties,
+                                cropTypeService.cropType,
+                                cropTypeService.cropName,
+                                cropTypeService.cropVariety,
                                 sourceFrom,
                                 specificTech,
                                 formatDate,

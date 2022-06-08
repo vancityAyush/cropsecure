@@ -1,20 +1,18 @@
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/dimensions.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/dimensions.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:cropsecure/provider/authprovider.dart';
 
 class ProfileScreen extends StatefulWidget {
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   TextEditingController mobileController = TextEditingController();
   TextEditingController districtController = TextEditingController();
   TextEditingController subDistrictController = TextEditingController();
@@ -25,8 +23,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String gramPanchayath;
   bool isLoad = false;
 
-  void fetchProfile() async{
-    var future = await Provider.of<AuthProvider>(context, listen: false).fetchProfileApi();
+  void fetchProfile() async {
+    var future = await Provider.of<AuthProvider>(context, listen: false)
+        .fetchProfileApi();
     setState(() {
       nameController.text = future.data.name;
       mobileController.text = future.data.phone;
@@ -39,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  List<String> state = ["Uttar Pradesh","Uttrakhand","Jharkhand"];
+  List<String> state = ["Uttar Pradesh", "Uttrakhand", "Jharkhand"];
 
   @override
   void initState() {
@@ -53,14 +52,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         elevation: 1,
         centerTitle: true,
-        title: Text("Edit Profile",
-          style: robotoBold.copyWith(color: Colors.white,
-              fontSize: 19),),
+        title: Text(
+          "Edit Profile",
+          style: robotoBold.copyWith(color: Colors.white, fontSize: 19),
+        ),
         leading: InkWell(
-            onTap: (){
+            onTap: () {
               Get.back();
             },
-            child: const Icon(Icons.arrow_back_ios,color: Colors.white,)),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            )),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -68,12 +71,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              Text("Name",
+              Text(
+                "Name",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -96,10 +98,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         hintStyle: TextStyle(
-                            fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7)
-                        )
-                    ),
+                            fontSize:
+                                14 * MediaQuery.of(context).textScaleFactor,
+                            color: const Color(0xffb7b7b7))),
                   ),
                 ),
               ),
@@ -108,11 +109,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("Mobile",
+              Text(
+                "Mobile",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -135,10 +136,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         hintStyle: TextStyle(
-                            fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7)
-                        )
-                    ),
+                            fontSize:
+                                14 * MediaQuery.of(context).textScaleFactor,
+                            color: const Color(0xffb7b7b7))),
                   ),
                 ),
               ),
@@ -186,11 +186,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("State Name",
+              Text(
+                "State Name",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -198,23 +198,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 48,
                   child: DropdownSearch(
                     popupShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)
-                    ),
+                        borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
                     popupElevation: 5,
                     dropdownSearchDecoration: const InputDecoration(
                       hintText: "Select state",
-                      hintStyle: TextStyle(
-                          color: ColorResources.light_purple
-                      ),
+                      hintStyle: TextStyle(color: ColorResources.light_purple),
                       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async{
-                      return state;},
-                    onChanged: (String data) async{
-                      gramPanchayath = data;},
+                    onFind: (String filter) async {
+                      return state;
+                    },
+                    onChanged: (String data) async {
+                      gramPanchayath = data;
+                    },
                     itemAsString: (String da) => da,
                   ),
                 ),
@@ -224,11 +223,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("District Name",
+              Text(
+                "District Name",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -251,10 +250,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         hintStyle: TextStyle(
-                            fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7)
-                        )
-                    ),
+                            fontSize:
+                                14 * MediaQuery.of(context).textScaleFactor,
+                            color: const Color(0xffb7b7b7))),
                   ),
                 ),
               ),
@@ -263,11 +261,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("Sub District",
+              Text(
+                "Sub District",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -290,10 +288,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         hintStyle: TextStyle(
-                            fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7)
-                        )
-                    ),
+                            fontSize:
+                                14 * MediaQuery.of(context).textScaleFactor,
+                            color: const Color(0xffb7b7b7))),
                   ),
                 ),
               ),
@@ -302,11 +299,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("Hobali",
+              Text(
+                "Hobali",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -329,10 +326,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         hintStyle: TextStyle(
-                            fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7)
-                        )
-                    ),
+                            fontSize:
+                                14 * MediaQuery.of(context).textScaleFactor,
+                            color: const Color(0xffb7b7b7))),
                   ),
                 ),
               ),
@@ -341,11 +337,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("Grama Panchayath",
+              Text(
+                "Grama Panchayath",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -353,23 +349,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 48,
                   child: DropdownSearch(
                     popupShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)
-                    ),
+                        borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
                     popupElevation: 5,
                     showSearchBox: true,
                     dropdownSearchDecoration: const InputDecoration(
                       hintText: "Select",
-                      hintStyle: TextStyle(
-                          color: ColorResources.light_purple
-                      ),
+                      hintStyle: TextStyle(color: ColorResources.light_purple),
                       contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async{
-                      return state;},
-                    onChanged: (String data) async{
+                    onFind: (String filter) async {
+                      return state;
+                    },
+                    onChanged: (String data) async {
                       gramPanchayath = data;
                     },
                     itemAsString: (String da) => da,
@@ -381,11 +375,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
 
-              Text("Village Name",
+              Text(
+                "Village Name",
                 style: robotoBold.copyWith(
-                    color: const Color(0xff262626),
-                    fontSize: 17
-                ),),
+                    color: const Color(0xff262626), fontSize: 17),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 3),
@@ -408,10 +402,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         hintStyle: TextStyle(
-                            fontSize: 14*MediaQuery.of(context).textScaleFactor,
-                            color: const Color(0xffb7b7b7)
-                        )
-                    ),
+                            fontSize:
+                                14 * MediaQuery.of(context).textScaleFactor,
+                            color: const Color(0xffb7b7b7))),
                   ),
                 ),
               ),
@@ -425,22 +418,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all<Color>(const Color(0xFF6cbd47),), //button color
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFF6cbd47),
+                        ), //button color
                       ),
                       onPressed: () async {
                         setState(() {
                           isLoad = true;
                         });
 
-                        await Provider.of<AuthProvider>(context,listen: false).editProfileApi(nameController.text, mobileController.text, villageController.text, gramPanchayath, hobaliController.text, subDistrictController.text, districtController.text, gramPanchayath, passwordController.text);
+                        await Provider.of<AuthProvider>(context, listen: false)
+                            .editProfileApi(
+                                nameController.text,
+                                mobileController.text,
+                                villageController.text,
+                                gramPanchayath,
+                                hobaliController.text,
+                                subDistrictController.text,
+                                districtController.text,
+                                gramPanchayath,
+                                passwordController.text);
 
                         setState(() {
                           isLoad = false;
                         });
                       },
                       child: Text('Submit',
-                          style: robotoBold.copyWith(fontSize: 19,color: Colors.white)),
+                          style: robotoBold.copyWith(
+                              fontSize: 19, color: Colors.white)),
                     )),
               ),
             ],

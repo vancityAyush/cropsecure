@@ -2,11 +2,12 @@
 
 import 'dart:io';
 
-import 'package:cropsecure/data/model/response/responsefamer.dart';
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/drop_down.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/data/model/response/responsefamer.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/service/address_service.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/drop_down.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -31,21 +32,15 @@ class _AddFarmerState extends State<AddFarmer> {
   String genderSelect = "",
       handicappedSelect = "",
       minoritySelect = "",
-      casteSelect = "",
-      stateSelect = "",
-      districtSelect = "",
-      gramaSelect = "";
+      casteSelect = "";
 
   farmerType type;
-
+  AddressService addressService = AddressService();
   TextEditingController farmerName = TextEditingController();
   TextEditingController fatherHusbandName = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController pinController = TextEditingController();
-  TextEditingController talukaController = TextEditingController();
-  TextEditingController hobaliController = TextEditingController();
-  TextEditingController villageController = TextEditingController();
   TextEditingController aadharController = TextEditingController();
   TextEditingController panController = TextEditingController();
   TextEditingController rashanController = TextEditingController();
@@ -54,6 +49,12 @@ class _AddFarmerState extends State<AddFarmer> {
   PlatformFile file;
 
   File newFilePan, newFileRashan, newFileFarmer;
+
+  @override
+  void initState() {
+    super.initState();
+    // addressService.readJson();
+  }
 
   void onFileOpenAdhaar() async {
     FilePickerResult result = await FilePicker.platform.pickFiles(
@@ -559,10 +560,10 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kState;
+                      return addressService.getState();
                     },
                     onChanged: (String data) async {
-                      stateSelect = data;
+                      addressService.state = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -590,10 +591,10 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kDistrict;
+                      return addressService.getDistrict();
                     },
                     onChanged: (String data) async {
-                      districtSelect = data;
+                      addressService.district = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -621,10 +622,10 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kTaluka;
+                      return addressService.getTaluka();
                     },
                     onChanged: (String data) async {
-                      talukaController.text = data;
+                      addressService.taluka = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -674,10 +675,10 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kHobli;
+                      return addressService.getHobli();
                     },
                     onChanged: (String data) async {
-                      hobaliController.text = data;
+                      addressService.hobli = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -728,10 +729,10 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kGP;
+                      return addressService.getGP();
                     },
                     onChanged: (String data) async {
-                      gramaSelect = data;
+                      addressService.gp = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -760,10 +761,10 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return kVillage;
+                      return addressService.getVillage();
                     },
                     onChanged: (String data) async {
-                      villageController.text = data;
+                      addressService.village = data;
                     },
                     itemAsString: (String da) => da,
                   ),
@@ -1300,18 +1301,11 @@ class _AddFarmerState extends State<AddFarmer> {
                               showSnackBar("Enter mobile number");
                             } else if (pinController.text.isEmpty) {
                               showSnackBar("Enter pincode");
-                            } else if (stateSelect == "") {
+                            } else if (addressService.state == "") {
                               showSnackBar("Select state");
-                            } else if (districtSelect == "") {
-                              showSnackBar("Select district");
-                            } else if (talukaController.text.isEmpty) {
-                              showSnackBar("Enter taluka");
-                            } else if (hobaliController.text.isEmpty) {
-                              showSnackBar("Enter hobali");
-                            } else if (gramaSelect == "") {
-                              showSnackBar("Select grama");
-                            } else if (villageController.text.isEmpty) {
-                              showSnackBar("Enter village");
+                            } else if (addressService.village == "" ||
+                                addressService.village == null) {
+                              showSnackBar("Select Address");
                             } else if (aadharController.text.isEmpty) {
                               showSnackBar("Enter Aadhar");
                             } else if (panController.text.isEmpty) {
@@ -1337,15 +1331,15 @@ class _AddFarmerState extends State<AddFarmer> {
                                       farmerName.text,
                                       fatherHusbandName.text,
                                       mobileController.text,
-                                      districtSelect,
+                                      addressService.district,
                                       aadharController.text,
                                       panController.text,
                                       rashanController.text,
-                                      gramaSelect,
-                                      hobaliController.text,
-                                      talukaController.text,
-                                      districtSelect,
-                                      stateSelect,
+                                      addressService.gp,
+                                      addressService.hobli,
+                                      addressService.taluka,
+                                      addressService.district,
+                                      addressService.state,
                                       genderSelect,
                                       formatDate,
                                       ageController.text,
@@ -1364,15 +1358,10 @@ class _AddFarmerState extends State<AddFarmer> {
                                 farmerName.clear();
                                 fatherHusbandName.clear();
                                 mobileController.clear();
-                                districtSelect = "";
                                 aadharController.clear();
                                 panController.clear();
                                 rashanController.clear();
-                                gramaSelect = "";
-                                hobaliController.clear();
-                                talukaController.clear();
-                                districtSelect = "";
-                                stateSelect = "";
+                                addressService.reset();
                                 genderSelect = "";
                                 formatDate = "";
                                 ageController.clear();

@@ -1,6 +1,5 @@
-import 'package:cropsecure/screen/expenditure/expenditurehistory.dart';
-import 'package:cropsecure/screen/fieldvisit/addcropstage.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/fieldvisit/addcropstage.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,19 +13,25 @@ class CropStage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
             leading: InkWell(
-                onTap: (){
+                onTap: () {
                   Get.back();
-                }, child: const Icon(Icons.arrow_back_ios,color: Colors.white,)),
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                )),
             titleSpacing: 10,
-            title: Text("Crop Stage",
+            title: Text(
+              "Crop Stage",
               style: robotoExtraBold.copyWith(
                 color: Colors.white,
                 fontSize: 19,
-              ),),
+              ),
+            ),
             bottom: TabBar(
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicator: BoxDecoration(
-                    boxShadow: const[
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.white,
                         offset: Offset(0.0, 0.0),
@@ -44,12 +49,11 @@ class CropStage extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 15,
                     fontFamily: "Proxima Nova",
-                    fontWeight: FontWeight.w600
-                ),
-                tabs:const[
+                    fontWeight: FontWeight.w600),
+                tabs: const [
                   Tab(text: "Add Crop Stage"),
-                  Tab(text: "History"),])),
-
+                  Tab(text: "History"),
+                ])),
         body: TabBarView(
           children: [
             AddCropStage(),

@@ -1,4 +1,4 @@
-import 'package:cropsecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/color_resources.dart';
 import 'package:flutter/material.dart';
 
 import 'fieldstyle.dart';
@@ -38,16 +38,16 @@ class OTPTextField extends StatefulWidget {
 
   OTPTextField(
       {Key key,
-        this.length = 4,
-        this.width = 10,
-        this.fieldWidth = 30,
-        this.keyboardType = TextInputType.number,
-        this.style = const TextStyle(),
-        this.textFieldAlignment = MainAxisAlignment.spaceBetween,
-        this.obscureText = false,
-        this.fieldStyle = FieldStyle.underline,
-        this.onChanged,
-        this.onCompleted})
+      this.length = 4,
+      this.width = 10,
+      this.fieldWidth = 30,
+      this.keyboardType = TextInputType.number,
+      this.style = const TextStyle(),
+      this.textFieldAlignment = MainAxisAlignment.spaceBetween,
+      this.obscureText = false,
+      this.fieldStyle = FieldStyle.underline,
+      this.onChanged,
+      this.onCompleted})
       : assert(length > 1);
 
   @override
@@ -121,10 +121,10 @@ class _OTPTextFieldState extends State<OTPTextField> {
               borderSide: BorderSide(color: ColorResources.light_purple),
             ),
             focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color:  ColorResources.light_purple))),
-            // border: widget.fieldStyle == FieldStyle.box
-            //     ? OutlineInputBorder(borderSide: BorderSide(width: widget.fieldWidth,color: Colors.red))
-            //       : UnderlineInputBorder(borderSide: BorderSide(width: widget.fieldWidth,color: Colors.red))),
+                borderSide: BorderSide(color: ColorResources.light_purple))),
+        // border: widget.fieldStyle == FieldStyle.box
+        //     ? OutlineInputBorder(borderSide: BorderSide(width: widget.fieldWidth,color: Colors.red))
+        //       : UnderlineInputBorder(borderSide: BorderSide(width: widget.fieldWidth,color: Colors.red))),
         onChanged: (String str) {
           // Check if the current value at this position is empty
           // If it is move focus to previous text field.

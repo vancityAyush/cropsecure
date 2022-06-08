@@ -1,4 +1,4 @@
-package com.example.cropsecure
+package com.example.CropSecure
 
 import io.flutter.embedding.android.FlutterActivity
 

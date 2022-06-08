@@ -1,4 +1,4 @@
-import 'package:cropsecure/provider/authprovider.dart';
+import 'package:CropSecure/provider/authprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

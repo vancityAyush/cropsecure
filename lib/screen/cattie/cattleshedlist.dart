@@ -1,7 +1,7 @@
-import 'package:cropsecure/data/model/response/responsefamer.dart';
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/data/model/response/responsefamer.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';

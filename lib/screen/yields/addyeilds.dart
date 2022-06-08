@@ -1,7 +1,7 @@
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/drop_down.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/drop_down.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -215,8 +215,8 @@ class _AddYieldsState extends State<AddYields> {
                                         return [
                                           "A - 100 to 90%",
                                           "B - 90 to 80%",
-                                          "C - 80 to 75%",
-                                          "D - 75 to 70 %"
+                                          "C - 80 to 70%",
+                                          "D - 70 to 50 %"
                                         ];
                                       },
                                       onChanged: (String data) async {

@@ -1,7 +1,7 @@
-import 'package:cropsecure/screen/soil/add_report_list.dart';
-import 'package:cropsecure/screen/soil/register.dart';
-import 'package:cropsecure/screen/soil/soilhistory.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/soil/add_report_list.dart';
+import 'package:CropSecure/screen/soil/register.dart';
+import 'package:CropSecure/screen/soil/soilhistory.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

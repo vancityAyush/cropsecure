@@ -1,9 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_typing_uninitialized_variables
 
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/drop_down.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/drop_down.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

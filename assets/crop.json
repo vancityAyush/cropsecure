@@ -1,0 +1,65 @@
+{
+    "Cereals": {
+        "Paddy": {
+            "RNR": {},
+            "Sona": {},
+            "Ganga Kaveri": {},
+            "IR 64": {}
+        },
+        "Sorghum": {
+            "Hybrid": {},
+            "BSR": {},
+            "Co Series": {}
+        },
+        "Wheat": {
+            "Cow 1": {},
+            "Wheat": {},
+            "Samba": {},
+            "HW 1095": {}
+        }
+    },
+    "Grain Legumes": {
+        "Green peas": {
+            "SRF": {},
+            "GTR": {},
+            "HYU": {}
+        },
+        "Yellow Peas": {
+            "GRY": {},
+            "JIY": {},
+            "HIY": {}
+        }
+    },
+    "Vegetables": {
+        "Okra": {
+            "XYZ": {},
+            "ABC": {},
+            "PQR": {}
+        },
+        "Pumpkin": {
+            "C-A": {},
+            "C-B": {}
+        },
+        " Gourd": {
+            "Bottle ": {},
+            "Bitter ": {},
+            "Ivy": {},
+            "Ridged ": {}
+        }
+    },
+    "Fruits and Nuts": {
+        "Karaunda": {
+            "UT 2": {},
+            "UT 5": {},
+            "UT 10": {}
+        },
+        "Lime": {
+            "Lime 250": {},
+            "Lime 45": {}
+        },
+        "Iamun": {
+            "Sr": {},
+            "Dr": {}
+        }
+    }
+}

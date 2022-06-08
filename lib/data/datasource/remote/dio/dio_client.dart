@@ -1,8 +1,10 @@
 //@dart=2.9
 import 'dart:io';
-import 'package:cropsecure/utill/app_constants.dart';
+
+import 'package:CropSecure/utill/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'logging_interceptor.dart';
 
 class DioClient {
@@ -13,11 +15,12 @@ class DioClient {
   Dio dio;
   String token;
 
-  DioClient(this.baseUrl,
-      Dio dioC, {
-        this.loggingInterceptor,
-        this.sharedPreferences,
-      }) {
+  DioClient(
+    this.baseUrl,
+    Dio dioC, {
+    this.loggingInterceptor,
+    this.sharedPreferences,
+  }) {
     token = sharedPreferences.getString(AppConstants.token);
     print(token);
     dio = dioC ?? Dio();
@@ -28,11 +31,13 @@ class DioClient {
       ..httpClientAdapter
       ..options.headers = {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token'};
+        'Authorization': 'Bearer $token'
+      };
     dio.interceptors.add(loggingInterceptor);
   }
 
-  Future<Response> get(String uri, {
+  Future<Response> get(
+    String uri, {
     Map<String, dynamic> queryParameters,
     Options options,
     CancelToken cancelToken,
@@ -52,9 +57,12 @@ class DioClient {
     } on FormatException catch (_) {
       throw const FormatException("Unable to process the data");
     } catch (e) {
-      rethrow;}}
+      rethrow;
+    }
+  }
 
-  Future<Response> post(String uri, {
+  Future<Response> post(
+    String uri, {
     data,
     Map<String, dynamic> queryParameters,
     Options options,
@@ -80,7 +88,8 @@ class DioClient {
     }
   }
 
-  Future<Response> put(String uri, {
+  Future<Response> put(
+    String uri, {
     data,
     Map<String, dynamic> queryParameters,
     Options options,
@@ -106,7 +115,8 @@ class DioClient {
     }
   }
 
-  Future<Response> delete(String uri, {
+  Future<Response> delete(
+    String uri, {
     data,
     Map<String, dynamic> queryParameters,
     Options options,

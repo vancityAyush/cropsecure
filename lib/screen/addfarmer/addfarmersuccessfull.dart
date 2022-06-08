@@ -1,5 +1,5 @@
-import 'package:cropsecure/screen/dashboard.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/dashboard.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';

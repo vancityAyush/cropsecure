@@ -1,10 +1,10 @@
-import 'package:cropsecure/data/model/response/responsefamer.dart';
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/screen/addfarmer/addfarmer.dart';
-import 'package:cropsecure/screen/addfarmer/addplots.dart';
-import 'package:cropsecure/utill/app_constants.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/data/model/response/responsefamer.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/screen/addfarmer/addfarmer.dart';
+import 'package:CropSecure/screen/addfarmer/addplots.dart';
+import 'package:CropSecure/utill/app_constants.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';

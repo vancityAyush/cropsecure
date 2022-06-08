@@ -1,6 +1,6 @@
-import 'package:cropsecure/screen/cattie/cattieinfo.dart';
-import 'package:cropsecure/screen/result.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/cattie/cattieinfo.dart';
+import 'package:CropSecure/screen/result.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 
 import 'addfarmer/farmerinfo.dart';

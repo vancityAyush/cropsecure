@@ -1,4 +1,4 @@
-# cropsecure
+# CropSecure
 
 A new Flutter project.
 

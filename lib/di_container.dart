@@ -1,8 +1,9 @@
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/app_constants.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/utill/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'data/datasource/remote/dio/dio_client.dart';
 import 'data/datasource/remote/dio/logging_interceptor.dart';
 import 'data/repository/repo/auth_repo/auth_repo.dart';
@@ -10,8 +11,8 @@ import 'data/repository/repo/auth_repo/auth_repo.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-
-  sl.registerLazySingleton(() => DioClient(AppConstants.baseUrl, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(() => DioClient(AppConstants.baseUrl, sl(),
+      loggingInterceptor: sl(), sharedPreferences: sl()));
   // Repository
   sl.registerLazySingleton(() => AuthRepo(dioClient: sl()));
 

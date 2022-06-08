@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:cropsecure/provider/authprovider.dart';
-import 'package:cropsecure/utill/app_constants.dart';
+import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/utill/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';

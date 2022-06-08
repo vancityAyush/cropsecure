@@ -1,6 +1,6 @@
-import 'package:cropsecure/screen/result_page.dart';
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/result_page.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';

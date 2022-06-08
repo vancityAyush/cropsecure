@@ -1,0 +1,145 @@
+{
+    "KARNATAKA": {
+        "KOPPAL": {
+            "GANGAVATHI": {
+                "GANGAVATHI": {
+                    "ANEGUNDI": {
+                        "Achalapur": {},
+                        "Anegundi": {},
+                        "Arhal": {}
+                    },
+                    "MALLAPURA": {
+                        "Bankapur": {},
+                        "Basapattana": {}
+                    }
+                },
+                "MARALI": {
+                    "AGOLI": {
+                        "Gangawati (Rural)": {},
+                        "Guddalakampur": {}
+                    },
+                    "KESARAHATTI": {
+                        "Gudur": {},
+                        "Hanmanhal": {}
+                    },
+                    "CHIKKABENAKAL": {
+                        "Hanwal": {},
+                        "Hire Madinal": {}
+                    }
+                },
+                "VENKATAGIRI": {
+                    "MARALI": {
+                        "Kesarhatti": {},
+                        "Kottankal": {}
+                    },
+                    "CHIKKA JANTKAL": {
+                        "Mallapur": {},
+                        "Mallapura": {}
+                    }
+                }
+            },
+            "KANAKAGIRI": {
+                "HULIHAIDARA": {
+                    "MUSALAPUR": {
+                        "Arlahalli": {},
+                        "Ayodhya": {}
+                    },
+                    "HIREKHED": {
+                        "Banderhal": {},
+                        "Bommasagara": {}
+                    },
+                    "CHIKKAMADINAL": {
+                        "Challur": {},
+                        "Chikka Dankankal": {}
+                    },
+                    "SULEKAL": {
+                        "Herur": {},
+                        "Hire Benkal": {}
+                    }
+                },
+                "KANAKAGIRI": {
+                    "NAVALI": {
+                        "Jantkal (Kalan)": {},
+                        "Jeeral": {}
+                    },
+                    "KARADONA": {
+                        "Juratgi": {},
+                        "Kyarihal": {}
+                    }
+                }
+            },
+            "KOPPAL": {
+                "ALAVADI": {
+                    "ALWANDI": {
+                        "Abbigeri": {},
+                        "Achalapur": {}
+                    },
+                    "KAVALOOR": {
+                        "Agalkera": {},
+                        "Allanagar": {}
+                    }
+                },
+                "KOPPALA": {
+                    "KALTAVARGERA": {
+                        "Kalkera": {},
+                        "Kamanur": {},
+                        "Kampasagar": {}
+                    },
+                    "INDARGI": {
+                        "Kampli": {},
+                        "Kanakapur": {},
+                        "Kardigudda": {}
+                    }
+                }
+            }
+        },
+        "BALLARI": {
+            "BALLARI": {
+                "BALLARI": {
+                    "KOLAGALLU": {
+                        "KOLAGALLU": {}
+                    },
+                    "HANDHIHAL": {
+                        "Basarakodu": {},
+                        "Badanahatti": {}
+                    }
+                },
+                "KOLURU": {
+                    "SANGANAKALLU": {
+                        "Byalachinte": {},
+                        "Chaganur": {},
+                        "Chellagurki": {}
+                    },
+                    "M. GONAL": {
+                        "Dammur": {},
+                        "Gotur": {},
+                        "Gudadur": {}
+                    }
+                }
+            },
+            "KURUGODU": {
+                "KOLURU": {
+                    "KALLUKAMBA": {
+                        "Asundi": {},
+                        "Bevinahalli": {},
+                        "Bisalahalli": {}
+                    },
+                    "ORVAI": {
+                        "Bobbukunta": {},
+                        "Bommanahal": {}
+                    }
+                },
+                "KURUGODU": {
+                    "SIDDAMMANAHALLI": {
+                        "SIDDAMMANAHALLI": {}
+                    },
+                    "BADANAHATTI": {
+                        "Karichedu": {},
+                        "Karikeri": {},
+                        "Kolagallu": {}
+                    }
+                }
+            }
+        }
+    }
+}

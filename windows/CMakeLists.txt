@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(cropsecure LANGUAGES CXX)
+project(CropSecure LANGUAGES CXX)
 
-set(BINARY_NAME "cropsecure")
+set(BINARY_NAME "CropSecure")
 
 cmake_policy(SET CMP0063 NEW)
 

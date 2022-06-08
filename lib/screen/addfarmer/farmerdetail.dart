@@ -1,10 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, avoid_print
 
-import 'package:cropsecure/screen/addfarmer/addplots.dart';
-import 'package:cropsecure/screen/addfarmer/viewplots.dart';
-import 'package:cropsecure/utill/app_constants.dart';
-import 'package:cropsecure/utill/sharedprefrence.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/screen/addfarmer/addplots.dart';
+import 'package:CropSecure/screen/addfarmer/viewplots.dart';
+import 'package:CropSecure/utill/app_constants.dart';
+import 'package:CropSecure/utill/sharedprefrence.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';

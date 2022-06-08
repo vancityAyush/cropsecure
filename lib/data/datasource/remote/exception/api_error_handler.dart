@@ -1,6 +1,6 @@
 //@dart=2.9
 
-import 'package:cropsecure/data/model/response/base/error_response.dart';
+import 'package:CropSecure/data/model/response/base/error_response.dart';
 import 'package:dio/dio.dart';
 
 class ApiErrorHandler {

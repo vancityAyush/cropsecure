@@ -1,5 +1,5 @@
-import 'package:cropsecure/utill/color_resources.dart';
-import 'package:cropsecure/utill/styles.dart';
+import 'package:CropSecure/utill/color_resources.dart';
+import 'package:CropSecure/utill/styles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
