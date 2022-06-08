@@ -196,14 +196,16 @@ class _FarmerListCattleState extends State<FarmerListCattle> {
                                         responseFarmer.data[index].age);
                                     await SharedPrefManager.savePrefString(
                                         AppConstants.addressFarmer,
-                                        responseFarmer.data[index].villageName +
+                                        responseFarmer
+                                                .data[index].districtName +
                                             " " +
                                             responseFarmer.data[index].taluka +
                                             " " +
-                                            responseFarmer.data[index].hobble +
+                                            responseFarmer
+                                                .data[index].gramaPanchayath +
                                             "" +
                                             responseFarmer
-                                                .data[index].districtName +
+                                                .data[index].villageName +
                                             " " +
                                             responseFarmer.data[index].state);
                                     Get.to(

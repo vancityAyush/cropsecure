@@ -8,6 +8,10 @@ class ResponseProfile {
   String data2;
   String data3;
 
+  // String get address(){
+  //   return data.districtName + data.taluka + data.provinceName;
+  // }
+
   ResponseProfile(
       {this.errorCode,
       this.responseString,

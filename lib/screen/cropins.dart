@@ -115,7 +115,7 @@ class _CropInsState extends State<CropIns> {
                   mode: Mode.MENU,
                   popupElevation: 5,
                   dropdownSearchDecoration: const InputDecoration(
-                    hintText: "Agriculture",
+                    hintText: "Insurance Company Name",
                     hintStyle: TextStyle(color: ColorResources.light_purple),
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
@@ -127,7 +127,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     cropTypeSelect = data;
                   },
-                  selectedItem: cropTypeSelect,
+                  // selectedItem: cropTypeSelect,
                 ),
               ),
               const SizedBox(
@@ -187,7 +187,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     cropVarieties = data;
                   },
-                  selectedItem: cropVarieties,
+                  // selectedItem: cropVarieties,
                 ),
               ),
               const SizedBox(
@@ -246,7 +246,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     specificTech = data;
                   },
-                  selectedItem: specificTech,
+                  // selectedItem: specificTech,
                 ),
               ),
               const SizedBox(
@@ -263,7 +263,7 @@ class _CropInsState extends State<CropIns> {
                   mode: Mode.MENU,
                   popupElevation: 5,
                   dropdownSearchDecoration: const InputDecoration(
-                    hintText: "",
+                    hintText: "Select",
                     hintStyle: TextStyle(color: ColorResources.light_purple),
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
@@ -275,7 +275,7 @@ class _CropInsState extends State<CropIns> {
                   onChanged: (String data) async {
                     showingDate = data;
                   },
-                  selectedItem: showingDate,
+                  // selectedItem: showingDate,
                   // itemAsString: (String da) => da,
                 ),
               ),

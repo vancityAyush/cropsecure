@@ -211,14 +211,16 @@ class _ResultState extends State<Result> {
 
                                     await SharedPrefManager.savePrefString(
                                         AppConstants.addressFarmer,
-                                        responseFarmer.data[index].villageName +
+                                        responseFarmer
+                                                .data[index].districtName +
                                             " " +
                                             responseFarmer.data[index].taluka +
                                             " " +
                                             responseFarmer
-                                                .data[index].districtName +
+                                                .data[index].gramaPanchayath +
                                             " " +
-                                            responseFarmer.data[index].state);
+                                            responseFarmer
+                                                .data[index].villageName);
                                     print(responseFarmer.data[index].aadhaarNo);
                                     Get.to(() => ResultPage(),
                                         transition:

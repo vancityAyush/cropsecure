@@ -564,7 +564,7 @@ class _CceState extends State<Cce> {
                   mode: Mode.MENU,
                   popupElevation: 5,
                   dropdownSearchDecoration: const InputDecoration(
-                    hintText: "Insurance",
+                    hintText: "Select unit",
                     hintStyle: TextStyle(color: ColorResources.light_purple),
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
@@ -1083,7 +1083,7 @@ class _CceState extends State<Cce> {
                   mode: Mode.MENU,
                   popupElevation: 5,
                   dropdownSearchDecoration: const InputDecoration(
-                    hintText: "Insurance",
+                    hintText: "Select Shape of the CCE plot",
                     hintStyle: TextStyle(color: ColorResources.light_purple),
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),

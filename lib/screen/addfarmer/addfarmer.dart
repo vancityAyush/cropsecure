@@ -1331,7 +1331,7 @@ class _AddFarmerState extends State<AddFarmer> {
                                       farmerName.text,
                                       fatherHusbandName.text,
                                       mobileController.text,
-                                      addressService.district,
+                                      addressService.village,
                                       aadharController.text,
                                       panController.text,
                                       rashanController.text,

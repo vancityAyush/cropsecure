@@ -202,14 +202,14 @@ class _CattieInfoState extends State<CattieInfo> {
                                     responseFarmer.data[index].age);
                                 await SharedPrefManager.savePrefString(
                                     AppConstants.addressFarmer,
-                                    responseFarmer.data[index].villageName +
+                                    responseFarmer.data[index].districtName +
                                         " " +
                                         responseFarmer.data[index].taluka +
                                         " " +
                                         responseFarmer
-                                            .data[index].districtName +
+                                            .data[index].gramaPanchayath +
                                         " " +
-                                        responseFarmer.data[index].state);
+                                        responseFarmer.data[index].villageName);
                                 Get.to(
                                     () => CattleList(
                                         farmerId:
@@ -249,8 +249,8 @@ class _CattieInfoState extends State<CattieInfo> {
                                                 fontSize: 16),
                                           ),
                                           Text(
-                                            "${responseFarmer.data[index].districtName},${responseFarmer.data[index].taluka},\n"
-                                            "${responseFarmer.data[index].gramaPanchayath},${responseFarmer.data[index].villageName}",
+                                            "${responseFarmer.data[index].districtName}, ${responseFarmer.data[index].taluka},\n"
+                                            "${responseFarmer.data[index].gramaPanchayath}, ${responseFarmer.data[index].villageName}",
                                             style: robotoRegular.copyWith(
                                                 color: const Color(0xffb8b8b8),
                                                 fontSize: 10),

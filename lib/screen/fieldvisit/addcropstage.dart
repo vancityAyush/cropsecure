@@ -117,7 +117,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           onChanged: (String data) async {
                             cropStage = data;
                           },
-                          selectedItem: cropStage,
+                          // selectedItem: cropStage,
                         ),
                       )
                     ],
@@ -185,7 +185,7 @@ class _AddCropStageState extends State<AddCropStage> {
                           onChanged: (String data) async {
                             cropDueTo = data;
                           },
-                          selectedItem: cropDueTo,
+                          // selectedItem: cropDueTo,
                         ),
                       )
                     ],

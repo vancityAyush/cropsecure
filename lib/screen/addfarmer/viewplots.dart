@@ -147,24 +147,30 @@ class ViewPlots extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Text(
-                                          "Latitude: " +
-                                              snapshots.data['data'][index]
-                                                      ['latitude']
-                                                  .toString(),
-                                          style: robotoMedium.copyWith(
-                                              color: const Color(0xffa5a5a5),
-                                              fontSize: 12),
-                                        ),
-                                        Text(
-                                          "Longitude: " +
-                                              snapshots.data['data'][index]
-                                                      ['longitude']
-                                                  .toString(),
-                                          style: robotoMedium.copyWith(
-                                              color: const Color(0xffa5a5a5),
-                                              fontSize: 12),
-                                        ),
+                                        if (snapshots.data['data'][index]
+                                                ['longitude'] !=
+                                            null)
+                                          Text(
+                                            "Latitude: " +
+                                                snapshots.data['data'][index]
+                                                        ['latitude']
+                                                    .toString(),
+                                            style: robotoMedium.copyWith(
+                                                color: const Color(0xffa5a5a5),
+                                                fontSize: 12),
+                                          ),
+                                        if (snapshots.data['data'][index]
+                                                ['longitude'] !=
+                                            null)
+                                          Text(
+                                            "Longitude: " +
+                                                snapshots.data['data'][index]
+                                                        ['longitude']
+                                                    .toString(),
+                                            style: robotoMedium.copyWith(
+                                                color: const Color(0xffa5a5a5),
+                                                fontSize: 12),
+                                          ),
                                         Text(
                                           snapshots.data['data'][index]
                                                   ['district'] +
