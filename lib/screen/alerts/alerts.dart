@@ -1,6 +1,5 @@
 import 'package:CropSecure/provider/authprovider.dart';
 import 'package:CropSecure/screen/alerts/raisealertdetail.dart';
-import 'package:CropSecure/utill/color_resources.dart';
 import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -135,11 +134,14 @@ class _RaiseAlertsState extends State<RaiseAlerts> {
                                                             top: 6.0),
                                                     child: Row(
                                                       children: [
-                                                        Container(
-                                                            width: 70,
-                                                            height: 70,
-                                                            color: ColorResources
-                                                                .light_purple),
+                                                        Image.network(
+                                                          "http://fs.frantic.in/resource/upload/" +
+                                                              res['data'][index]
+                                                                  ['image'],
+                                                          height: 80,
+                                                          width: 80,
+                                                          fit: BoxFit.contain,
+                                                        ),
                                                         const SizedBox(
                                                           width: 15,
                                                         ),

@@ -46,8 +46,9 @@ class OrderHistory extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "assets/image/equipment.png",
+                            child: Image.network(
+                              "http://fs.frantic.in/resource/upload/" +
+                                  json['image'],
                               fit: BoxFit.cover,
                               alignment: Alignment.center,
                               width: 100,
