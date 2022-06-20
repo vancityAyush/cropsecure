@@ -63,11 +63,12 @@ class _IrrigationState extends State<Irrigation> {
                         children: [
                           ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                "assets/image/farmer.png",
+                              child: Image.network(
+                                "http://fs.frantic.in/resource/upload/" +
+                                    data[index]['image'],
                                 width: 136,
                                 height: 180,
-                                fit: BoxFit.fill,
+                                fit: BoxFit.contain,
                               )),
                           const SizedBox(
                             width: 20,
