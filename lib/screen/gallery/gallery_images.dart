@@ -1,4 +1,3 @@
-import 'package:CropSecure/utill/app_constants.dart';
 import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,11 +29,11 @@ class GalleryImages extends StatelessWidget {
             children: [
               for (var i in item['items'])
                 Container(
-                  margin: EdgeInsets.all(5),
+                  margin: EdgeInsets.all(10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
-                      AppConstants.Image + i['image'],
+                      "http://fs.frantic.in/uploads/" + i['image'],
                       fit: BoxFit.cover,
                     ),
                   ),

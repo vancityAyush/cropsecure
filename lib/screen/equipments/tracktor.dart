@@ -126,8 +126,8 @@ class _TractorState extends State<Tractor> {
                             children: [
                               ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/image/farmer.png",
+                                  child: Image.network(
+                                    "http://fs.frantic.in/resource/upload/${snapshots.data['data'][index]['image']}",
                                     width: 136,
                                     height: 180,
                                     fit: BoxFit.fill,

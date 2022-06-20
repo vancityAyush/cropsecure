@@ -88,12 +88,19 @@ class _SeedsState extends State<Seeds> {
                             children: [
                               ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/image/farmer.png",
-                                    width: 136,
+                                  child: Image.network(
+                                    "http://fs.frantic.in/resource/upload/${snapshots.data['data'][index]['image']}",
                                     height: 180,
-                                    fit: BoxFit.fill,
-                                  )),
+                                    width: 136,
+                                    fit: BoxFit.contain,
+                                  )
+                                  // Image.asset(
+                                  //   "assets/image/farmer.png",
+                                  //   width: 136,
+                                  //   height: 180,
+                                  //   fit: BoxFit.fill,
+                                  // ),
+                                  ),
                               const SizedBox(
                                 width: 20,
                               ),

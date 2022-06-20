@@ -1207,6 +1207,7 @@ class AuthProvider with ChangeNotifier {
 
   ////////////fetchProductApi
   Future fetchProductApi(String category, String subCategory) async {
+    if (category == "Non-Organic") category = "NonOrganic";
     ApiResponse apiResponse =
         await authRepo.fetchProductsApi(category, subCategory);
     if (apiResponse.response != null &&
