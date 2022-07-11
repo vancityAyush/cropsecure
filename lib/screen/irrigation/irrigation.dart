@@ -432,6 +432,7 @@ class _IrrigationState extends State<Irrigation> {
                                                                                                                         alignment: Alignment.center,
                                                                                                                         child: Text(snapshots.data['data'][index]['soil_type'], style: robotoBold.copyWith(color: const Color(0xff262626), fontSize: 14)),
                                                                                                                       ),
+                                                                                                                      Text(snapshots.data['data'][index]['survey_no'], style: robotoBold.copyWith(color: const Color(0xff262626), fontSize: 14)),
                                                                                                                     ],
                                                                                                                   ),
                                                                                                                 ),
