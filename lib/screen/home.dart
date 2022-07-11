@@ -56,6 +56,24 @@ class _HomeState extends State<Home> {
                                       robotoBold.copyWith(color: Colors.grey)),
                             ],
                           ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/image/cows.png",
+                                width: 30,
+                                height: 40,
+                              ),
+                              const SizedBox(
+                                width: 7,
+                              ),
+                              Text(
+                                  "${data['cattle_farmers_count']['count']} cattle",
+                                  style:
+                                      robotoBold.copyWith(color: Colors.grey)),
+                            ],
+                          ),
                           const SizedBox(
                             height: 10,
                           ),

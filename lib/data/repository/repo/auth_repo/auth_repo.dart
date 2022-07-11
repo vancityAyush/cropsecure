@@ -300,6 +300,7 @@ class AuthRepo {
       File rashan,
       File panCard,
       File image,
+      String pincode,
       {farmerType type}) async {
     var key =
         await SharedPrefManager.getPrefrenceString(AppConstants.newUserId);
@@ -327,6 +328,7 @@ class AuthRepo {
       "rashan": MultipartFile.fromFileSync(rashan.path),
       "image": MultipartFile.fromFileSync(image.path),
       "pan": MultipartFile.fromFileSync(panCard.path),
+      "pincode": pincode
     };
     if (type == farmerType.C) {
       map.addAll({
@@ -433,7 +435,8 @@ class AuthRepo {
       String accountNumber,
       String holderName,
       String branchName,
-      String id) async {
+      String id,
+      File passbook) async {
     var key =
         await SharedPrefManager.getPrefrenceString(AppConstants.newUserId);
     FormData formData = FormData.fromMap({
@@ -442,7 +445,8 @@ class AuthRepo {
       "ifsc": ifscCode,
       "account_no": accountNumber,
       "holder_name": holderName,
-      "branch_name": branchName
+      "branch_name": branchName,
+      "passbook_image": MultipartFile.fromFileSync(passbook.path),
     });
 
     print(formData.fields.toString());

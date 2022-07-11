@@ -14,6 +14,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:record/record.dart';
 
+import '../../utill/styles.dart';
+
 enum flags { YES, NO }
 
 class PlantDoctor extends StatefulWidget {
@@ -189,50 +191,84 @@ class _State extends State<PlantDoctor> {
                       ),
                       SizedBox(height: 20),
 
-                      // Visibility for image
-                      if (_image != null)
-                        Container(
-                          child: Image.file(_image),
-                        ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      Column(
                         children: [
-                          // Column(
-                          //   children: [
-                          //     IconButton(
-                          //       icon: Icon(
-                          //         isRecording == false ? Icons.mic : Icons.stop,
-                          //         size: 30,
-                          //         color: Colors.black,
-                          //       ),
-                          //       onPressed: () async {
-                          //         await recordAudio();
-                          //       },
-                          //     ),
-                          //     Text(
-                          //         isRecording == false ? "Mic" : "Recording...",
-                          //         style: const TextStyle(
-                          //             color: Colors.black,
-                          //             fontWeight: FontWeight.bold,
-                          //             fontSize: 16))
-                          //   ],
-                          // ),
-                          Column(
-                            children: [
-                              IconButton(
-                                  icon: const Icon(
-                                    Icons.photo,
-                                    size: 30,
-                                    color: Colors.black,
+                          Center(
+                            child: Container(
+                              height: 120,
+                              width: 140,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  border: Border.all(
+                                      color: const Color(0xffb7b7b7))),
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.all(2),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                            color: const Color(0xffe1ddde)),
+                                        height: 40,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 12.0),
+                                            child: Text(
+                                              "Photo",
+                                              style: robotoMedium.copyWith(
+                                                  color:
+                                                      const Color(0xff262626),
+                                                  fontSize: 13),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () => selectImage(),
+                                        child: Container(
+                                            margin: const EdgeInsets.only(
+                                                right: 4, bottom: 3),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(13),
+                                                color: const Color(0xffb7b7b7)),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                Icons.image_outlined,
+                                                size: 25,
+                                              ),
+                                            )),
+                                      ),
+                                    ],
                                   ),
-                                  onPressed: () => selectImage()),
-                              const Text("Photo",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16))
-                            ],
+                                  _image == null
+                                      ? const Text("")
+                                      : Positioned(
+                                          top: 0,
+                                          bottom: 0,
+                                          right: 0,
+                                          left: 0,
+                                          child: Container(
+                                            height: 60,
+                                            padding: const EdgeInsets.fromLTRB(
+                                                20, 45, 25, 30),
+                                            child: Image.file(
+                                              _image,
+                                            ),
+                                          ))
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       ),

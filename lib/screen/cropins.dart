@@ -124,6 +124,7 @@ class _CropInsState extends State<CropIns> {
                   onFind: (String filter) async {
                     return kInsCompanyName;
                   },
+                  selectedItem: cropTypeSelect == "" ? null : cropTypeSelect,
                   onChanged: (String data) async {
                     cropTypeSelect = data;
                   },
@@ -170,6 +171,7 @@ class _CropInsState extends State<CropIns> {
               SizedBox(
                 height: 48,
                 child: DropdownSearch(
+                  selectedItem: cropTypeSelect == "" ? null : cropTypeSelect,
                   popupShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   mode: Mode.MENU,
@@ -239,6 +241,7 @@ class _CropInsState extends State<CropIns> {
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
                   ),
+                  selectedItem: cropTypeSelect == "" ? null : cropTypeSelect,
                   // showSearchBox:true,
                   onFind: (String filter) async {
                     return insP;
@@ -268,6 +271,7 @@ class _CropInsState extends State<CropIns> {
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
                   ),
+                  selectedItem: showingDate == "" ? null : cropTypeSelect,
                   // showSearchBox:true,
                   onFind: (String filter) async {
                     return loaner;
@@ -328,7 +332,7 @@ class _CropInsState extends State<CropIns> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              formatDate ?? "Starting date",
+                              startingDate ?? "Starting date",
                               style: robotoMedium.copyWith(
                                   fontSize: 17, color: Colors.white),
                             ),
@@ -422,7 +426,7 @@ class _CropInsState extends State<CropIns> {
                         else if (specificTech == "") {
                           showSnackBar("Select specific technology");
                         } else if (showingDate == "") {
-                          showSnackBar("Select sowing date");
+                          showSnackBar("Select showing date");
                         }
                         // else if (mixedCrop == "") {
                         //   showSnackBar("Select mixed crop");
@@ -436,7 +440,7 @@ class _CropInsState extends State<CropIns> {
                                   listen: false)
                               .cropInsurance(
                             plotId: widget.plotId,
-                            insuranceName: cropNameSelect,
+                            insuranceName: cropTypeSelect,
                             year: yearController.text,
                             season: cropVarieties,
                             amount: amountController.text,
@@ -463,6 +467,7 @@ class _CropInsState extends State<CropIns> {
                             showingDate = "";
                             policyController.clear();
                             startingDate = null;
+                            formatDate = null;
                             endingDate = null;
                           });
                         }

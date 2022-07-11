@@ -484,7 +484,7 @@ class Drawers extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           // Get.to(() => RaiseAlertDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                          Get.to(() => QRScreen(),
+                          Get.to(() => ComingSoon(title: "QR"),
                               transition: Transition.rightToLeftWithFade,
                               duration: const Duration(milliseconds: 600));
                           // Get.to(() => CattieShed(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:CropSecure/provider/authprovider.dart';
 import 'package:CropSecure/utill/color_resources.dart';
 import 'package:CropSecure/utill/dimensions.dart';
 import 'package:CropSecure/utill/drop_down.dart';
@@ -12,8 +13,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-
-import '../../provider/authprovider.dart';
 
 class Cce extends StatefulWidget {
   @override
@@ -64,7 +63,8 @@ class _CceState extends State<Cce> {
   File filename;
   PlatformFile file;
   Position position;
-  List<int> bioMass = List.generate(8, (index) => 0);
+  List<TextEditingController> bioMass =
+      List.generate(8, (index) => TextEditingController());
   File newFileObserverPhoto,
       newFileSouthWestPhoto,
       newFileFieldImagePhoto,
@@ -130,15 +130,15 @@ class _CceState extends State<Cce> {
     }
   }
 
-  void calculateBioMass(int value, int index) {
-    bioMass[index] = value;
+  void calculateBioMass() {
     int sum = 0;
     for (int i = 0; i < bioMass.length; i++) {
-      sum += bioMass[i];
+      if (bioMass[i].text.isNotEmpty) {
+        int val = int.parse(bioMass[i].text);
+        sum += val;
+      }
     }
-    setState(() {
-      sumOfBioMassController.text = sum.toString();
-    });
+    sumOfBioMassController.text = sum.toString();
   }
 
   Future<Position> getLocation() async {
@@ -570,6 +570,7 @@ class _CceState extends State<Cce> {
                     border: OutlineInputBorder(),
                   ),
                   // showSearchBox:true,
+                  selectedItem: areaAcreSelect == "" ? null : areaAcreSelect,
                   onFind: (String filter) async {
                     return kAreaAffected;
                   },
@@ -1089,6 +1090,8 @@ class _CceState extends State<Cce> {
                     border: OutlineInputBorder(),
                   ),
                   // showSearchBox:true,
+                  selectedItem:
+                      shapeOfCceSelect == "" ? null : shapeOfCceSelect,
                   onFind: (String filter) async {
                     return ["Square", "Circle", "Rectangular", "Triangular"];
                   },
@@ -1315,11 +1318,8 @@ class _CceState extends State<Cce> {
                         child: SizedBox(
                           height: 48.0,
                           child: TextFormField(
-                            onChanged: (value) {
-                              int valueInt =
-                                  value.isNotEmpty ? int.parse(value) : 0;
-                              calculateBioMass(valueInt, index);
-                            },
+                            controller: bioMass[index],
+                            onChanged: (value) => calculateBioMass(),
                             maxLines: 1,
                             keyboardType: TextInputType.number,
                             autofocus: false,
@@ -2111,6 +2111,7 @@ class _CceState extends State<Cce> {
                             setState(() {
                               isLoad = true;
                             });
+
                             // Get.to(() => AddBankDetail(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
                             await _sumbit(context);
                           }
@@ -2201,7 +2202,7 @@ class _CceState extends State<Cce> {
       newFileWeightPlotPhoto = null;
       newFileMoisturePhoto = null;
       newFileJointPhoto = null;
-      bioMass = List.generate(8, (index) => 0);
+      bioMass = List.generate(8, (index) => TextEditingController());
       isLoad = false;
     });
   }

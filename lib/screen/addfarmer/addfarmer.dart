@@ -910,7 +910,7 @@ class _AddFarmerState extends State<AddFarmer> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            "upload Pan Card",
+                            "Upload Pan Card",
                             style: robotoMedium.copyWith(
                                 color: const Color(0xff262626)),
                           ),
@@ -1350,6 +1350,7 @@ class _AddFarmerState extends State<AddFarmer> {
                                       newFileRashan,
                                       newFilePan,
                                       newFileFarmer,
+                                      pinController.text,
                                       type: type);
 
                               setState(() {

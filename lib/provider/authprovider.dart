@@ -356,6 +356,7 @@ class AuthProvider with ChangeNotifier {
       File rashan,
       File panCard,
       File image,
+      String pincode,
       {farmerType type = farmerType.F}) async {
     ApiResponse apiResponse = await authRepo.registerFarmerApi(
         name,
@@ -380,6 +381,7 @@ class AuthProvider with ChangeNotifier {
         rashan,
         panCard,
         image,
+        pincode,
         type: type);
 
     ResponseModel responseModel;
@@ -471,11 +473,12 @@ class AuthProvider with ChangeNotifier {
       String accountNumber,
       String holderName,
       String branchName,
-      String id) async {
+      String id,
+      File passbook) async {
     var cattle =
         await SharedPrefManager.getPrefrenceString(AppConstants.mainCattle);
-    ApiResponse apiResponse = await authRepo.addBankDetailsApi(
-        bankName, ifscCode, accountNumber, holderName, branchName, id);
+    ApiResponse apiResponse = await authRepo.addBankDetailsApi(bankName,
+        ifscCode, accountNumber, holderName, branchName, id, passbook);
 
     ResponseModel responseModel;
     if (apiResponse.response != null &&

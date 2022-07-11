@@ -39,7 +39,7 @@ class _AddBankDetailState extends State<AddBankDetail> {
 
   Future getImagefromcamera() async {
     dynamic image =
-        await ImagePicker.platform.pickImage(source: ImageSource.camera);
+        await ImagePicker.platform.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = newFile = File(image.path);
@@ -486,6 +486,7 @@ class _AddBankDetailState extends State<AddBankDetail> {
                                       const EdgeInsets.fromLTRB(20, 45, 25, 30),
                                   child: Image.file(
                                     _image,
+                                    fit: BoxFit.contain,
                                   ),
                                 ))
                       ],
@@ -536,7 +537,8 @@ class _AddBankDetailState extends State<AddBankDetail> {
                                         accountNumberController.text,
                                         accountNameController.text,
                                         branchController.text,
-                                        widget.id);
+                                        widget.id,
+                                        _image);
 
                                 setState(() {
                                   isLoad = false;

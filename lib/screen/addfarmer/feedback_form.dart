@@ -86,7 +86,7 @@ class _State extends State<FeedbackForm> {
               const SizedBox(
                 height: 13,
               ),
-              RatingWidget(text: "Masked Linkage", value: maskedLinkage),
+              RatingWidget(text: "Market Linkage", value: maskedLinkage),
               const SizedBox(
                 height: 13,
               ),

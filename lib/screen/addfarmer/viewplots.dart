@@ -1,9 +1,9 @@
 import 'package:CropSecure/provider/authprovider.dart';
+import 'package:CropSecure/qr/qr_screen.dart';
 import 'package:CropSecure/screen/addfarmer/feedback_form.dart';
 import 'package:CropSecure/screen/addfarmer/geo_tag.dart';
 import 'package:CropSecure/screen/addfarmer/plandoctor.dart';
 import 'package:CropSecure/screen/alerts/alerts.dart';
-import 'package:CropSecure/screen/calculator/calculator.dart';
 import 'package:CropSecure/screen/cce/cce.dart';
 import 'package:CropSecure/screen/cropins.dart';
 import 'package:CropSecure/screen/fieldvisit/addfieldvisit.dart';
@@ -509,9 +509,16 @@ class ViewPlots extends StatelessWidget {
                                       flex: 1,
                                       child: InkWell(
                                         onTap: () {
+                                          // Get.to(
+                                          //     () => Calculator(snapshots
+                                          //         .data['data'][index]['id']),
+                                          //     transition: Transition
+                                          //         .rightToLeftWithFade,
+                                          //     duration: const Duration(
+                                          //         milliseconds: 600));
                                           Get.to(
-                                              () => Calculator(snapshots
-                                                  .data['data'][index]['id']),
+                                              () => ComingSoon(
+                                                  title: "Calculator"),
                                               transition: Transition
                                                   .rightToLeftWithFade,
                                               duration: const Duration(

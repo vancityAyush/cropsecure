@@ -68,6 +68,9 @@ class _FarmerListCattleState extends State<FarmerListCattle> {
             return Text("${snapshots.error}");
           } else if (snapshots.hasData) {
             ResponseFarmer responseFarmer = snapshots.data;
+            responseFarmer.data
+                .removeWhere((data) => data.type == farmerType.F);
+            filteredData = responseFarmer.data;
             return Column(
               children: [
                 Container(
@@ -129,7 +132,7 @@ class _FarmerListCattleState extends State<FarmerListCattle> {
                           Text(
                             responseFarmer.data == null
                                 ? ""
-                                : responseFarmer.data.length.toString(),
+                                : filteredData.length.toString(),
                             style: robotoBold.copyWith(
                                 color: ColorResources.light_purple),
                           ),
@@ -171,143 +174,137 @@ class _FarmerListCattleState extends State<FarmerListCattle> {
                             physics: const BouncingScrollPhysics(),
                             itemCount: filteredData.length,
                             itemBuilder: (context, index) {
-                              return Visibility(
-                                visible: responseFarmer.data[index].type ==
-                                    farmerType.C,
-                                child: InkWell(
-                                  onTap: () async {
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.farmerId,
-                                        responseFarmer.data[index].id);
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.farmerImage,
-                                        responseFarmer.data[index].image);
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.farmerName,
-                                        responseFarmer.data[index].name);
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.genderFarmer,
-                                        responseFarmer.data[index].gender);
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.dobFarmer,
-                                        responseFarmer.data[index].dob);
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.age,
-                                        responseFarmer.data[index].age);
-                                    await SharedPrefManager.savePrefString(
-                                        AppConstants.addressFarmer,
-                                        responseFarmer
-                                                .data[index].districtName +
-                                            " " +
-                                            responseFarmer.data[index].taluka +
-                                            " " +
-                                            responseFarmer
-                                                .data[index].gramaPanchayath +
-                                            "" +
-                                            responseFarmer
-                                                .data[index].villageName +
-                                            " " +
-                                            responseFarmer.data[index].state);
-                                    Get.to(
-                                        () => Cattie(
-                                            id: responseFarmer.data[index].id),
-                                        transition:
-                                            Transition.rightToLeftWithFade,
-                                        duration:
-                                            const Duration(milliseconds: 600));
-                                  },
-                                  child: Container(
-                                    margin: const EdgeInsets.all(15),
-                                    padding: const EdgeInsets.all(15),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      border: Border.all(
-                                          color: const Color(0xff92C89C)),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        CircleAvatar(
-                                            radius: 40,
-                                            backgroundImage: NetworkImage(
-                                                AppConstants.Image +
-                                                    responseFarmer
-                                                        .data[index].image)),
+                              return InkWell(
+                                onTap: () async {
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.farmerId,
+                                      responseFarmer.data[index].id);
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.farmerImage,
+                                      responseFarmer.data[index].image);
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.farmerName,
+                                      responseFarmer.data[index].name);
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.genderFarmer,
+                                      responseFarmer.data[index].gender);
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.dobFarmer,
+                                      responseFarmer.data[index].dob);
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.age,
+                                      responseFarmer.data[index].age);
+                                  await SharedPrefManager.savePrefString(
+                                      AppConstants.addressFarmer,
+                                      responseFarmer.data[index].districtName +
+                                          " " +
+                                          responseFarmer.data[index].taluka +
+                                          " " +
+                                          responseFarmer
+                                              .data[index].gramaPanchayath +
+                                          "" +
+                                          responseFarmer
+                                              .data[index].villageName +
+                                          " " +
+                                          responseFarmer.data[index].state);
+                                  Get.to(
+                                      () => Cattie(
+                                          id: responseFarmer.data[index].id),
+                                      transition:
+                                          Transition.rightToLeftWithFade,
+                                      duration:
+                                          const Duration(milliseconds: 600));
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.all(15),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    border: Border.all(
+                                        color: const Color(0xff92C89C)),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage: NetworkImage(
+                                              AppConstants.Image +
+                                                  responseFarmer
+                                                      .data[index].image)),
 
-                                        Expanded(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 19.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "${filteredData[index].name},${responseFarmer.data[index].age}",
-                                                style: robotoBold.copyWith(
-                                                    color:
-                                                        const Color(0xff262626),
-                                                    fontSize: 16),
-                                              ),
-                                              Text(
-                                                "${responseFarmer.data[index].districtName},${responseFarmer.data[index].state},"
-                                                "${responseFarmer.data[index].pincode}",
-                                                style: robotoRegular.copyWith(
-                                                    color:
-                                                        const Color(0xffb8b8b8),
-                                                    fontSize: 10),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 15.0),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: 70,
-                                                      height: 19,
-                                                      decoration: BoxDecoration(
-                                                          color: const Color(
-                                                              0xffc8f6c8),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      child: Center(
-                                                        child: Text(
-                                                          "0 plots",
-                                                          style: robotoRegular
-                                                              .copyWith(
-                                                                  fontSize: 11,
-                                                                  color: const Color(
-                                                                      0xff262626)),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 30,
-                                                    ),
-                                                    Text(
-                                                      "",
-                                                      style: robotoRegular
-                                                          .copyWith(
-                                                              fontSize: 11,
-                                                              color: const Color(
-                                                                  0xff262626)),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )),
+                                      Expanded(
+                                          child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 19.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${filteredData[index].name},${responseFarmer.data[index].age}",
+                                              style: robotoBold.copyWith(
+                                                  color:
+                                                      const Color(0xff262626),
+                                                  fontSize: 16),
+                                            ),
+                                            Text(
+                                              "${responseFarmer.data[index].districtName},${responseFarmer.data[index].state},"
+                                              "${responseFarmer.data[index].pincode}",
+                                              style: robotoRegular.copyWith(
+                                                  color:
+                                                      const Color(0xffb8b8b8),
+                                                  fontSize: 10),
+                                            ),
+                                            // Padding(
+                                            //   padding: const EdgeInsets.only(
+                                            //       top: 15.0),
+                                            //   child: Row(
+                                            //     crossAxisAlignment:
+                                            //         CrossAxisAlignment.start,
+                                            //     children: [
+                                            //       Container(
+                                            //         width: 70,
+                                            //         height: 19,
+                                            //         decoration: BoxDecoration(
+                                            //             color: const Color(
+                                            //                 0xffc8f6c8),
+                                            //             borderRadius:
+                                            //                 BorderRadius
+                                            //                     .circular(10)),
+                                            //         child: Center(
+                                            //           child: Text(
+                                            //             "0 plots",
+                                            //             style: robotoRegular
+                                            //                 .copyWith(
+                                            //                     fontSize: 11,
+                                            //                     color: const Color(
+                                            //                         0xff262626)),
+                                            //           ),
+                                            //         ),
+                                            //       ),
+                                            //       const SizedBox(
+                                            //         width: 30,
+                                            //       ),
+                                            //       Text(
+                                            //         "",
+                                            //         style:
+                                            //             robotoRegular.copyWith(
+                                            //                 fontSize: 11,
+                                            //                 color: const Color(
+                                            //                     0xff262626)),
+                                            //       )
+                                            //     ],
+                                            //   ),
+                                            // ),
+                                          ],
+                                        ),
+                                      )),
 
-                                        // InkWell(
-                                        //     onTap: ()=> _launchURL('tel:${responseFarmer.data[index].mobileNumber}'),
-                                        //     child: Image.asset("assets/image/call.png",width: 28,height: 28,
-                                        //       color: ColorResources.light_purple,)),
-                                      ],
-                                    ),
+                                      // InkWell(
+                                      //     onTap: ()=> _launchURL('tel:${responseFarmer.data[index].mobileNumber}'),
+                                      //     child: Image.asset("assets/image/call.png",width: 28,height: 28,
+                                      //       color: ColorResources.light_purple,)),
+                                    ],
                                   ),
                                 ),
                               );

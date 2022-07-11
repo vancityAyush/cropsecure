@@ -1,7 +1,6 @@
 import 'package:CropSecure/screen/dashboard.dart';
 import 'package:CropSecure/utill/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class AddFarmerSuccessfull extends StatelessWidget {
@@ -41,48 +40,48 @@ class AddFarmerSuccessfull extends StatelessWidget {
               padding: const EdgeInsets.only(left: 90, right: 90),
               child: Column(
                 children: [
-                  Stack(
-                    children: [
-                      SizedBox(
-                          height: 47.0,
-                          width: MediaQuery.of(context).size.width,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color(0xFF6cbd47),
-                              ), //button color
-                            ),
-                            onPressed: () async {
-                              Fluttertoast.showToast(
-                                  msg:
-                                      "Your Farmer has  been register successfully");
-                              Get.offAll(() => Dashboard());
-                              // Get.offAll(() => Dashboard(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
-                              // await Provider.of<AuthProvider>(context,listen: false).loginUserApi(userName.text, password.text, userType);
-                            },
-                            child: Text('Register Plot',
-                                style: robotoBold.copyWith(
-                                    fontSize: 19, color: Colors.white)),
-                          )),
-                      Positioned(
-                          right: 10,
-                          top: 0,
-                          bottom: 0,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: const Color(0xffffffff))),
-                              child: const Padding(
-                                padding: EdgeInsets.all(4.0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              )))
-                    ],
-                  ),
+                  // Stack(
+                  //   children: [
+                  //     // SizedBox(
+                  //     //     height: 47.0,
+                  //     //     width: MediaQuery.of(context).size.width,
+                  //     //     child: ElevatedButton(
+                  //     //       style: ButtonStyle(
+                  //     //         backgroundColor: MaterialStateProperty.all<Color>(
+                  //     //           const Color(0xFF6cbd47),
+                  //     //         ), //button color
+                  //     //       ),
+                  //     //       onPressed: () async {
+                  //     //         Fluttertoast.showToast(
+                  //     //             msg:
+                  //     //                 "Your Farmer has  been register successfully");
+                  //     //         Get.offAll(() => Dashboard());
+                  //     //         // Get.offAll(() => Dashboard(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
+                  //     //         // await Provider.of<AuthProvider>(context,listen: false).loginUserApi(userName.text, password.text, userType);
+                  //     //       },
+                  //     //       child: Text('Register Plot',
+                  //     //           style: robotoBold.copyWith(
+                  //     //               fontSize: 19, color: Colors.white)),
+                  //     //     )),
+                  //     Positioned(
+                  //         right: 10,
+                  //         top: 0,
+                  //         bottom: 0,
+                  //         child: Container(
+                  //             decoration: BoxDecoration(
+                  //                 shape: BoxShape.circle,
+                  //                 border: Border.all(
+                  //                     color: const Color(0xffffffff))),
+                  //             child: const Padding(
+                  //               padding: EdgeInsets.all(4.0),
+                  //               child: Icon(
+                  //                 Icons.arrow_forward_ios,
+                  //                 color: Colors.white,
+                  //                 size: 20,
+                  //               ),
+                  //             )))
+                  //   ],
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Stack(
@@ -98,6 +97,10 @@ class AddFarmerSuccessfull extends StatelessWidget {
                                 ), //button color
                               ),
                               onPressed: () async {
+                                Get.to(Dashboard(),
+                                    transition: Transition.rightToLeftWithFade,
+                                    duration:
+                                        const Duration(milliseconds: 600));
                                 // Get.to(() => RegisterScreen(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
                               },
                               child: Text('Close',

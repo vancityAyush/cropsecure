@@ -129,7 +129,7 @@ class _CattleAddListState extends State<CattleAddList> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Lift Stage:- " +
+                                  "Life Stage:- " +
                                       snapshots.data['data'][index]
                                           ['life_stage'],
                                   style: robotoRegular.copyWith(

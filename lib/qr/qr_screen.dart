@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-class QRScreen extends StatelessWidget {
+class ComingSoon extends StatelessWidget {
+  final String title;
+
+  ComingSoon({Key key, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR'),
+        title: Text(title),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

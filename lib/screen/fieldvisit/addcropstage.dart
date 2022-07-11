@@ -132,10 +132,10 @@ class _AddCropStageState extends State<AddCropStage> {
                       child: Container(
                         color: const Color(0xfff1f1f1),
                         width: MediaQuery.of(context).size.width,
-                        // height: 80,
+                        height: 120,
                         padding: newFileObserverPhoto == null
                             ? const EdgeInsets.all(10)
-                            : const EdgeInsets.all(0),
+                            : const EdgeInsets.all(8),
                         child: Center(
                             child: newFileObserverPhoto == null
                                 ? const Icon(
@@ -145,7 +145,7 @@ class _AddCropStageState extends State<AddCropStage> {
                                   )
                                 : Image.file(
                                     newFileObserverPhoto,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.contain,
                                     // height: 300,
                                     width: double.infinity,
                                   )),
