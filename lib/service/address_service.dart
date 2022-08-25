@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 
 /**
@@ -7,6 +8,7 @@ import 'package:flutter/services.dart';
 * Created on : 06-06-2022
 */
 class AddressService {
+  Dio dio = new Dio();
   Map<String, dynamic> data;
   String state;
   String district;
@@ -14,7 +16,6 @@ class AddressService {
   String hobli;
   String gp;
   String village;
-
   AddressService() {
     readJson();
   }

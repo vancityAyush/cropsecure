@@ -171,7 +171,7 @@ class _CropInsState extends State<CropIns> {
               SizedBox(
                 height: 48,
                 child: DropdownSearch(
-                  selectedItem: cropTypeSelect == "" ? null : cropTypeSelect,
+                  selectedItem: cropVarieties == "" ? null : cropVarieties,
                   popupShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   mode: Mode.MENU,
@@ -241,7 +241,7 @@ class _CropInsState extends State<CropIns> {
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
                   ),
-                  selectedItem: cropTypeSelect == "" ? null : cropTypeSelect,
+                  selectedItem: specificTech == "" ? null : specificTech,
                   // showSearchBox:true,
                   onFind: (String filter) async {
                     return insP;
@@ -271,7 +271,7 @@ class _CropInsState extends State<CropIns> {
                     contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
                     border: OutlineInputBorder(),
                   ),
-                  selectedItem: showingDate == "" ? null : cropTypeSelect,
+                  selectedItem: showingDate == "" ? null : showingDate,
                   // showSearchBox:true,
                   onFind: (String filter) async {
                     return loaner;

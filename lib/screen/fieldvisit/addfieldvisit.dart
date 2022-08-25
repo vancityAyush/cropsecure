@@ -1,7 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks, prefer_const_constructors
 
 import 'package:CropSecure/provider/authprovider.dart';
-import 'package:CropSecure/service/crop_service.dart';
 import 'package:CropSecure/utill/color_resources.dart';
 import 'package:CropSecure/utill/drop_down.dart';
 import 'package:CropSecure/utill/styles.dart';
@@ -10,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../service/crop_service_new.dart';
+
 class AddFieldVisit extends StatefulWidget {
   @override
   State<AddFieldVisit> createState() => _AddFieldVisitState();
@@ -17,8 +18,7 @@ class AddFieldVisit extends StatefulWidget {
 
 class _AddFieldVisitState extends State<AddFieldVisit> {
   bool isLoad = false;
-  String cropSeason = "",
-      sourceFrom = "",
+  String sourceFrom = "",
       specificTech = "",
       showingDate = "",
       mixedCrop = "",
@@ -28,7 +28,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
   List<String> option = ["Yes", "No"];
   DateTime selectedDate = DateTime.now();
   var formatDate = "";
-  CropTypeService cropTypeService = CropTypeService();
+  CropTypeServiceNew cropTypeService = CropTypeServiceNew();
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -87,7 +87,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(
                 height: 48,
-                child: DropdownSearch(
+                child: DropdownSearch<dynamic>(
                   popupShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   mode: Mode.MENU,
@@ -99,13 +99,13 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                     border: OutlineInputBorder(),
                   ),
                   // showSearchBox:true,
-                  onFind: (String filter) async {
+                  onFind: (dynamic filter) async {
                     return cropTypeService.getCropType();
                   },
-                  onChanged: (String data) async {
+                  onChanged: (dynamic data) async {
                     cropTypeService.cropType = data;
                   },
-                  itemAsString: (String da) => da,
+                  itemAsString: (dynamic da) => da["crop_type"],
                 ),
               ),
               const SizedBox(
@@ -116,7 +116,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(
                 height: 48,
-                child: DropdownSearch(
+                child: DropdownSearch<dynamic>(
                   popupShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   mode: Mode.MENU,
@@ -128,13 +128,14 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                     border: OutlineInputBorder(),
                   ),
                   // showSearchBox:true,
-                  onFind: (String filter) async {
-                    return ["Kharif", "Rabi", "Year"];
+                  onFind: (dynamic filter) async {
+                    final lst = await cropTypeService.getCropSeason();
+                    return lst;
                   },
-                  onChanged: (String data) async {
-                    cropSeason = data;
+                  onChanged: (dynamic data) async {
+                    cropTypeService.cropSeason = data;
                   },
-                  itemAsString: (String da) => da,
+                  itemAsString: (dynamic da) => da["crop_season"],
                 ),
               ),
               const SizedBox(
@@ -145,7 +146,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(
                 height: 48,
-                child: DropdownSearch(
+                child: DropdownSearch<dynamic>(
                   popupShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   mode: Mode.MENU,
@@ -157,13 +158,13 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                     border: OutlineInputBorder(),
                   ),
                   // showSearchBox:true,
-                  onFind: (String filter) async {
+                  onFind: (dynamic filter) async {
                     return cropTypeService.getCropName();
                   },
-                  onChanged: (String data) async {
+                  onChanged: (dynamic data) async {
                     cropTypeService.cropName = data;
                   },
-                  itemAsString: (String da) => da,
+                  itemAsString: (dynamic da) => da['crop_name'],
                 ),
               ),
               const SizedBox(
@@ -174,7 +175,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                       color: const Color(0xff262626), fontSize: 17)),
               SizedBox(
                 height: 48,
-                child: DropdownSearch(
+                child: DropdownSearch<dynamic>(
                   popupShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   mode: Mode.MENU,
@@ -186,13 +187,13 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                     border: OutlineInputBorder(),
                   ),
                   // showSearchBox:true,
-                  onFind: (String filter) async {
+                  onFind: (dynamic filter) async {
                     return cropTypeService.getCropVariety();
                   },
-                  onChanged: (String data) async {
+                  onChanged: (dynamic data) async {
                     cropTypeService.cropVariety = data;
                   },
-                  itemAsString: (String da) => da,
+                  itemAsString: (dynamic da) => da['crop_varity'],
                 ),
               ),
               const SizedBox(
@@ -536,11 +537,11 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                       ), //button color
                     ),
                     onPressed: () async {
-                      if (cropTypeService.cropType == "") {
+                      if (cropTypeService.cropType == null) {
                         showSnackBar("Select crop type");
-                      } else if (cropTypeService.cropName == "") {
+                      } else if (cropTypeService.cropName == null) {
                         showSnackBar("Select crop name");
-                      } else if (cropTypeService.cropVariety == "") {
+                      } else if (cropTypeService.cropVariety == null) {
                         showSnackBar("Select crop varieties");
                       } else if (sourceFrom == "") {
                         showSnackBar(
@@ -559,9 +560,9 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                         // Get.to(() => CropStage(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
                         await Provider.of<AuthProvider>(context, listen: false)
                             .addFieldVisitApi(
-                                cropTypeService.cropType,
-                                cropTypeService.cropName,
-                                cropTypeService.cropVariety,
+                                cropTypeService.cropTypeS,
+                                cropTypeService.cropNameS,
+                                cropTypeService.cropVarietyS,
                                 sourceFrom,
                                 specificTech,
                                 formatDate,

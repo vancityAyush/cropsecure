@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:CropSecure/data/model/response/responsefamer.dart';
 import 'package:CropSecure/provider/authprovider.dart';
-import 'package:CropSecure/service/address_service.dart';
 import 'package:CropSecure/utill/color_resources.dart';
 import 'package:CropSecure/utill/drop_down.dart';
 import 'package:CropSecure/utill/styles.dart';
@@ -15,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/model/response/responsefamer.dart';
+import '../../service/address_service_new.dart';
 
 class AddFarmer extends StatefulWidget {
   final String register;
@@ -35,7 +35,7 @@ class _AddFarmerState extends State<AddFarmer> {
       casteSelect = "";
 
   farmerType type;
-  AddressService addressService = AddressService();
+  AddressServiceNew addressService2 = AddressServiceNew();
   TextEditingController farmerName = TextEditingController();
   TextEditingController fatherHusbandName = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -547,7 +547,7 @@ class _AddFarmerState extends State<AddFarmer> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -560,12 +560,12 @@ class _AddFarmerState extends State<AddFarmer> {
                     ),
                     // showSearchBox:true,
                     onFind: (String filter) async {
-                      return addressService.getState();
+                      return addressService2.states;
                     },
-                    onChanged: (String data) async {
-                      addressService.state = data;
+                    onChanged: (dynamic data) async {
+                      addressService2.currentState = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["state"],
                   ),
                 ),
                 const SizedBox(
@@ -578,7 +578,7 @@ class _AddFarmerState extends State<AddFarmer> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -590,13 +590,13 @@ class _AddFarmerState extends State<AddFarmer> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getDistrict();
+                    onFind: (dynamic filter) async {
+                      return addressService2.getDistricts();
                     },
-                    onChanged: (String data) async {
-                      addressService.district = data;
+                    onChanged: (dynamic data) async {
+                      addressService2.currentDistrict = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da['district'],
                   ),
                 ),
                 const SizedBox(
@@ -609,7 +609,7 @@ class _AddFarmerState extends State<AddFarmer> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -621,13 +621,13 @@ class _AddFarmerState extends State<AddFarmer> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getTaluka();
+                    onFind: (dynamic filter) async {
+                      return addressService2.getTalukas();
                     },
-                    onChanged: (String data) async {
-                      addressService.taluka = data;
+                    onChanged: (dynamic data) async {
+                      addressService2.currentTaluka = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da['taluka'],
                   ),
                 ),
                 //   TextFormField(
@@ -674,13 +674,13 @@ class _AddFarmerState extends State<AddFarmer> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getHobli();
+                    onFind: (dynamic filter) async {
+                      return addressService2.getHoblis();
                     },
-                    onChanged: (String data) async {
-                      addressService.hobli = data;
+                    onChanged: (dynamic data) async {
+                      addressService2.currentHobali = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da['hobali'],
                   ),
                 ),
                 //   TextFormField(
@@ -728,13 +728,13 @@ class _AddFarmerState extends State<AddFarmer> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getGP();
+                    onFind: (dynamic filter) async {
+                      return addressService2.getGramPanchayat();
                     },
-                    onChanged: (String data) async {
-                      addressService.gp = data;
+                    onChanged: (dynamic data) async {
+                      addressService2.currentGramPanchayat = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da['gram_panchayat'],
                   ),
                 ),
                 const SizedBox(
@@ -760,13 +760,13 @@ class _AddFarmerState extends State<AddFarmer> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getVillage();
+                    onFind: (dynamic filter) async {
+                      return addressService2.getVillages();
                     },
-                    onChanged: (String data) async {
-                      addressService.village = data;
+                    onChanged: (dynamic data) async {
+                      addressService2.currentVillage = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da['village'],
                   ),
                 ),
                 //   TextFormField(
@@ -1301,10 +1301,7 @@ class _AddFarmerState extends State<AddFarmer> {
                               showSnackBar("Enter mobile number");
                             } else if (pinController.text.isEmpty) {
                               showSnackBar("Enter pincode");
-                            } else if (addressService.state == "") {
-                              showSnackBar("Select state");
-                            } else if (addressService.village == "" ||
-                                addressService.village == null) {
+                            } else if (addressService2.check()) {
                               showSnackBar("Select Address");
                             } else if (aadharController.text.isEmpty) {
                               showSnackBar("Enter Aadhar");
@@ -1331,15 +1328,15 @@ class _AddFarmerState extends State<AddFarmer> {
                                       farmerName.text,
                                       fatherHusbandName.text,
                                       mobileController.text,
-                                      addressService.village,
+                                      addressService2.village,
                                       aadharController.text,
                                       panController.text,
                                       rashanController.text,
-                                      addressService.gp,
-                                      addressService.hobli,
-                                      addressService.taluka,
-                                      addressService.district,
-                                      addressService.state,
+                                      addressService2.gramPanchayat,
+                                      addressService2.hobli,
+                                      addressService2.taluka,
+                                      addressService2.district,
+                                      addressService2.state,
                                       genderSelect,
                                       formatDate,
                                       ageController.text,
@@ -1362,7 +1359,7 @@ class _AddFarmerState extends State<AddFarmer> {
                                 aadharController.clear();
                                 panController.clear();
                                 rashanController.clear();
-                                addressService.reset();
+                                addressService2.reset();
                                 genderSelect = "";
                                 formatDate = "";
                                 ageController.clear();

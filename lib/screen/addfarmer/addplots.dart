@@ -3,7 +3,6 @@
 import 'dart:io';
 
 import 'package:CropSecure/provider/authprovider.dart';
-import 'package:CropSecure/service/address_service.dart';
 import 'package:CropSecure/utill/color_resources.dart';
 import 'package:CropSecure/utill/drop_down.dart';
 import 'package:CropSecure/utill/styles.dart';
@@ -13,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import '../../service/address_service_new.dart';
 
 class AddPlots extends StatefulWidget {
   final String id;
@@ -27,7 +28,7 @@ class _AddPlotsState extends State<AddPlots> {
   File _imagepan;
   String area = "", category = "", soiltype = "", irrigation = "", water = "";
 
-  AddressService addressService = AddressService();
+  AddressServiceNew addressService = AddressServiceNew();
   bool isLoad = false;
   TextEditingController surveyController = TextEditingController();
   TextEditingController areaController = TextEditingController();
@@ -275,7 +276,7 @@ class _AddPlotsState extends State<AddPlots> {
                 padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 48,
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -287,13 +288,13 @@ class _AddPlotsState extends State<AddPlots> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getState();
+                    onFind: (dynamic filter) async {
+                      return addressService.states;
                     },
-                    onChanged: (String data) async {
-                      addressService.state = data;
+                    onChanged: (dynamic data) async {
+                      addressService.currentState = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["state"],
                   ),
                 ),
               ),
@@ -301,7 +302,7 @@ class _AddPlotsState extends State<AddPlots> {
                 padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 48,
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -313,13 +314,13 @@ class _AddPlotsState extends State<AddPlots> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getDistrict();
+                    onFind: (dynamic filter) async {
+                      return addressService.getDistricts();
                     },
-                    onChanged: (String data) async {
-                      addressService.district = data;
+                    onChanged: (dynamic data) async {
+                      addressService.currentDistrict = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["district"],
                   ),
                 ),
               ),
@@ -327,7 +328,7 @@ class _AddPlotsState extends State<AddPlots> {
                 padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 48,
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -339,13 +340,13 @@ class _AddPlotsState extends State<AddPlots> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getTaluka();
+                    onFind: (dynamic filter) async {
+                      return addressService.getTalukas();
                     },
-                    onChanged: (String data) async {
-                      addressService.taluka = data;
+                    onChanged: (dynamic data) async {
+                      addressService.currentTaluka = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["taluka"],
                   ),
                 ),
               ),
@@ -353,7 +354,7 @@ class _AddPlotsState extends State<AddPlots> {
                 padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 48,
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -365,13 +366,13 @@ class _AddPlotsState extends State<AddPlots> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getHobli();
+                    onFind: (dynamic filter) async {
+                      return addressService.getHoblis();
                     },
-                    onChanged: (String data) async {
-                      addressService.hobli = data;
+                    onChanged: (dynamic data) async {
+                      addressService.currentHobali = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["hobali"],
                   ),
                 ),
               ),
@@ -379,7 +380,7 @@ class _AddPlotsState extends State<AddPlots> {
                 padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 48,
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -391,13 +392,13 @@ class _AddPlotsState extends State<AddPlots> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getGP();
+                    onFind: (dynamic filter) async {
+                      return addressService.getGramPanchayat();
                     },
-                    onChanged: (String data) async {
-                      addressService.gp = data;
+                    onChanged: (dynamic data) async {
+                      addressService.currentGramPanchayat = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["gram_panchayat"],
                   ),
                 ),
               ),
@@ -405,7 +406,7 @@ class _AddPlotsState extends State<AddPlots> {
                 padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                   height: 48,
-                  child: DropdownSearch(
+                  child: DropdownSearch<dynamic>(
                     popupShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     mode: Mode.MENU,
@@ -417,13 +418,13 @@ class _AddPlotsState extends State<AddPlots> {
                       border: OutlineInputBorder(),
                     ),
                     // showSearchBox:true,
-                    onFind: (String filter) async {
-                      return addressService.getVillage();
+                    onFind: (dynamic filter) async {
+                      return addressService.getVillages();
                     },
-                    onChanged: (String data) async {
-                      addressService.village = data;
+                    onChanged: (dynamic data) async {
+                      addressService.currentVillage = data;
                     },
-                    itemAsString: (String da) => da,
+                    itemAsString: (dynamic da) => da["village"],
                   ),
                 ),
               ),
@@ -697,7 +698,7 @@ class _AddPlotsState extends State<AddPlots> {
                               water,
                               addressService.district,
                               addressService.taluka,
-                              addressService.gp,
+                              addressService.gramPanchayat,
                               addressService.village,
                               pincodeController.text,
                               newFile,
