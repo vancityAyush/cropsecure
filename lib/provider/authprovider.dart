@@ -468,17 +468,25 @@ class AuthProvider with ChangeNotifier {
 
   /////// addBankDetails Api /////////
   Future<ResponseModel> addBankDetailsApi(
+      {String accountType,
       String bankName,
       String ifscCode,
       String accountNumber,
       String holderName,
       String branchName,
       String id,
-      File passbook) async {
+      File passbook}) async {
     var cattle =
         await SharedPrefManager.getPrefrenceString(AppConstants.mainCattle);
-    ApiResponse apiResponse = await authRepo.addBankDetailsApi(bankName,
-        ifscCode, accountNumber, holderName, branchName, id, passbook);
+    ApiResponse apiResponse = await authRepo.addBankDetailsApi(
+        accountType,
+        bankName,
+        ifscCode,
+        accountNumber,
+        holderName,
+        branchName,
+        id,
+        passbook);
 
     ResponseModel responseModel;
     if (apiResponse.response != null &&
@@ -517,11 +525,14 @@ class AuthProvider with ChangeNotifier {
   Future<ResponseModel> addPlotsApi(
       String farmerId,
       String survey_no,
+      String areaUnit,
       String area,
       String category,
       String soil_type,
       String source_of_irrigation,
       String source_of_water,
+      String state,
+      String hobali,
       String district,
       String taluka,
       String gram_panchayath,
@@ -534,11 +545,14 @@ class AuthProvider with ChangeNotifier {
     ApiResponse apiResponse = await authRepo.addPlotsApi(
         farmerId,
         survey_no,
+        areaUnit,
         area,
         category,
         soil_type,
         source_of_irrigation,
         source_of_water,
+        state,
+        hobali,
         district,
         taluka,
         gram_panchayath,
@@ -720,13 +734,17 @@ class AuthProvider with ChangeNotifier {
 
   /////// addFieldVisitApi/////////
   Future<ResponseModel> addFieldVisitApi(
-      String cropType,
-      String cropName,
-      String crop_varities,
-      String source_of_seeds,
-      String specific_technology,
-      String showingDate,
-      String mixedCrop) async {
+    String cropType,
+    String cropName,
+    String crop_varities,
+    String source_of_seeds,
+    String specific_technology,
+    String showingDate,
+    String mixedCrop,
+    String mixedCropName,
+    String mixedCropVarities,
+    String mixedSpecificTech,
+  ) async {
     ApiResponse apiResponse = await authRepo.plotFieldVisit(
         cropType,
         cropName,
@@ -734,7 +752,10 @@ class AuthProvider with ChangeNotifier {
         source_of_seeds,
         specific_technology,
         showingDate,
-        mixedCrop);
+        mixedCrop,
+        mixedCropName,
+        mixedCropVarities,
+        mixedSpecificTech);
 
     ResponseModel responseModel;
     if (apiResponse.response != null &&
@@ -887,9 +908,9 @@ class AuthProvider with ChangeNotifier {
 
   /////// addPlantDoctorApi/////////
   Future<ResponseModel> addPlantDoctorApi(String id,
-      {String comment, File image = null}) async {
+      {String comment, File image = null, File audio = null}) async {
     ApiResponse apiResponse =
-        await authRepo.addPlantDoctorApi(comment, image, id);
+        await authRepo.addPlantDoctorApi(comment, image, id, audio);
 
     ResponseModel responseModel;
     if (apiResponse.response != null &&
@@ -1231,12 +1252,8 @@ class AuthProvider with ChangeNotifier {
   /////// orderNowApi /////////
   Future<ResponseModel> orderNowApi(String product, String isRent,
       String rentFromDate, String rentToDate) async {
-    if (rentFromDate == null) {
-      rentFromDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
-    }
-    if (rentToDate == null) {
-      rentToDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
-    }
+    rentFromDate ??= DateFormat('dd/MM/yyyy').format(DateTime.now());
+    rentToDate ??= DateFormat('dd/MM/yyyy').format(DateTime.now());
     ApiResponse apiResponse =
         await authRepo.orderNowApi(product, isRent, rentFromDate, rentToDate);
 

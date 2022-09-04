@@ -21,11 +21,12 @@ class _AddBankDetailState extends State<AddBankDetail> {
   TextEditingController accountNameController = TextEditingController();
   TextEditingController accountNumberController = TextEditingController();
   TextEditingController ifscCodeController = TextEditingController();
-  TextEditingController bankNameController = TextEditingController();
+  // TextEditingController bankNameController = TextEditingController();
   TextEditingController branchController = TextEditingController();
   bool isLoad = false;
   List<String> state = ["Savings", "Joint", "Current"];
   String accounttype = "";
+  String bankName = "";
   File newFile;
   File _image;
 
@@ -337,7 +338,7 @@ class _AddBankDetailState extends State<AddBankDetail> {
                         ];
                       },
                       onChanged: (String data) async {
-                        accounttype = data;
+                        bankName = data;
                       },
                       itemAsString: (String da) => da,
                     ),
@@ -532,13 +533,15 @@ class _AddBankDetailState extends State<AddBankDetail> {
                                 await Provider.of<AuthProvider>(context,
                                         listen: false)
                                     .addBankDetailsApi(
-                                        accounttype,
-                                        ifscCodeController.text,
-                                        accountNumberController.text,
-                                        accountNameController.text,
-                                        branchController.text,
-                                        widget.id,
-                                        _image);
+                                  accountType: accounttype,
+                                  ifscCode: ifscCodeController.text,
+                                  accountNumber: accountNumberController.text,
+                                  bankName: bankName,
+                                  branchName: branchController.text,
+                                  passbook: newFile,
+                                  id: widget.id,
+                                  holderName: accountNameController.text,
+                                );
 
                                 setState(() {
                                   isLoad = false;

@@ -28,7 +28,7 @@ class AddressServiceNew {
 
   String get village => currentVillage['village'];
   String get gramPanchayat => currentGramPanchayat['gram_panchayat'];
-  String get hobli => currentHobali['hobli'];
+  String get hobli => currentHobali['hobali'];
   String get taluka => currentTaluka['taluka'];
   String get district => currentDistrict['district'];
   String get state => currentState['state'];

@@ -111,36 +111,6 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
               const SizedBox(
                 height: 20,
               ),
-              Text("Crop Season",
-                  style: robotoBold.copyWith(
-                      color: const Color(0xff262626), fontSize: 17)),
-              SizedBox(
-                height: 48,
-                child: DropdownSearch<dynamic>(
-                  popupShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  mode: Mode.MENU,
-                  popupElevation: 5,
-                  dropdownSearchDecoration: const InputDecoration(
-                    hintText: "Crop Season",
-                    hintStyle: TextStyle(color: ColorResources.light_purple),
-                    contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                    border: OutlineInputBorder(),
-                  ),
-                  // showSearchBox:true,
-                  onFind: (dynamic filter) async {
-                    final lst = await cropTypeService.getCropSeason();
-                    return lst;
-                  },
-                  onChanged: (dynamic data) async {
-                    cropTypeService.cropSeason = data;
-                  },
-                  itemAsString: (dynamic da) => da["crop_season"],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               Text("Crop Name",
                   style: robotoBold.copyWith(
                       color: const Color(0xff262626), fontSize: 17)),
@@ -194,6 +164,36 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                     cropTypeService.cropVariety = data;
                   },
                   itemAsString: (dynamic da) => da['crop_varity'],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text("Crop Season",
+                  style: robotoBold.copyWith(
+                      color: const Color(0xff262626), fontSize: 17)),
+              SizedBox(
+                height: 48,
+                child: DropdownSearch<dynamic>(
+                  popupShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  mode: Mode.MENU,
+                  popupElevation: 5,
+                  dropdownSearchDecoration: const InputDecoration(
+                    hintText: "Crop Season",
+                    hintStyle: TextStyle(color: ColorResources.light_purple),
+                    contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                    border: OutlineInputBorder(),
+                  ),
+                  // showSearchBox:true,
+                  onFind: (dynamic filter) async {
+                    final lst = await cropTypeService.getCropSeason();
+                    return lst;
+                  },
+                  onChanged: (dynamic data) async {
+                    cropTypeService.cropSeason = data;
+                  },
+                  itemAsString: (dynamic da) => da["crop_season"],
                 ),
               ),
               const SizedBox(
@@ -560,13 +560,17 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                         // Get.to(() => CropStage(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
                         await Provider.of<AuthProvider>(context, listen: false)
                             .addFieldVisitApi(
-                                cropTypeService.cropTypeS,
-                                cropTypeService.cropNameS,
-                                cropTypeService.cropVarietyS,
-                                sourceFrom,
-                                specificTech,
-                                formatDate,
-                                mixedCrop);
+                          cropTypeService.cropTypeS,
+                          cropTypeService.cropNameS,
+                          cropTypeService.cropVarietyS,
+                          sourceFrom,
+                          specificTech,
+                          formatDate,
+                          mixedCrop,
+                          mixedCropName,
+                          mixedCropVarieties,
+                          mixedCropSpecificTech,
+                        );
 
                         setState(() {
                           isLoad = false;

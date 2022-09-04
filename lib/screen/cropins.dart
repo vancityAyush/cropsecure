@@ -22,7 +22,7 @@ class _CropInsState extends State<CropIns> {
       sourceFrom = "",
       showingDate = "",
       mixedCrop = "",
-      startingDate = "";
+      startingDate = null;
   List<String> gender = ["Male", "Female"];
 
   List<String> loaner = ["Yes", "No"];

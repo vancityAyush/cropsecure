@@ -467,9 +467,9 @@ class _CceState extends State<Cce> {
             children: [
               MaterialButton(
                 onPressed: () async {
-                  position = await getLocation();
+                  final position1 = await getLocation();
                   setState(() {
-                    position = position;
+                    position = position1;
                   });
                 },
                 color: const Color(0xFF6cbd47),
@@ -2170,7 +2170,7 @@ class _CceState extends State<Cce> {
       newFileWeightPlotPhoto,
       newFileMoisturePhoto,
       newFileJointPhoto,
-      gpsAccuracy: position.toString(),
+      gpsAccuracy: "${position.latitude},${position.longitude}",
     );
 
     setState(() {

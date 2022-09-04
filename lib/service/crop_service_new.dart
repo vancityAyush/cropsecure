@@ -33,8 +33,8 @@ class CropTypeServiceNew {
 
   Future<List<dynamic>> getCropSeason() async {
     try {
-      final res = await dio.get(
-          'https://fs.frantic.in/RestApi/crop_seasons_by_crop_type/${cropType['id']}');
+      final res =
+          await dio.get('https://fs.frantic.in/RestApi/get_crop_seasons');
       data = res.data['0'];
     } catch (e) {
       print(e);
@@ -45,7 +45,7 @@ class CropTypeServiceNew {
   Future<List<dynamic>> getCropName() async {
     try {
       final res = await dio.get(
-          'https://fs.frantic.in/RestApi/crop_name_by_crop_season/${cropSeason['id']}');
+          'https://fs.frantic.in/RestApi/crop_name_by_crop_type/${cropType['id']}');
       data = res.data['0'];
     } catch (e) {
       print(e);

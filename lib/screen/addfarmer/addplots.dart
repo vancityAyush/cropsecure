@@ -685,17 +685,21 @@ class _AddPlotsState extends State<AddPlots> {
                             setState(() {
                               isLoad = true;
                             });
+                            String hobali = addressService.hobli;
                             // Get.to(() => AddFarmerSuccessfull(),transition: Transition.rightToLeftWithFade,duration: const Duration(milliseconds: 600));
                             await Provider.of<AuthProvider>(context,
                                     listen: false)
                                 .addPlotsApi(
                               widget.id,
                               surveyController.text,
+                              area,
                               areaController.text,
                               category,
                               soiltype,
                               irrigation,
                               water,
+                              addressService.state,
+                              hobali,
                               addressService.district,
                               addressService.taluka,
                               addressService.gramPanchayat,

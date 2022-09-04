@@ -122,14 +122,14 @@ class _CattleShedListState extends State<CattleShedList> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "Shed Name:- ",
+                                      "Shed Type:- ",
                                       style: robotoBold.copyWith(
                                           color: ColorResources.black,
                                           fontSize: 14),
                                     ),
                                     Text(
                                       snapshots.data['data'][index]
-                                          ['shed_name'],
+                                          ['below_shed_name'],
                                       style: robotoRegular.copyWith(
                                           color: ColorResources.black,
                                           fontSize: 15),
@@ -151,7 +151,7 @@ class _CattleShedListState extends State<CattleShedList> {
                                     ),
                                     Text(
                                       snapshots.data['data'][index]
-                                          ['below_shed_name'],
+                                          ['shed_name'],
                                       style: robotoRegular.copyWith(
                                           color: ColorResources.black,
                                           fontSize: 15),

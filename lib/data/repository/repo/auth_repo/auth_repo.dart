@@ -430,6 +430,7 @@ class AuthRepo {
 
   ////////// addBankDetails ///////////
   Future<ApiResponse> addBankDetailsApi(
+      String accountType,
       String bankName,
       String ifscCode,
       String accountNumber,
@@ -446,6 +447,7 @@ class AuthRepo {
       "account_no": accountNumber,
       "holder_name": holderName,
       "branch_name": branchName,
+      'account_type': accountType,
       "passbook_image": MultipartFile.fromFileSync(passbook.path),
     });
 
@@ -466,11 +468,14 @@ class AuthRepo {
   Future<ApiResponse> addPlotsApi(
       String farmerId,
       String survey_no,
+      String areaUnit,
       String area,
       String category,
       String soil_type,
       String source_of_irrigation,
       String source_of_water,
+      String state,
+      String hobali,
       String district,
       String taluka,
       String gram_panchayath,
@@ -484,11 +489,14 @@ class AuthRepo {
     FormData formData = FormData.fromMap({
       "farmer_id": key,
       "survey_no": survey_no,
+      'area_unit': areaUnit,
       "area": area,
       "category": category,
       "soil_type": soil_type,
       "source_of_irrigation": source_of_irrigation,
       "source_of_water": source_of_water,
+      "state": state,
+      "hobali": hobali,
       "district": district,
       "taluka": taluka,
       "gram_panchayath": gram_panchayath,
@@ -601,7 +609,10 @@ class AuthRepo {
       String source_of_seeds,
       String specific_technology,
       String showingDate,
-      String mixedCrop) async {
+      String mixedCrop,
+      String mixedCropName,
+      String mixedCropVariety,
+      String mixedSpecificTech) async {
     var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
     FormData formData = FormData.fromMap({
       "crop_type": cropType,
@@ -612,6 +623,9 @@ class AuthRepo {
       "specific_technology": specific_technology,
       "sowing_date": showingDate,
       "mixed_crop": mixedCrop,
+      "crop_name_mixed": mixedCropName,
+      "crop_varities_mixed": mixedCropVariety,
+      "specific_technology_mixed": mixedSpecificTech
     });
 
     print(formData.fields.toString());
@@ -851,7 +865,7 @@ class AuthRepo {
       "bmwotcb": bmwotcb,
       "bmwotcc": bmwotcc,
       "bio_mass_weight_of_the_crop": bioMassWeightOfTheCrop,
-      "weightingPhoto": weightingPhoto != null
+      "weighting_photo": weightingPhoto != null
           ? MultipartFile.fromFileSync(weightingPhoto.path)
           : null,
       "threshing_photo": threshingPhoto != null
@@ -1359,11 +1373,12 @@ class AuthRepo {
   }
 
   Future<ApiResponse> addPlantDoctorApi(
-      String comment, File image, String id) async {
+      String comment, File image, String id, File audio) async {
     FormData formData = FormData.fromMap({
       "plot_id": id,
       "comment": comment,
       "image": MultipartFile.fromFileSync(image.path),
+      "audio": MultipartFile.fromFileSync(audio.path),
     });
 
     print(formData.fields.toString());
