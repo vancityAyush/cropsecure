@@ -563,6 +563,7 @@ class _AddFieldVisitState extends State<AddFieldVisit> {
                           cropTypeService.cropTypeS,
                           cropTypeService.cropNameS,
                           cropTypeService.cropVarietyS,
+                          cropTypeService.cropSeasonS,
                           sourceFrom,
                           specificTech,
                           formatDate,

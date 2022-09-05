@@ -668,6 +668,7 @@ class _CattieRegisterState extends State<CattieRegister> {
                                       cattleNameController.text,
                                       cattleType,
                                       liftStage,
+                                      formatDate,
                                       ageController.text,
                                       breed,
                                       bodyWeightController.text,

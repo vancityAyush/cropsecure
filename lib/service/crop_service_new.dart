@@ -18,7 +18,10 @@ class CropTypeServiceNew {
 
   String get cropTypeS => cropVariety['crop_type'];
   String get cropNameS => cropVariety['crop_name'];
-  String get cropSeasonS => cropVariety['crop_season'];
+  String get cropSeasonS {
+    return cropSeason['crop_season'];
+  }
+
   String get cropVarietyS => cropVariety['crop_varity'];
 
   Future<List<dynamic>> getCropType() async {

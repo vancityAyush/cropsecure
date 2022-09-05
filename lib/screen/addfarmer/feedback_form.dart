@@ -11,6 +11,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../utill/sharedprefrence.dart';
+
 class FeedbackForm extends StatefulWidget {
   String id;
   FeedbackForm({this.id});
@@ -145,10 +147,13 @@ class _State extends State<FeedbackForm> {
                             setState(() {
                               isLoad = true;
                             });
+                            var key =
+                                await SharedPrefManager.getPrefrenceString(
+                                    AppConstants.farmerId);
                             await Provider.of<AuthProvider>(context,
                                     listen: false)
                                 .feedBackApi(
-                                    widget.id,
+                                    key,
                                     AppConstants
                                         .ratings[plotDigitisation.value],
                                     AppConstants.ratings[cropManagement.value],

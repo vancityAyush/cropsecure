@@ -2107,6 +2107,8 @@ class _CceState extends State<Cce> {
                               observerDesignationSelectList.length < 4 ||
                               newFileObserverPhotoList.length < 4) {
                             showSnackBar("Observer Form must be filled");
+                          } else if (position == null) {
+                            showSnackBar("Please select location");
                           } else {
                             setState(() {
                               isLoad = true;

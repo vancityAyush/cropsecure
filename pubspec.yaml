@@ -52,7 +52,6 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   permission_handler: ^9.2.0
   flutter_sound: ^9.2.13
-  record_mp3: ^3.0.0
   audio_session: ^0.1.10
 
 dev_dependencies:

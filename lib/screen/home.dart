@@ -109,12 +109,12 @@ class _HomeState extends State<Home> {
                             style: robotoRegular.copyWith(
                                 color: Colors.grey, fontSize: 16),
                           ),
-                          const SizedBox(height: 25),
-                          Text(
-                            "${data['alert_count']['count']} Alerts",
-                            style: robotoRegular.copyWith(
-                                color: Colors.grey, fontSize: 16),
-                          ),
+                          // const SizedBox(height: 25),
+                          // Text(
+                          //   "${data['alert_count']['count']} Alerts",
+                          //   style: robotoRegular.copyWith(
+                          //       color: Colors.grey, fontSize: 16),
+                          // ),
                           const SizedBox(height: 25),
                           Text(
                             "${data['orders_count']['count']} Orders",
