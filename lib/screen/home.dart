@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
                               const SizedBox(
                                 width: 7,
                               ),
-                              Text("${data['farmers_count']['count']} farmer",
+                              Text("${data['farmers_count']['count']} Farmer",
                                   style:
                                       robotoBold.copyWith(color: Colors.grey)),
                             ],
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                                 width: 7,
                               ),
                               Text(
-                                  "${data['cattle_farmers_count']['count']} cattle",
+                                  "${data['cattle_farmers_count']['count']} Cattle",
                                   style:
                                       robotoBold.copyWith(color: Colors.grey)),
                             ],

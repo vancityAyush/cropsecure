@@ -560,7 +560,11 @@ class ViewPlots extends StatelessWidget {
                                       child: InkWell(
                                         onTap: () async {
                                           // await SharedPrefManager.savePrefString(AppConstants.plotId, snapshots.data['data'][index]['id'].toString());
-                                          Get.to(() => Cce(),
+                                          Get.to(
+                                              () => Cce(
+                                                    snapshots.data['data']
+                                                        [index]['id'],
+                                                  ),
                                               transition: Transition
                                                   .rightToLeftWithFade,
                                               duration: const Duration(

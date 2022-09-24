@@ -1,8 +1,8 @@
 class AppConstants {
   static const String appName = '';
 
-  static const String baseUrl = 'http://fs.frantic.in/RestApi/';
-  static const String Image = 'http://fs.frantic.in/';
+  static const String baseUrl = 'http://app.cropsecure.org/RestApi/';
+  static const String Image = 'http://app.cropsecure.org/';
 
   ///eCommerce End Point
   static const String loginApi = 'login_user';

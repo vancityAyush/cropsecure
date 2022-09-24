@@ -15,6 +15,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 class Cce extends StatefulWidget {
+  final String plotId;
+  Cce(this.plotId);
   @override
   State<Cce> createState() => _CceState();
 }
@@ -2132,6 +2134,7 @@ class _CceState extends State<Cce> {
 
   void _sumbit(BuildContext context) async {
     await Provider.of<AuthProvider>(context, listen: false).addCceApi(
+      widget.plotId,
       observerNameSelectList[0],
       observerMobileList[0],
       observerDesignationSelectList[0],

@@ -789,6 +789,7 @@ class AuthProvider with ChangeNotifier {
 
   /////// addCceApi/////////
   Future<ResponseModel> addCceApi(
+      String plotId,
       String farmer_observer,
       String famer_observer_mobile,
       String farmer_observer_designation,
@@ -836,6 +837,7 @@ class AuthProvider with ChangeNotifier {
       String bmwotcc = "asa",
       String yieldSumOfAllColumns = "as"}) async {
     ApiResponse apiResponse = await authRepo.addPlotCceApi(
+        plotId,
         farmer_observer,
         famer_observer_mobile,
         farmer_observer_designation,

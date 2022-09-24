@@ -770,6 +770,7 @@ class AuthRepo {
 
   ////////// addPlotCce ///////////
   Future<ApiResponse> addPlotCceApi(
+    String plotId,
     String farmer_observer,
     String farmer_observer_mobile,
     String farmer_observer_designation,
@@ -819,7 +820,7 @@ class AuthRepo {
   ) async {
     var key = await SharedPrefManager.getPrefrenceString(AppConstants.plotId);
     FormData formData = FormData.fromMap({
-      "plot_id": key,
+      "plot_id": plotId,
       "gps_accuracy": gpsAccuracy,
       "farmer_observer_name": farmer_observer,
       "farmer_observer_mobile": farmer_observer_mobile,
