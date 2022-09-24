@@ -485,9 +485,9 @@ class AuthRepo {
       File phani_plot,
       String latitude,
       String longitude) async {
-    var key = await SharedPrefManager.getPrefrenceString(AppConstants.farmerId);
+    // var key = await SharedPrefManager.getPrefrenceString(AppConstants.farmerId);
     FormData formData = FormData.fromMap({
-      "farmer_id": key,
+      "farmer_id": farmerId,
       "survey_no": survey_no,
       'area_unit': areaUnit,
       "area": area,
