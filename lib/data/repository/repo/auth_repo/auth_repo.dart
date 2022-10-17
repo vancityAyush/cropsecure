@@ -9,6 +9,7 @@ import 'package:CropSecure/data/model/response/responsefamer.dart';
 import 'package:CropSecure/utill/app_constants.dart';
 import 'package:CropSecure/utill/sharedprefrence.dart';
 import 'package:dio/dio.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AuthRepo {
   final DioClient dioClient;
@@ -1388,13 +1389,17 @@ class AuthRepo {
 
     print(formData.fields.toString());
 
+    Fluttertoast.showToast(msg: "Plant Doctor Api Hit");
+
     try {
       Response response = await dioClient.post(
         AppConstants.addPlantDoctor + "/",
         data: formData,
       );
+      Fluttertoast.showToast(msg: response.statusMessage);
       return ApiResponse.withSuccess(response);
     } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }

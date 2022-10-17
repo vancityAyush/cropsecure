@@ -19,6 +19,7 @@ import 'package:CropSecure/screen/soil/soil.dart';
 import 'package:CropSecure/utill/app_constants.dart';
 import 'package:CropSecure/utill/sharedprefrence.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -585,6 +586,8 @@ class AuthProvider with ChangeNotifier {
           errorMessage = errorResponse.errors[0].message;
         }
         print(errorMessage);
+
+        Fluttertoast.showToast(msg: errorMessage, backgroundColor: Colors.red);
         _registrationErrorMessage = errorMessage;
         responseModel = ResponseModel(false, errorMessage);
       }
@@ -932,6 +935,8 @@ class AuthProvider with ChangeNotifier {
           ErrorResponse errorResponse = apiResponse.error;
           errorMessage = errorResponse.errors[0].message;
         }
+
+        Fluttertoast.showToast(msg: errorMessage, backgroundColor: Colors.red);
         print(errorMessage);
         _registrationErrorMessage = errorMessage;
         responseModel = ResponseModel(false, errorMessage);
